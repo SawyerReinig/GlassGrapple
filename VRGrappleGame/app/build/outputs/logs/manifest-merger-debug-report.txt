@@ -1,0 +1,206 @@
+-- Merging decision tree log ---
+manifest
+ADDED from C:\Users\Sawyer\Documents\Android Projects\SwingOut\VRGrappleGame\app\src\main\AndroidManifest.xml:2:1-43:12
+INJECTED from C:\Users\Sawyer\Documents\Android Projects\SwingOut\VRGrappleGame\app\src\main\AndroidManifest.xml:2:1-43:12
+INJECTED from C:\Users\Sawyer\Documents\Android Projects\SwingOut\VRGrappleGame\app\src\main\AndroidManifest.xml:2:1-43:12
+INJECTED from C:\Users\Sawyer\Documents\Android Projects\SwingOut\VRGrappleGame\app\src\main\AndroidManifest.xml:2:1-43:12
+MERGED from [com.google.android.material:material:1.4.0] C:\Users\Sawyer\.gradle\caches\transforms-3\8bed5ac701b76de2ecec911c6f68a0fb\transformed\material-1.4.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.constraintlayout:constraintlayout:2.0.1] C:\Users\Sawyer\.gradle\caches\transforms-3\29377f51e4572dcbc824b53a88a7d42e\transformed\constraintlayout-2.0.1\AndroidManifest.xml:2:1-11:12
+MERGED from [androidx.appcompat:appcompat:1.3.1] C:\Users\Sawyer\.gradle\caches\transforms-3\e79d2ac1c78d9322d10c0b9ff2bed2f6\transformed\appcompat-1.3.1\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.viewpager2:viewpager2:1.0.0] C:\Users\Sawyer\.gradle\caches\transforms-3\351ee4d93166ba909c4f50afba56e355\transformed\jetified-viewpager2-1.0.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.fragment:fragment:1.3.6] C:\Users\Sawyer\.gradle\caches\transforms-3\1b12019b362bd40304a63473c3ac6d50\transformed\fragment-1.3.6\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.activity:activity:1.2.4] C:\Users\Sawyer\.gradle\caches\transforms-3\40a767994e74a640b21a8003be4398dd\transformed\jetified-activity-1.2.4\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.appcompat:appcompat-resources:1.3.1] C:\Users\Sawyer\.gradle\caches\transforms-3\85d0b2bf7d434bf42fd4b83a8f5681d4\transformed\jetified-appcompat-resources-1.3.1\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.drawerlayout:drawerlayout:1.0.0] C:\Users\Sawyer\.gradle\caches\transforms-3\ef11901293698ebacd7e52ee3997c3a2\transformed\drawerlayout-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.1.0] C:\Users\Sawyer\.gradle\caches\transforms-3\05b7acb4fb0f6168307ebc47d2824cf7\transformed\coordinatorlayout-1.1.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.dynamicanimation:dynamicanimation:1.0.0] C:\Users\Sawyer\.gradle\caches\transforms-3\528c2c782de6e6e347300d0d54dc53bc\transformed\dynamicanimation-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.transition:transition:1.2.0] C:\Users\Sawyer\.gradle\caches\transforms-3\30707d9d4f31a1638a2d16c5d950483d\transformed\transition-1.2.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] C:\Users\Sawyer\.gradle\caches\transforms-3\8a867e42b47bd2ccd4a5636fe101a9e3\transformed\vectordrawable-animated-1.1.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] C:\Users\Sawyer\.gradle\caches\transforms-3\8a4b4f08d90d4e79fc9fc34ec3701e98\transformed\vectordrawable-1.1.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.viewpager:viewpager:1.0.0] C:\Users\Sawyer\.gradle\caches\transforms-3\b75bbe99e0a9674b6461bfd0111b006e\transformed\viewpager-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] C:\Users\Sawyer\.gradle\caches\transforms-3\990ffa8fdfb7b11315d12d7a8d59b5b3\transformed\legacy-support-core-utils-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.loader:loader:1.0.0] C:\Users\Sawyer\.gradle\caches\transforms-3\286e8c194544fafe3ab1079cf03b7b39\transformed\loader-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.recyclerview:recyclerview:1.1.0] C:\Users\Sawyer\.gradle\caches\transforms-3\70de3755d4b5244c7181597e9413fc66\transformed\recyclerview-1.1.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.customview:customview:1.0.0] C:\Users\Sawyer\.gradle\caches\transforms-3\aaa09f54f6e63e8efbdd655cfafefd68\transformed\customview-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.core:core:1.5.0] C:\Users\Sawyer\.gradle\caches\transforms-3\ae6a57a0b830d594206bcc8ee025c75d\transformed\core-1.5.0\AndroidManifest.xml:17:1-26:12
+MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] C:\Users\Sawyer\.gradle\caches\transforms-3\783109eaf4824341fba5ab40b3ca5afb\transformed\cursoradapter-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate:2.3.1] C:\Users\Sawyer\.gradle\caches\transforms-3\cd9d9daff420df28267322e3cd867db2\transformed\jetified-lifecycle-viewmodel-savedstate-2.3.1\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.savedstate:savedstate:1.1.0] C:\Users\Sawyer\.gradle\caches\transforms-3\94f52492a6c053e3a99c466c48f57196\transformed\jetified-savedstate-1.1.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.3.1] C:\Users\Sawyer\.gradle\caches\transforms-3\b92a56272ebd48a859addf9214b8d888\transformed\lifecycle-runtime-2.3.1\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.3.1] C:\Users\Sawyer\.gradle\caches\transforms-3\c71008add9bcde97979645d92cde9c92\transformed\lifecycle-viewmodel-2.3.1\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.cardview:cardview:1.0.0] C:\Users\Sawyer\.gradle\caches\transforms-3\b663c74897f455f3ff548918ab94b7e3\transformed\cardview-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\Sawyer\.gradle\caches\transforms-3\473d6803669e7483a792ef5404126b4e\transformed\versionedparcelable-1.1.1\AndroidManifest.xml:17:1-27:12
+MERGED from [androidx.tracing:tracing:1.0.0] C:\Users\Sawyer\.gradle\caches\transforms-3\d3b5cbdcd00cdaafbdcae1df207a30eb\transformed\jetified-tracing-1.0.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] C:\Users\Sawyer\.gradle\caches\transforms-3\e9a4af4ff5911e8ed9fd0387d09713c1\transformed\lifecycle-livedata-2.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.3.1] C:\Users\Sawyer\.gradle\caches\transforms-3\4a2434392cfd4423d3d5f2efda864130\transformed\lifecycle-livedata-core-2.3.1\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.arch.core:core-runtime:2.1.0] C:\Users\Sawyer\.gradle\caches\transforms-3\3b372e5c1223dbcf36805bd791430d83\transformed\core-runtime-2.1.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.interpolator:interpolator:1.0.0] C:\Users\Sawyer\.gradle\caches\transforms-3\b97eacea6d0b1450925958845a105002\transformed\interpolator-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.documentfile:documentfile:1.0.0] C:\Users\Sawyer\.gradle\caches\transforms-3\e83f2303dd287321e9dcfb6dcfd99d20\transformed\documentfile-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] C:\Users\Sawyer\.gradle\caches\transforms-3\1cd48132cef98e2f53772ffa30249f39\transformed\localbroadcastmanager-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.print:print:1.0.0] C:\Users\Sawyer\.gradle\caches\transforms-3\8f582ca3551a0f6c396056a1c0a8169d\transformed\print-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.annotation:annotation-experimental:1.0.0] C:\Users\Sawyer\.gradle\caches\transforms-3\58b96dd0ba36a748f5a68f6e39f3fd24\transformed\jetified-annotation-experimental-1.0.0\AndroidManifest.xml:17:1-24:12
+	package
+		INJECTED from C:\Users\Sawyer\Documents\Android Projects\SwingOut\VRGrappleGame\app\src\main\AndroidManifest.xml
+	android:versionName
+		ADDED from C:\Users\Sawyer\Documents\Android Projects\SwingOut\VRGrappleGame\app\src\main\AndroidManifest.xml:4:11-36
+		INJECTED from C:\Users\Sawyer\Documents\Android Projects\SwingOut\VRGrappleGame\app\src\main\AndroidManifest.xml
+	xmlns:android
+		ADDED from C:\Users\Sawyer\Documents\Android Projects\SwingOut\VRGrappleGame\app\src\main\AndroidManifest.xml:2:11-69
+	android:versionCode
+		ADDED from C:\Users\Sawyer\Documents\Android Projects\SwingOut\VRGrappleGame\app\src\main\AndroidManifest.xml:3:11-34
+		INJECTED from C:\Users\Sawyer\Documents\Android Projects\SwingOut\VRGrappleGame\app\src\main\AndroidManifest.xml
+uses-feature#0x00030002
+ADDED from C:\Users\Sawyer\Documents\Android Projects\SwingOut\VRGrappleGame\app\src\main\AndroidManifest.xml:7:3-75
+	android:glEsVersion
+		ADDED from C:\Users\Sawyer\Documents\Android Projects\SwingOut\VRGrappleGame\app\src\main\AndroidManifest.xml:7:17-49
+	android:required
+		ADDED from C:\Users\Sawyer\Documents\Android Projects\SwingOut\VRGrappleGame\app\src\main\AndroidManifest.xml:7:50-73
+uses-feature#android.hardware.vr.headtracking
+ADDED from C:\Users\Sawyer\Documents\Android Projects\SwingOut\VRGrappleGame\app\src\main\AndroidManifest.xml:10:3-91
+	android:required
+		ADDED from C:\Users\Sawyer\Documents\Android Projects\SwingOut\VRGrappleGame\app\src\main\AndroidManifest.xml:10:65-88
+	android:name
+		ADDED from C:\Users\Sawyer\Documents\Android Projects\SwingOut\VRGrappleGame\app\src\main\AndroidManifest.xml:10:17-64
+uses-feature#oculus.software.handtracking
+ADDED from C:\Users\Sawyer\Documents\Android Projects\SwingOut\VRGrappleGame\app\src\main\AndroidManifest.xml:11:3-87
+	android:required
+		ADDED from C:\Users\Sawyer\Documents\Android Projects\SwingOut\VRGrappleGame\app\src\main\AndroidManifest.xml:11:61-84
+	android:name
+		ADDED from C:\Users\Sawyer\Documents\Android Projects\SwingOut\VRGrappleGame\app\src\main\AndroidManifest.xml:11:17-60
+uses-permission#com.oculus.permission.HAND_TRACKING
+ADDED from C:\Users\Sawyer\Documents\Android Projects\SwingOut\VRGrappleGame\app\src\main\AndroidManifest.xml:12:3-73
+	android:name
+		ADDED from C:\Users\Sawyer\Documents\Android Projects\SwingOut\VRGrappleGame\app\src\main\AndroidManifest.xml:12:20-70
+application
+ADDED from C:\Users\Sawyer\Documents\Android Projects\SwingOut\VRGrappleGame\app\src\main\AndroidManifest.xml:14:3-41:17
+INJECTED from C:\Users\Sawyer\Documents\Android Projects\SwingOut\VRGrappleGame\app\src\main\AndroidManifest.xml:14:3-41:17
+MERGED from [com.google.android.material:material:1.4.0] C:\Users\Sawyer\.gradle\caches\transforms-3\8bed5ac701b76de2ecec911c6f68a0fb\transformed\material-1.4.0\AndroidManifest.xml:22:5-20
+MERGED from [com.google.android.material:material:1.4.0] C:\Users\Sawyer\.gradle\caches\transforms-3\8bed5ac701b76de2ecec911c6f68a0fb\transformed\material-1.4.0\AndroidManifest.xml:22:5-20
+MERGED from [androidx.constraintlayout:constraintlayout:2.0.1] C:\Users\Sawyer\.gradle\caches\transforms-3\29377f51e4572dcbc824b53a88a7d42e\transformed\constraintlayout-2.0.1\AndroidManifest.xml:9:5-20
+MERGED from [androidx.constraintlayout:constraintlayout:2.0.1] C:\Users\Sawyer\.gradle\caches\transforms-3\29377f51e4572dcbc824b53a88a7d42e\transformed\constraintlayout-2.0.1\AndroidManifest.xml:9:5-20
+MERGED from [androidx.core:core:1.5.0] C:\Users\Sawyer\.gradle\caches\transforms-3\ae6a57a0b830d594206bcc8ee025c75d\transformed\core-1.5.0\AndroidManifest.xml:24:5-89
+MERGED from [androidx.core:core:1.5.0] C:\Users\Sawyer\.gradle\caches\transforms-3\ae6a57a0b830d594206bcc8ee025c75d\transformed\core-1.5.0\AndroidManifest.xml:24:5-89
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\Sawyer\.gradle\caches\transforms-3\473d6803669e7483a792ef5404126b4e\transformed\versionedparcelable-1.1.1\AndroidManifest.xml:24:5-25:19
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\Sawyer\.gradle\caches\transforms-3\473d6803669e7483a792ef5404126b4e\transformed\versionedparcelable-1.1.1\AndroidManifest.xml:24:5-25:19
+	android:extractNativeLibs
+		INJECTED from C:\Users\Sawyer\Documents\Android Projects\SwingOut\VRGrappleGame\app\src\main\AndroidManifest.xml
+	android:appComponentFactory
+		ADDED from [androidx.core:core:1.5.0] C:\Users\Sawyer\.gradle\caches\transforms-3\ae6a57a0b830d594206bcc8ee025c75d\transformed\core-1.5.0\AndroidManifest.xml:24:18-86
+	android:label
+		ADDED from C:\Users\Sawyer\Documents\Android Projects\SwingOut\VRGrappleGame\app\src\main\AndroidManifest.xml:16:7-39
+	android:hasCode
+		ADDED from C:\Users\Sawyer\Documents\Android Projects\SwingOut\VRGrappleGame\app\src\main\AndroidManifest.xml:17:7-29
+	android:allowBackup
+		ADDED from C:\Users\Sawyer\Documents\Android Projects\SwingOut\VRGrappleGame\app\src\main\AndroidManifest.xml:15:7-34
+activity#com.oxrapp.glesapp.OXRAppMainActivity
+ADDED from C:\Users\Sawyer\Documents\Android Projects\SwingOut\VRGrappleGame\app\src\main\AndroidManifest.xml:24:5-40:16
+	android:screenOrientation
+		ADDED from C:\Users\Sawyer\Documents\Android Projects\SwingOut\VRGrappleGame\app\src\main\AndroidManifest.xml:27:15-52
+	android:excludeFromRecents
+		ADDED from C:\Users\Sawyer\Documents\Android Projects\SwingOut\VRGrappleGame\app\src\main\AndroidManifest.xml:28:15-49
+	android:launchMode
+		ADDED from C:\Users\Sawyer\Documents\Android Projects\SwingOut\VRGrappleGame\app\src\main\AndroidManifest.xml:26:15-46
+	android:configChanges
+		ADDED from C:\Users\Sawyer\Documents\Android Projects\SwingOut\VRGrappleGame\app\src\main\AndroidManifest.xml:29:15-116
+	android:theme
+		ADDED from C:\Users\Sawyer\Documents\Android Projects\SwingOut\VRGrappleGame\app\src\main\AndroidManifest.xml:25:15-79
+	android:name
+		ADDED from C:\Users\Sawyer\Documents\Android Projects\SwingOut\VRGrappleGame\app\src\main\AndroidManifest.xml:24:15-67
+meta-data#android.app.lib_name
+ADDED from C:\Users\Sawyer\Documents\Android Projects\SwingOut\VRGrappleGame\app\src\main\AndroidManifest.xml:31:7-32:47
+	android:value
+		ADDED from C:\Users\Sawyer\Documents\Android Projects\SwingOut\VRGrappleGame\app\src\main\AndroidManifest.xml:32:18-44
+	android:name
+		ADDED from C:\Users\Sawyer\Documents\Android Projects\SwingOut\VRGrappleGame\app\src\main\AndroidManifest.xml:31:18-53
+intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER+category:name:com.oculus.intent.category.VR
+ADDED from C:\Users\Sawyer\Documents\Android Projects\SwingOut\VRGrappleGame\app\src\main\AndroidManifest.xml:35:7-39:23
+action#android.intent.action.MAIN
+ADDED from C:\Users\Sawyer\Documents\Android Projects\SwingOut\VRGrappleGame\app\src\main\AndroidManifest.xml:36:9-61
+	android:name
+		ADDED from C:\Users\Sawyer\Documents\Android Projects\SwingOut\VRGrappleGame\app\src\main\AndroidManifest.xml:36:17-58
+category#com.oculus.intent.category.VR
+ADDED from C:\Users\Sawyer\Documents\Android Projects\SwingOut\VRGrappleGame\app\src\main\AndroidManifest.xml:37:9-66
+	android:name
+		ADDED from C:\Users\Sawyer\Documents\Android Projects\SwingOut\VRGrappleGame\app\src\main\AndroidManifest.xml:37:19-63
+category#android.intent.category.LAUNCHER
+ADDED from C:\Users\Sawyer\Documents\Android Projects\SwingOut\VRGrappleGame\app\src\main\AndroidManifest.xml:38:9-69
+	android:name
+		ADDED from C:\Users\Sawyer\Documents\Android Projects\SwingOut\VRGrappleGame\app\src\main\AndroidManifest.xml:38:19-66
+uses-sdk
+INJECTED from C:\Users\Sawyer\Documents\Android Projects\SwingOut\VRGrappleGame\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from C:\Users\Sawyer\Documents\Android Projects\SwingOut\VRGrappleGame\app\src\main\AndroidManifest.xml
+INJECTED from C:\Users\Sawyer\Documents\Android Projects\SwingOut\VRGrappleGame\app\src\main\AndroidManifest.xml
+MERGED from [com.google.android.material:material:1.4.0] C:\Users\Sawyer\.gradle\caches\transforms-3\8bed5ac701b76de2ecec911c6f68a0fb\transformed\material-1.4.0\AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.material:material:1.4.0] C:\Users\Sawyer\.gradle\caches\transforms-3\8bed5ac701b76de2ecec911c6f68a0fb\transformed\material-1.4.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.constraintlayout:constraintlayout:2.0.1] C:\Users\Sawyer\.gradle\caches\transforms-3\29377f51e4572dcbc824b53a88a7d42e\transformed\constraintlayout-2.0.1\AndroidManifest.xml:5:5-7:41
+MERGED from [androidx.constraintlayout:constraintlayout:2.0.1] C:\Users\Sawyer\.gradle\caches\transforms-3\29377f51e4572dcbc824b53a88a7d42e\transformed\constraintlayout-2.0.1\AndroidManifest.xml:5:5-7:41
+MERGED from [androidx.appcompat:appcompat:1.3.1] C:\Users\Sawyer\.gradle\caches\transforms-3\e79d2ac1c78d9322d10c0b9ff2bed2f6\transformed\appcompat-1.3.1\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.appcompat:appcompat:1.3.1] C:\Users\Sawyer\.gradle\caches\transforms-3\e79d2ac1c78d9322d10c0b9ff2bed2f6\transformed\appcompat-1.3.1\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.viewpager2:viewpager2:1.0.0] C:\Users\Sawyer\.gradle\caches\transforms-3\351ee4d93166ba909c4f50afba56e355\transformed\jetified-viewpager2-1.0.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.viewpager2:viewpager2:1.0.0] C:\Users\Sawyer\.gradle\caches\transforms-3\351ee4d93166ba909c4f50afba56e355\transformed\jetified-viewpager2-1.0.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.fragment:fragment:1.3.6] C:\Users\Sawyer\.gradle\caches\transforms-3\1b12019b362bd40304a63473c3ac6d50\transformed\fragment-1.3.6\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.fragment:fragment:1.3.6] C:\Users\Sawyer\.gradle\caches\transforms-3\1b12019b362bd40304a63473c3ac6d50\transformed\fragment-1.3.6\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.activity:activity:1.2.4] C:\Users\Sawyer\.gradle\caches\transforms-3\40a767994e74a640b21a8003be4398dd\transformed\jetified-activity-1.2.4\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.activity:activity:1.2.4] C:\Users\Sawyer\.gradle\caches\transforms-3\40a767994e74a640b21a8003be4398dd\transformed\jetified-activity-1.2.4\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.appcompat:appcompat-resources:1.3.1] C:\Users\Sawyer\.gradle\caches\transforms-3\85d0b2bf7d434bf42fd4b83a8f5681d4\transformed\jetified-appcompat-resources-1.3.1\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.appcompat:appcompat-resources:1.3.1] C:\Users\Sawyer\.gradle\caches\transforms-3\85d0b2bf7d434bf42fd4b83a8f5681d4\transformed\jetified-appcompat-resources-1.3.1\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.drawerlayout:drawerlayout:1.0.0] C:\Users\Sawyer\.gradle\caches\transforms-3\ef11901293698ebacd7e52ee3997c3a2\transformed\drawerlayout-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.drawerlayout:drawerlayout:1.0.0] C:\Users\Sawyer\.gradle\caches\transforms-3\ef11901293698ebacd7e52ee3997c3a2\transformed\drawerlayout-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.1.0] C:\Users\Sawyer\.gradle\caches\transforms-3\05b7acb4fb0f6168307ebc47d2824cf7\transformed\coordinatorlayout-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.1.0] C:\Users\Sawyer\.gradle\caches\transforms-3\05b7acb4fb0f6168307ebc47d2824cf7\transformed\coordinatorlayout-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.dynamicanimation:dynamicanimation:1.0.0] C:\Users\Sawyer\.gradle\caches\transforms-3\528c2c782de6e6e347300d0d54dc53bc\transformed\dynamicanimation-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.dynamicanimation:dynamicanimation:1.0.0] C:\Users\Sawyer\.gradle\caches\transforms-3\528c2c782de6e6e347300d0d54dc53bc\transformed\dynamicanimation-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.transition:transition:1.2.0] C:\Users\Sawyer\.gradle\caches\transforms-3\30707d9d4f31a1638a2d16c5d950483d\transformed\transition-1.2.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.transition:transition:1.2.0] C:\Users\Sawyer\.gradle\caches\transforms-3\30707d9d4f31a1638a2d16c5d950483d\transformed\transition-1.2.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] C:\Users\Sawyer\.gradle\caches\transforms-3\8a867e42b47bd2ccd4a5636fe101a9e3\transformed\vectordrawable-animated-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] C:\Users\Sawyer\.gradle\caches\transforms-3\8a867e42b47bd2ccd4a5636fe101a9e3\transformed\vectordrawable-animated-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] C:\Users\Sawyer\.gradle\caches\transforms-3\8a4b4f08d90d4e79fc9fc34ec3701e98\transformed\vectordrawable-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] C:\Users\Sawyer\.gradle\caches\transforms-3\8a4b4f08d90d4e79fc9fc34ec3701e98\transformed\vectordrawable-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.viewpager:viewpager:1.0.0] C:\Users\Sawyer\.gradle\caches\transforms-3\b75bbe99e0a9674b6461bfd0111b006e\transformed\viewpager-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.viewpager:viewpager:1.0.0] C:\Users\Sawyer\.gradle\caches\transforms-3\b75bbe99e0a9674b6461bfd0111b006e\transformed\viewpager-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] C:\Users\Sawyer\.gradle\caches\transforms-3\990ffa8fdfb7b11315d12d7a8d59b5b3\transformed\legacy-support-core-utils-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] C:\Users\Sawyer\.gradle\caches\transforms-3\990ffa8fdfb7b11315d12d7a8d59b5b3\transformed\legacy-support-core-utils-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.loader:loader:1.0.0] C:\Users\Sawyer\.gradle\caches\transforms-3\286e8c194544fafe3ab1079cf03b7b39\transformed\loader-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.loader:loader:1.0.0] C:\Users\Sawyer\.gradle\caches\transforms-3\286e8c194544fafe3ab1079cf03b7b39\transformed\loader-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.recyclerview:recyclerview:1.1.0] C:\Users\Sawyer\.gradle\caches\transforms-3\70de3755d4b5244c7181597e9413fc66\transformed\recyclerview-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.recyclerview:recyclerview:1.1.0] C:\Users\Sawyer\.gradle\caches\transforms-3\70de3755d4b5244c7181597e9413fc66\transformed\recyclerview-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.customview:customview:1.0.0] C:\Users\Sawyer\.gradle\caches\transforms-3\aaa09f54f6e63e8efbdd655cfafefd68\transformed\customview-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.customview:customview:1.0.0] C:\Users\Sawyer\.gradle\caches\transforms-3\aaa09f54f6e63e8efbdd655cfafefd68\transformed\customview-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.core:core:1.5.0] C:\Users\Sawyer\.gradle\caches\transforms-3\ae6a57a0b830d594206bcc8ee025c75d\transformed\core-1.5.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.core:core:1.5.0] C:\Users\Sawyer\.gradle\caches\transforms-3\ae6a57a0b830d594206bcc8ee025c75d\transformed\core-1.5.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] C:\Users\Sawyer\.gradle\caches\transforms-3\783109eaf4824341fba5ab40b3ca5afb\transformed\cursoradapter-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] C:\Users\Sawyer\.gradle\caches\transforms-3\783109eaf4824341fba5ab40b3ca5afb\transformed\cursoradapter-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate:2.3.1] C:\Users\Sawyer\.gradle\caches\transforms-3\cd9d9daff420df28267322e3cd867db2\transformed\jetified-lifecycle-viewmodel-savedstate-2.3.1\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate:2.3.1] C:\Users\Sawyer\.gradle\caches\transforms-3\cd9d9daff420df28267322e3cd867db2\transformed\jetified-lifecycle-viewmodel-savedstate-2.3.1\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.savedstate:savedstate:1.1.0] C:\Users\Sawyer\.gradle\caches\transforms-3\94f52492a6c053e3a99c466c48f57196\transformed\jetified-savedstate-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.savedstate:savedstate:1.1.0] C:\Users\Sawyer\.gradle\caches\transforms-3\94f52492a6c053e3a99c466c48f57196\transformed\jetified-savedstate-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.3.1] C:\Users\Sawyer\.gradle\caches\transforms-3\b92a56272ebd48a859addf9214b8d888\transformed\lifecycle-runtime-2.3.1\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.3.1] C:\Users\Sawyer\.gradle\caches\transforms-3\b92a56272ebd48a859addf9214b8d888\transformed\lifecycle-runtime-2.3.1\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.3.1] C:\Users\Sawyer\.gradle\caches\transforms-3\c71008add9bcde97979645d92cde9c92\transformed\lifecycle-viewmodel-2.3.1\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.3.1] C:\Users\Sawyer\.gradle\caches\transforms-3\c71008add9bcde97979645d92cde9c92\transformed\lifecycle-viewmodel-2.3.1\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.cardview:cardview:1.0.0] C:\Users\Sawyer\.gradle\caches\transforms-3\b663c74897f455f3ff548918ab94b7e3\transformed\cardview-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.cardview:cardview:1.0.0] C:\Users\Sawyer\.gradle\caches\transforms-3\b663c74897f455f3ff548918ab94b7e3\transformed\cardview-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\Sawyer\.gradle\caches\transforms-3\473d6803669e7483a792ef5404126b4e\transformed\versionedparcelable-1.1.1\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\Sawyer\.gradle\caches\transforms-3\473d6803669e7483a792ef5404126b4e\transformed\versionedparcelable-1.1.1\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.tracing:tracing:1.0.0] C:\Users\Sawyer\.gradle\caches\transforms-3\d3b5cbdcd00cdaafbdcae1df207a30eb\transformed\jetified-tracing-1.0.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.tracing:tracing:1.0.0] C:\Users\Sawyer\.gradle\caches\transforms-3\d3b5cbdcd00cdaafbdcae1df207a30eb\transformed\jetified-tracing-1.0.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] C:\Users\Sawyer\.gradle\caches\transforms-3\e9a4af4ff5911e8ed9fd0387d09713c1\transformed\lifecycle-livedata-2.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] C:\Users\Sawyer\.gradle\caches\transforms-3\e9a4af4ff5911e8ed9fd0387d09713c1\transformed\lifecycle-livedata-2.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.3.1] C:\Users\Sawyer\.gradle\caches\transforms-3\4a2434392cfd4423d3d5f2efda864130\transformed\lifecycle-livedata-core-2.3.1\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.3.1] C:\Users\Sawyer\.gradle\caches\transforms-3\4a2434392cfd4423d3d5f2efda864130\transformed\lifecycle-livedata-core-2.3.1\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.arch.core:core-runtime:2.1.0] C:\Users\Sawyer\.gradle\caches\transforms-3\3b372e5c1223dbcf36805bd791430d83\transformed\core-runtime-2.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.arch.core:core-runtime:2.1.0] C:\Users\Sawyer\.gradle\caches\transforms-3\3b372e5c1223dbcf36805bd791430d83\transformed\core-runtime-2.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.interpolator:interpolator:1.0.0] C:\Users\Sawyer\.gradle\caches\transforms-3\b97eacea6d0b1450925958845a105002\transformed\interpolator-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.interpolator:interpolator:1.0.0] C:\Users\Sawyer\.gradle\caches\transforms-3\b97eacea6d0b1450925958845a105002\transformed\interpolator-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.documentfile:documentfile:1.0.0] C:\Users\Sawyer\.gradle\caches\transforms-3\e83f2303dd287321e9dcfb6dcfd99d20\transformed\documentfile-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.documentfile:documentfile:1.0.0] C:\Users\Sawyer\.gradle\caches\transforms-3\e83f2303dd287321e9dcfb6dcfd99d20\transformed\documentfile-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] C:\Users\Sawyer\.gradle\caches\transforms-3\1cd48132cef98e2f53772ffa30249f39\transformed\localbroadcastmanager-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] C:\Users\Sawyer\.gradle\caches\transforms-3\1cd48132cef98e2f53772ffa30249f39\transformed\localbroadcastmanager-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.print:print:1.0.0] C:\Users\Sawyer\.gradle\caches\transforms-3\8f582ca3551a0f6c396056a1c0a8169d\transformed\print-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.print:print:1.0.0] C:\Users\Sawyer\.gradle\caches\transforms-3\8f582ca3551a0f6c396056a1c0a8169d\transformed\print-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.annotation:annotation-experimental:1.0.0] C:\Users\Sawyer\.gradle\caches\transforms-3\58b96dd0ba36a748f5a68f6e39f3fd24\transformed\jetified-annotation-experimental-1.0.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.annotation:annotation-experimental:1.0.0] C:\Users\Sawyer\.gradle\caches\transforms-3\58b96dd0ba36a748f5a68f6e39f3fd24\transformed\jetified-annotation-experimental-1.0.0\AndroidManifest.xml:20:5-22:41
+	android:targetSdkVersion
+		INJECTED from C:\Users\Sawyer\Documents\Android Projects\SwingOut\VRGrappleGame\app\src\main\AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from C:\Users\Sawyer\Documents\Android Projects\SwingOut\VRGrappleGame\app\src\main\AndroidManifest.xml
