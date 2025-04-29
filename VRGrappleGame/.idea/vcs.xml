@@ -3,5 +3,6 @@
   <component name="VcsDirectoryMappings">
     <mapping directory="$PROJECT_DIR$/.." vcs="Git" />
     <mapping directory="$PROJECT_DIR$/../third_party/OpenXR-SDK" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/../../android_openxr_gles" vcs="Git" />
   </component>
 </project>

@@ -92,10 +92,9 @@ imgui_is_anywindow_hovered ()
 }
 
 static void
-render_gui (scene_data_t *scn_data, Vec3 PlayerPosOffset)
+render_gui (scene_data_t *scn_data, int highscore)  // I Should try messing with fonts :)
 {
-    struct InputState *input = &scn_data->inputState;
-    int win_w = 300;
+//    int win_w = 300;
     int win_h = 0;
     int win_x = 0;
     int win_y = 0;
@@ -106,14 +105,31 @@ render_gui (scene_data_t *scn_data, Vec3 PlayerPosOffset)
     win_y += win_h;
     win_h = 120;
     ImGui::SetNextWindowPos (ImVec2(_X(win_x), _Y(win_y)), ImGuiCond_FirstUseEver);
-    ImGui::SetNextWindowSize(ImVec2(_X(win_w), _Y(win_h)), ImGuiCond_FirstUseEver);
-    ImGui::Begin("Runtime");
+    ImGui::SetNextWindowSize(ImVec2(0, 0), ImGuiCond_FirstUseEver);
+    ImGui::Begin(".....................................");
     {
-        ImGui::Text("OXR_RUNTIME: %s", scn_data->runtime_name.c_str());
-        ImGui::Text("OXR_SYSTEM : %s", scn_data->system_name.c_str());
-        ImGui::Text("GL_VERSION : %s", scn_data->gl_version);
-        ImGui::Text("GL_VENDOR  : %s", scn_data->gl_vendor);
-        ImGui::Text("GL_RENDERER: %s", scn_data->gl_render);
+        ImGui::SetWindowFontScale(2.5f);  // Scale 1.0 is default
+
+//        ImGui::Text("Welcome To SWING OUT");
+        const char* title = "Welcome To SWING OUT";
+        float win_width = ImGui::GetWindowSize().x;
+        float text_width = ImGui::CalcTextSize(title).x;
+        ImGui::SetCursorPosX((win_width - text_width) * 0.5f);  // center
+        ImGui::Text("%s", title);
+
+        ImGui::Text("Swing Through As Many Walls As You Can");
+
+
+        char HighscoreText[64];
+        snprintf(HighscoreText, sizeof(HighscoreText), "HighScore: %d", highscore);
+
+        float HighscoreText_width = ImGui::CalcTextSize(HighscoreText).x;
+        ImGui::SetCursorPosX((win_width - HighscoreText_width) * 0.5f);  // center
+        ImGui::Text("%s", HighscoreText);
+
+
+
+//        ImGui::Text("HighScore: %f", PlayerPosOffset.z);
 
         s_win_pos [s_win_num] = ImGui::GetWindowPos  ();
         s_win_size[s_win_num] = ImGui::GetWindowSize ();
@@ -121,94 +137,15 @@ render_gui (scene_data_t *scn_data, Vec3 PlayerPosOffset)
     }
     ImGui::End();
 
-    win_y += win_h;
-    win_h = 220;
-    ImGui::SetNextWindowPos (ImVec2(_X(win_x), _Y(win_y)), ImGuiCond_FirstUseEver);
-    ImGui::SetNextWindowSize(ImVec2(_X(win_w), _Y(win_h)), ImGuiCond_FirstUseEver);
-    ImGui::Begin("View Info");
-    {
-        ImGui::Text("Elapsed  : %d [ms]",    scn_data->elapsed_us / 1000);
-        ImGui::Text("Interval : %6.3f [ms]", scn_data->interval_ms);
-        ImGui::Text("Viewport : (%d, %d, %d, %d)", 
-            scn_data->viewport.offset.x,     scn_data->viewport.offset.y,
-            scn_data->viewport.extent.width, scn_data->viewport.extent.height);
-
-        for (uint32_t i = 0; i < 2; i ++)
-        {
-            char strbuf[64];
-            sprintf (strbuf, "View%d", i);
-            ImGui::SetNextTreeNodeOpen(true, ImGuiCond_Once);
-            if (ImGui::TreeNode(strbuf))
-            {
-                const XrVector3f    &pos = scn_data->views[i].pose.position;
-                const XrQuaternionf &rot = scn_data->views[i].pose.orientation;
-                const XrFovf        &fov = scn_data->views[i].fov;
-                ImGui::Text("pos (%6.3f,%6.3f,%6.3f)",       pos.x, pos.y, pos.z);
-                ImGui::Text("posOffset (%6.3f,%6.3f,%6.3f)",       PlayerPosOffset.x, PlayerPosOffset.y, PlayerPosOffset.z);
-                ImGui::Text("rot (%6.3f,%6.3f,%6.3f,%6.3f)", rot.x, rot.y, rot.z, rot.w);
-                ImGui::Text("fov (%6.3f,%6.3f,%6.3f,%6.3f)", fov.angleLeft, fov.angleRight, fov.angleUp, fov.angleDown);
-
-
-                ImGui::TreePop();
-            }
-        }
-
-        s_win_pos [s_win_num] = ImGui::GetWindowPos  ();
-        s_win_size[s_win_num] = ImGui::GetWindowSize ();
-        s_win_num ++;
-    }
-    ImGui::End();
-
-    /* Left Hand Controller */
-    win_y += win_h;
-    win_h = 200;
-    ImGui::SetNextWindowPos (ImVec2(_X(win_x), _Y(win_y)), ImGuiCond_FirstUseEver);
-    ImGui::SetNextWindowSize(ImVec2(_X(win_w), _Y(win_h)), ImGuiCond_FirstUseEver);
-    ImGui::Begin("Left Hand");
-    {
-        ImGui::Checkbox("X button",   &input->clickX);
-        ImGui::Checkbox("Y button",   &input->clickY);
-        ImGui::Checkbox("S button",   &input->clickS[0]);
-        ImGui::SliderFloat("squeeze", &input->squeezeVal[0],  0.0f, 1.0f);
-        ImGui::SliderFloat("trigger", &input->triggerVal[0],  0.0f, 1.0f);
-        ImGui::SliderFloat("stick_x", &input->stickVal[0].x, -1.0f, 1.0f);
-        ImGui::SliderFloat("stick_y", &input->stickVal[0].y, -1.0f, 1.0f);
-
-        s_win_pos [s_win_num] = ImGui::GetWindowPos  ();
-        s_win_size[s_win_num] = ImGui::GetWindowSize ();
-        s_win_num ++;
-    }
-    ImGui::End();
-
-    /* Right Hand Controller */
-    win_y += win_h;
-    win_h = 200;
-    ImGui::SetNextWindowPos (ImVec2(_X(win_x), _Y(win_y)), ImGuiCond_FirstUseEver);
-    ImGui::SetNextWindowSize(ImVec2(_X(win_w), _Y(win_h)), ImGuiCond_FirstUseEver);
-    ImGui::Begin("Right Hand");
-    {
-        ImGui::Checkbox("A button",   &input->clickA);
-        ImGui::Checkbox("B button",   &input->clickB);
-        ImGui::Checkbox("S button",   &input->clickS[1]);
-        ImGui::SliderFloat("squeeze", &input->squeezeVal[1],  0.0f, 1.0f);
-        ImGui::SliderFloat("trigger", &input->triggerVal[1],  0.0f, 1.0f);
-        ImGui::SliderFloat("stick_x", &input->stickVal[1].x, -1.0f, 1.0f);
-        ImGui::SliderFloat("stick_y", &input->stickVal[1].y, -1.0f, 1.0f);
-
-        s_win_pos [s_win_num] = ImGui::GetWindowPos  ();
-        s_win_size[s_win_num] = ImGui::GetWindowSize ();
-        s_win_num ++;
-    }
-    ImGui::End();
 }
 
 int
-invoke_imgui (scene_data_t *scn_data, Vec3 PlayerPosOffset)
+invoke_imgui (scene_data_t *scn_data, int highscore)
 {
     ImGui_ImplOpenGL3_NewFrame();
     ImGui::NewFrame();
 
-    render_gui (scn_data, PlayerPosOffset);
+    render_gui (scn_data, highscore);
 
     ImGui::Render();
     ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());

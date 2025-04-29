@@ -1,0 +1,71 @@
+# ninja log v5
+26	206	767225702	CMakeFiles/openxr_app.dir/render_texplate.cpp.o	6758c73de148c238
+131	237	767225702	CMakeFiles/openxr_app.dir/C_/Users/Sawyer/Documents/Android_Projects/SwingOut/common/assertegl.c.o	3d3b1a78a8e41c4f
+108	222	767225702	CMakeFiles/openxr_app.dir/C_/Users/Sawyer/Documents/Android_Projects/SwingOut/common/assertgl.c.o	3008a816bbfb1bcf
+77	251	767225702	CMakeFiles/openxr_app.dir/C_/Users/Sawyer/Documents/Android_Projects/SwingOut/common/util_shader.c.o	32ae2f2b24337a52
+118	267	767225702	CMakeFiles/openxr_app.dir/C_/Users/Sawyer/Documents/Android_Projects/SwingOut/common/util_debugstr.c.o	c7a04515a8cd8a4c
+21	252	767225702	CMakeFiles/openxr_app.dir/shapes.cpp.o	99ef7e45b2037279
+51	290	767225702	CMakeFiles/openxr_app.dir/C_/Users/Sawyer/Documents/Android_Projects/SwingOut/common/util_matrix.c.o	f112c976f72934da
+2	457	767488260	CMakeFiles/openxr_app.dir/render_stage.cpp.o	2e4ebdd1c0b3c966
+153	892	767225703	CMakeFiles/openxr_app.dir/C_/Users/Sawyer/Documents/Android_Projects/SwingOut/third_party/imgui/imgui_draw.cpp.o	5d1d715e164589c5
+172	278	767225702	CMakeFiles/openxr_app.dir/C_/Users/Sawyer/Documents/Android_Projects/SwingOut/common/winsys/winsys_null.c.o	fdc1edf1f27ae546
+8	573	767515180	CMakeFiles/openxr_app.dir/render_imgui.cpp.o	b31caf7e2a4d0501
+85	304	767225702	CMakeFiles/native_app_glue.dir/2008ff5e29cb19239e951b190aca3c0b/ndk/25.1.8937393/sources/android/native_app_glue/android_native_app_glue.c.o	160d36b7f801482b
+142	325	767225702	CMakeFiles/openxr_app.dir/C_/Users/Sawyer/Documents/Android_Projects/SwingOut/common/util_render_target.c.o	557f3e881a1cca79
+44	326	767225702	CMakeFiles/openxr_app.dir/teapot.cpp.o	d968a523196d1a1
+69	338	767225702	CMakeFiles/openxr_app.dir/C_/Users/Sawyer/Documents/Android_Projects/SwingOut/common/util_egl.c.o	473659ea9c68c0d4
+194	363	767225702	CMakeFiles/openxr_app.dir/C_/Users/Sawyer/Documents/Android_Projects/SwingOut/third_party/imgui/examples/imgui_impl_opengl3.cpp.o	1dd6b3d0045deaef
+305	402	767225702	libnative_app_glue.a	40525ab4a2c8505b
+15	530	767225703	CMakeFiles/openxr_app.dir/android_main.cpp.o	3dda4ac3523f3770
+3	451	767515903	CMakeFiles/openxr_app.dir/VRGame.cpp.o	1e22f2bc098e6bd8
+3	706	767515180	CMakeFiles/openxr_app.dir/app_engine.cpp.o	fdc2d99f432bff59
+60	778	767225703	CMakeFiles/openxr_app.dir/C_/Users/Sawyer/Documents/Android_Projects/SwingOut/common/util_oxr.cpp.o	7c08b5ebb9c75a0c
+3	1024	767515649	CMakeFiles/openxr_app.dir/render_scene.cpp.o	a1153d58402219f8
+183	1090	767225703	CMakeFiles/openxr_app.dir/C_/Users/Sawyer/Documents/Android_Projects/SwingOut/third_party/imgui/imgui_widgets.cpp.o	b487de9d210f2b19
+162	1066	767225703	CMakeFiles/openxr_app.dir/C_/Users/Sawyer/Documents/Android_Projects/SwingOut/third_party/imgui/imgui.cpp.o	e859f7b9a30a1d46
+451	534	767515903	C:/Users/Sawyer/Documents/Android Projects/SwingOut/VRGrappleGame/app/build/intermediates/cxx/Debug/1y3c3b1z/obj/arm64-v8a/libopenxr_app.so	529d377ebb84a97c
+4	445	767516263	CMakeFiles/openxr_app.dir/VRGame.cpp.o	1e22f2bc098e6bd8
+445	533	767516263	C:/Users/Sawyer/Documents/Android Projects/SwingOut/VRGrappleGame/app/build/intermediates/cxx/Debug/1y3c3b1z/obj/arm64-v8a/libopenxr_app.so	529d377ebb84a97c
+3	538	767516380	CMakeFiles/openxr_app.dir/VRGame.cpp.o	1e22f2bc098e6bd8
+538	641	767516380	C:/Users/Sawyer/Documents/Android Projects/SwingOut/VRGrappleGame/app/build/intermediates/cxx/Debug/1y3c3b1z/obj/arm64-v8a/libopenxr_app.so	529d377ebb84a97c
+3	501	767516398	CMakeFiles/openxr_app.dir/VRGame.cpp.o	1e22f2bc098e6bd8
+501	590	767516399	C:/Users/Sawyer/Documents/Android Projects/SwingOut/VRGrappleGame/app/build/intermediates/cxx/Debug/1y3c3b1z/obj/arm64-v8a/libopenxr_app.so	529d377ebb84a97c
+2	466	767516575	CMakeFiles/openxr_app.dir/VRGame.cpp.o	1e22f2bc098e6bd8
+466	552	767516575	C:/Users/Sawyer/Documents/Android Projects/SwingOut/VRGrappleGame/app/build/intermediates/cxx/Debug/1y3c3b1z/obj/arm64-v8a/libopenxr_app.so	529d377ebb84a97c
+2	515	767516715	CMakeFiles/openxr_app.dir/VRGame.cpp.o	1e22f2bc098e6bd8
+516	624	767516715	C:/Users/Sawyer/Documents/Android Projects/SwingOut/VRGrappleGame/app/build/intermediates/cxx/Debug/1y3c3b1z/obj/arm64-v8a/libopenxr_app.so	529d377ebb84a97c
+2	794	767581924	CMakeFiles/openxr_app.dir/render_scene.cpp.o	a1153d58402219f8
+794	1092	767581924	C:/Users/Sawyer/Documents/Android Projects/SwingOut/VRGrappleGame/app/build/intermediates/cxx/Debug/1y3c3b1z/obj/arm64-v8a/libopenxr_app.so	529d377ebb84a97c
+2	802	767582123	CMakeFiles/openxr_app.dir/render_scene.cpp.o	a1153d58402219f8
+2	450	767582142	CMakeFiles/openxr_app.dir/render_stage.cpp.o	2e4ebdd1c0b3c966
+451	543	767582142	C:/Users/Sawyer/Documents/Android Projects/SwingOut/VRGrappleGame/app/build/intermediates/cxx/Debug/1y3c3b1z/obj/arm64-v8a/libopenxr_app.so	529d377ebb84a97c
+7	498	767582199	CMakeFiles/openxr_app.dir/render_stage.cpp.o	2e4ebdd1c0b3c966
+2	828	767582200	CMakeFiles/openxr_app.dir/render_scene.cpp.o	a1153d58402219f8
+828	909	767582200	C:/Users/Sawyer/Documents/Android Projects/SwingOut/VRGrappleGame/app/build/intermediates/cxx/Debug/1y3c3b1z/obj/arm64-v8a/libopenxr_app.so	529d377ebb84a97c
+9	453	767582474	CMakeFiles/openxr_app.dir/render_imgui.cpp.o	b31caf7e2a4d0501
+2	839	767582474	CMakeFiles/openxr_app.dir/render_scene.cpp.o	a1153d58402219f8
+8	479	767582583	CMakeFiles/openxr_app.dir/render_imgui.cpp.o	b31caf7e2a4d0501
+2	868	767582583	CMakeFiles/openxr_app.dir/render_scene.cpp.o	a1153d58402219f8
+868	941	767582583	C:/Users/Sawyer/Documents/Android Projects/SwingOut/VRGrappleGame/app/build/intermediates/cxx/Debug/1y3c3b1z/obj/arm64-v8a/libopenxr_app.so	529d377ebb84a97c
+2	804	767582795	CMakeFiles/openxr_app.dir/render_scene.cpp.o	a1153d58402219f8
+804	894	767582795	C:/Users/Sawyer/Documents/Android Projects/SwingOut/VRGrappleGame/app/build/intermediates/cxx/Debug/1y3c3b1z/obj/arm64-v8a/libopenxr_app.so	529d377ebb84a97c
+2	778	767582870	CMakeFiles/openxr_app.dir/render_scene.cpp.o	a1153d58402219f8
+778	864	767582871	C:/Users/Sawyer/Documents/Android Projects/SwingOut/VRGrappleGame/app/build/intermediates/cxx/Debug/1y3c3b1z/obj/arm64-v8a/libopenxr_app.so	529d377ebb84a97c
+2	787	767582961	CMakeFiles/openxr_app.dir/render_scene.cpp.o	a1153d58402219f8
+787	872	767582961	C:/Users/Sawyer/Documents/Android Projects/SwingOut/VRGrappleGame/app/build/intermediates/cxx/Debug/1y3c3b1z/obj/arm64-v8a/libopenxr_app.so	529d377ebb84a97c
+2	805	767583155	CMakeFiles/openxr_app.dir/render_scene.cpp.o	a1153d58402219f8
+805	890	767583155	C:/Users/Sawyer/Documents/Android Projects/SwingOut/VRGrappleGame/app/build/intermediates/cxx/Debug/1y3c3b1z/obj/arm64-v8a/libopenxr_app.so	529d377ebb84a97c
+2	874	767583211	CMakeFiles/openxr_app.dir/render_scene.cpp.o	a1153d58402219f8
+875	958	767583211	C:/Users/Sawyer/Documents/Android Projects/SwingOut/VRGrappleGame/app/build/intermediates/cxx/Debug/1y3c3b1z/obj/arm64-v8a/libopenxr_app.so	529d377ebb84a97c
+2	807	767583293	CMakeFiles/openxr_app.dir/render_scene.cpp.o	a1153d58402219f8
+808	891	767583293	C:/Users/Sawyer/Documents/Android Projects/SwingOut/VRGrappleGame/app/build/intermediates/cxx/Debug/1y3c3b1z/obj/arm64-v8a/libopenxr_app.so	529d377ebb84a97c
+2	774	767583368	CMakeFiles/openxr_app.dir/render_scene.cpp.o	a1153d58402219f8
+775	861	767583368	C:/Users/Sawyer/Documents/Android Projects/SwingOut/VRGrappleGame/app/build/intermediates/cxx/Debug/1y3c3b1z/obj/arm64-v8a/libopenxr_app.so	529d377ebb84a97c
+2	791	767583546	CMakeFiles/openxr_app.dir/render_scene.cpp.o	a1153d58402219f8
+791	873	767583546	C:/Users/Sawyer/Documents/Android Projects/SwingOut/VRGrappleGame/app/build/intermediates/cxx/Debug/1y3c3b1z/obj/arm64-v8a/libopenxr_app.so	529d377ebb84a97c
+3	910	767583686	CMakeFiles/openxr_app.dir/render_scene.cpp.o	a1153d58402219f8
+910	998	767583686	C:/Users/Sawyer/Documents/Android Projects/SwingOut/VRGrappleGame/app/build/intermediates/cxx/Debug/1y3c3b1z/obj/arm64-v8a/libopenxr_app.so	529d377ebb84a97c
+2	799	767583746	CMakeFiles/openxr_app.dir/render_scene.cpp.o	a1153d58402219f8
+799	882	767583746	C:/Users/Sawyer/Documents/Android Projects/SwingOut/VRGrappleGame/app/build/intermediates/cxx/Debug/1y3c3b1z/obj/arm64-v8a/libopenxr_app.so	529d377ebb84a97c
+2	909	767583790	CMakeFiles/openxr_app.dir/render_scene.cpp.o	a1153d58402219f8
+910	990	767583790	C:/Users/Sawyer/Documents/Android Projects/SwingOut/VRGrappleGame/app/build/intermediates/cxx/Debug/1y3c3b1z/obj/arm64-v8a/libopenxr_app.so	529d377ebb84a97c

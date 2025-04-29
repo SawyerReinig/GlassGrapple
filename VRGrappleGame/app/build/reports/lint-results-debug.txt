@@ -1,0 +1,177 @@
+C:\Users\Sawyer\Documents\Android Projects\SwingOut\VRGrappleGame\app\build.gradle:50: Warning: A newer version of androidx.appcompat:appcompat than 1.3.1 is available: 1.7.0 [GradleDependency]
+    implementation 'androidx.appcompat:appcompat:1.3.1'
+                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\Sawyer\Documents\Android Projects\SwingOut\VRGrappleGame\app\build.gradle:51: Warning: A newer version of com.google.android.material:material than 1.4.0 is available: 1.12.0 [GradleDependency]
+    implementation 'com.google.android.material:material:1.4.0'
+                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\Sawyer\Documents\Android Projects\SwingOut\VRGrappleGame\app\build.gradle:53: Warning: A newer version of androidx.test.ext:junit than 1.1.3 is available: 1.2.1 [GradleDependency]
+    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
+                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\Sawyer\Documents\Android Projects\SwingOut\VRGrappleGame\app\build.gradle:54: Warning: A newer version of androidx.test.espresso:espresso-core than 3.4.0 is available: 3.6.1 [GradleDependency]
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\Sawyer\Documents\Android Projects\SwingOut\VRGrappleGame\app\build.gradle:55: Warning: A newer version of com.google.oboe:oboe than 1.4.3 is available: 1.9.3 [GradleDependency]
+    implementation "com.google.oboe:oboe:1.4.3"
+                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+   Explanation for issues of type "GradleDependency":
+   This detector looks for usages of libraries where the version you are using
+   is not the current stable release. Using older versions is fine, and there
+   are cases where you deliberately want to stick with an older version.
+   However, you may simply not be aware that a more recent version is
+   available, and that is what this lint check helps find.
+
+C:\Users\Sawyer\Documents\Android Projects\SwingOut\VRGrappleGame\app\build.gradle:52: Warning: Avoid using + in version numbers; can lead to unpredictable and unrepeatable builds (junit:junit:4.+) [GradleDynamicVersion]
+    testImplementation 'junit:junit:4.+'
+                       ~~~~~~~~~~~~~~~~~
+
+   Explanation for issues of type "GradleDynamicVersion":
+   Using + in dependencies lets you automatically pick up the latest available
+   version rather than a specific, named version. However, this is not
+   recommended; your builds are not repeatable; you may have tested with a
+   slightly different version than what the build server used. (Using a
+   dynamic version as the major version number is more problematic than using
+   it in the minor version position.)
+
+C:\Users\Sawyer\Documents\Android Projects\SwingOut\VRGrappleGame\app\build.gradle:18: Warning: Missing x86 and x86_64 ABI support for ChromeOS [ChromeOsAbiSupport]
+                abiFilters 'arm64-v8a'
+                           ~~~~~~~~~~~
+
+   Explanation for issues of type "ChromeOsAbiSupport":
+   To properly support ChromeOS, your Android application should have an x86
+   and/or x86_64 binary as part of the build configuration. To fix the issue,
+   ensure your files are properly optimized for ARM; the binary translator
+   will then ensure compatibility with x86. Alternatively, add an abiSplit for
+   x86 within your build.gradle file and create the required x86
+   dependencies.
+
+   https://developer.android.com/ndk/guides/abis
+
+C:\Users\Sawyer\Documents\Android Projects\SwingOut\VRGrappleGame\app\src\main\AndroidManifest.xml:24: Warning: As of Android 12, android:exported must be set; use true to make the activity available to other apps, and false otherwise. For launcher activities, this should be set to true. [IntentFilterExportedReceiver]
+    <activity android:name="com.oxrapp.glesapp.OXRAppMainActivity"
+     ~~~~~~~~
+
+   Explanation for issues of type "IntentFilterExportedReceiver":
+   Apps targeting Android 12 and higher are required to specify an explicit
+   value for android:exported when the corresponding component has an intent
+   filter defined. Otherwise, installation will fail. Set it to true to make
+   this activity accessible to other apps, and false to limit it to be used
+   only by this app or the OS. For launch activities, this should be set to
+   true; otherwise, the app will fail to launch.
+
+   Previously, android:exported for components without any intent filters
+   present used to default to false, and when intent filters were present, the
+   default was true. Defaults which change value based on other values are
+   confusing and lead to apps accidentally exporting components as a
+   side-effect of adding intent filters. This is a security risk, and we have
+   made this change to avoid introducing accidental vulnerabilities.
+
+   While the default without intent filters remains unchanged, it is now
+   required to explicitly specify a value when intent filters are present. Any
+   app failing to meet this requirement will fail to install on any Android
+   version after Android 11.
+
+   We recommend setting android:exported to false (even on previous versions
+   of Android prior to this requirement) unless you have a good reason to
+   export a particular component.
+
+   https://goo.gle/IntentFilterExportedReceiver
+
+C:\Users\Sawyer\Documents\Android Projects\SwingOut\VRGrappleGame\app\build.gradle:11: Error: Google Play requires that apps target API level 33 or higher. [ExpiredTargetSdkVersion]
+        targetSdk 30
+        ~~~~~~~~~~~~
+
+   Explanation for issues of type "ExpiredTargetSdkVersion":
+   Configuring your app to target a recent API level ensures that users
+   benefit from significant security and performance improvements, while still
+   allowing your app to run on older Android versions (down to the
+   minSdkVersion).
+
+   To update your targetSdkVersion, follow the steps from "Meeting Google Play
+   requirements for target API level",
+   https://developer.android.com/distribute/best-practices/develop/target-sdk.
+   html
+
+   https://support.google.com/googleplay/android-developer/answer/113469#targetsdk
+   https://developer.android.com/distribute/best-practices/develop/target-sdk.html
+
+C:\Users\Sawyer\Documents\Android Projects\SwingOut\VRGrappleGame\app\src\main\res\drawable-v24: Warning: This folder configuration (v24) is unnecessary; minSdkVersion is 24. Merge all the resources in this folder into drawable. [ObsoleteSdkInt]
+C:\Users\Sawyer\Documents\Android Projects\SwingOut\VRGrappleGame\app\src\main\res\values-night\themes.xml:13: Warning: Unnecessary; SDK_INT is always >= 21 [ObsoleteSdkInt]
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+                                            ~~~~~~~~~~~~~~~~~~~
+C:\Users\Sawyer\Documents\Android Projects\SwingOut\VRGrappleGame\app\src\main\res\values\themes.xml:13: Warning: Unnecessary; SDK_INT is always >= 21 [ObsoleteSdkInt]
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+                                            ~~~~~~~~~~~~~~~~~~~
+
+   Explanation for issues of type "ObsoleteSdkInt":
+   This check flags version checks that are not necessary, because the
+   minSdkVersion (or surrounding known API level) is already at least as high
+   as the version checked for.
+
+   Similarly, it also looks for resources in -vNN folders, such as values-v14
+   where the version qualifier is less than or equal to the minSdkVersion,
+   where the contents should be merged into the best folder.
+
+C:\Users\Sawyer\Documents\Android Projects\SwingOut\VRGrappleGame\app\src\main\res\values\colors.xml:3: Warning: The resource R.color.purple_200 appears to be unused [UnusedResources]
+    <color name="purple_200">#FFBB86FC</color>
+           ~~~~~~~~~~~~~~~~~
+C:\Users\Sawyer\Documents\Android Projects\SwingOut\VRGrappleGame\app\src\main\res\values\colors.xml:4: Warning: The resource R.color.purple_500 appears to be unused [UnusedResources]
+    <color name="purple_500">#FF6200EE</color>
+           ~~~~~~~~~~~~~~~~~
+C:\Users\Sawyer\Documents\Android Projects\SwingOut\VRGrappleGame\app\src\main\res\values\colors.xml:5: Warning: The resource R.color.purple_700 appears to be unused [UnusedResources]
+    <color name="purple_700">#FF3700B3</color>
+           ~~~~~~~~~~~~~~~~~
+C:\Users\Sawyer\Documents\Android Projects\SwingOut\VRGrappleGame\app\src\main\res\values\colors.xml:6: Warning: The resource R.color.teal_200 appears to be unused [UnusedResources]
+    <color name="teal_200">#FF03DAC5</color>
+           ~~~~~~~~~~~~~~~
+C:\Users\Sawyer\Documents\Android Projects\SwingOut\VRGrappleGame\app\src\main\res\values\colors.xml:7: Warning: The resource R.color.teal_700 appears to be unused [UnusedResources]
+    <color name="teal_700">#FF018786</color>
+           ~~~~~~~~~~~~~~~
+C:\Users\Sawyer\Documents\Android Projects\SwingOut\VRGrappleGame\app\src\main\res\values\colors.xml:8: Warning: The resource R.color.black appears to be unused [UnusedResources]
+    <color name="black">#FF000000</color>
+           ~~~~~~~~~~~~
+C:\Users\Sawyer\Documents\Android Projects\SwingOut\VRGrappleGame\app\src\main\res\values\colors.xml:9: Warning: The resource R.color.white appears to be unused [UnusedResources]
+    <color name="white">#FFFFFFFF</color>
+           ~~~~~~~~~~~~
+C:\Users\Sawyer\Documents\Android Projects\SwingOut\VRGrappleGame\app\src\main\res\mipmap-anydpi-v26\ic_launcher.xml:2: Warning: The resource R.mipmap.ic_launcher appears to be unused [UnusedResources]
+<adaptive-icon xmlns:android="http://schemas.android.com/apk/res/android">
+^
+C:\Users\Sawyer\Documents\Android Projects\SwingOut\VRGrappleGame\app\src\main\res\drawable\ic_launcher_background.xml:2: Warning: The resource R.drawable.ic_launcher_background appears to be unused [UnusedResources]
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+^
+C:\Users\Sawyer\Documents\Android Projects\SwingOut\VRGrappleGame\app\src\main\res\drawable-v24\ic_launcher_foreground.xml:1: Warning: The resource R.drawable.ic_launcher_foreground appears to be unused [UnusedResources]
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+^
+C:\Users\Sawyer\Documents\Android Projects\SwingOut\VRGrappleGame\app\src\main\res\mipmap-anydpi-v26\ic_launcher_round.xml:2: Warning: The resource R.mipmap.ic_launcher_round appears to be unused [UnusedResources]
+<adaptive-icon xmlns:android="http://schemas.android.com/apk/res/android">
+^
+C:\Users\Sawyer\Documents\Android Projects\SwingOut\VRGrappleGame\app\src\main\res\values\themes.xml:3: Warning: The resource R.style.Theme_OpenXR_GLES_app appears to be unused [UnusedResources]
+    <style name="Theme.OpenXR_GLES_app" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+   Explanation for issues of type "UnusedResources":
+   Unused resources make applications larger and slow down builds.
+
+
+   The unused resource check can ignore tests. If you want to include
+   resources that are only referenced from tests, consider packaging them in a
+   test source set instead.
+
+   You can include test sources in the unused resource check by setting the
+   system property lint.unused-resources.include-tests =true, and to exclude
+   them (usually for performance reasons), use
+   lint.unused-resources.exclude-tests =true.
+   ,
+
+C:\Users\Sawyer\Documents\Android Projects\SwingOut\VRGrappleGame\app\src\main\AndroidManifest.xml:14: Warning: Should explicitly set android:icon, there is no default [MissingApplicationIcon]
+  <application
+   ~~~~~~~~~~~
+
+   Explanation for issues of type "MissingApplicationIcon":
+   You should set an icon for the application as whole because there is no
+   default. This attribute must be set as a reference to a drawable resource
+   containing the image (for example @drawable/icon).
+
+   https://developer.android.com/studio/publish/preparing#publishing-configure
+
+1 errors, 24 warnings

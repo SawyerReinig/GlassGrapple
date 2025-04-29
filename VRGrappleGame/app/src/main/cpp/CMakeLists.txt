@@ -13,6 +13,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
+message(STATUS "CMAKE_PREFIX_PATH = ${CMAKE_PREFIX_PATH}")
 
 cmake_minimum_required(VERSION 3.4.1)
 
@@ -46,6 +47,10 @@ set_property(TARGET openxr_loader
      PROPERTY IMPORTED_LOCATION
      ${OXR_LOADER_DIR}/OpenXR/Libs/Android/${ANDROID_ABI}/${CMAKE_BUILD_TYPE}/libopenxr_loader.so)
 
+# ------------------------------------------------------------------------
+#    oboe
+# ------------------------------------------------------------------------
+find_package(oboe REQUIRED CONFIG)
 
 # ------------------------------------------------------------------------
 #    openxr_app
@@ -94,6 +99,7 @@ target_link_libraries(openxr_app
     android
     native_app_glue
     openxr_loader
+    oboe::oboe
     EGL
     GLESv3
     log)

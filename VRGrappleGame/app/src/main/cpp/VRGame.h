@@ -6,8 +6,26 @@
 #define OPENXR_GLES_APP_VRGAME_H
 
 #include <cmath>  // Needed for sqrt
+#include <android/asset_manager.h>
+#include <android/asset_manager_jni.h>
+#include <unistd.h>
+#include <sys/stat.h>
 
+
+#include <dirent.h>
+#include <string>
+#include <vector>
+#include <fstream>
 // -------- Vec3 Struct & Math Functions --------
+
+template <typename T>
+T clamp(T val, T minVal, T maxVal)
+{
+    if (val < minVal) return minVal;
+    if (val > maxVal) return maxVal;
+    return val;
+}
+
 struct Vec3 {
     float x, y, z;
     Vec3(float x = 0, float y = 0, float z = 0) : x(x), y(y), z(z) {}
@@ -95,6 +113,15 @@ inline float distance(const Vec3& a, const Vec3& b) {
 }
 
 
+
+
+void applyGrappleSpring(Vec3 playerPos, Vec3 grapplePoint, Vec3 *playerVel, float deltaTime);
+
+Vec3 findGrapplePoint(const Vec3& handPos, const Vec3& handDir);
+
+void copyAllAssets(AAssetManager* mgr, const char* packageName);
+
+void copyAssetToExternal(AAssetManager* mgr, const char* assetName, const char* destPath);
 
 int init_Sphere ();
 int draw_Sphere (Vec3 position, Vec3 col, float *matP, float *matV);

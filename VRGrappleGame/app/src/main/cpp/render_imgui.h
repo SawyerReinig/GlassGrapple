@@ -20,7 +20,7 @@ int  init_imgui (int width, int height);
 void imgui_mousebutton (int button, int state, int x, int y);
 void imgui_mousemove (int x, int y);
 
-int invoke_imgui (scene_data_t *scn_data, Vec3 PlayerPosOffset);
+int invoke_imgui (scene_data_t *scn_data, int highscore);
 
 #endif /* UTIL_IMGUI_H_ */
  

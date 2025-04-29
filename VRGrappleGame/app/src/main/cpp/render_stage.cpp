@@ -22,6 +22,8 @@ static GLint        s_loc_lightpos;
 static shape_obj_t  s_cylinder;
 static shape_obj_t  s_cone;
 static shape_obj_t  s_sphere;
+static shape_obj_t  s_Grapple;
+
 
 
 static char s_strVS[] = "                                   \n\
@@ -72,6 +74,111 @@ void main(void)                                             \n\
 }                                                           ";
 
 
+
+#include <vector>
+#include <string>
+#include <fstream>
+#include <sstream>
+#include <android/log.h>
+bool loadObjToShape(const char* filename, shape_obj_t& shape)
+{
+    std::vector<float> vertices;
+    std::vector<float> normals;
+    std::vector<float> final_vertices;
+    std::vector<float> final_normals;
+    std::vector<unsigned short> indices;
+
+    std::ifstream file(filename);
+    if (!file.is_open()) {
+        printf("Failed to open OBJ file: %s\n", filename);
+        return false;
+    }
+
+    std::string line;
+    while (std::getline(file, line)) {
+        std::istringstream iss(line);
+
+        std::string type;
+        iss >> type;
+
+        if (type == "v") {
+            float x, y, z;
+            iss >> x >> y >> z;
+            vertices.push_back(x);
+            vertices.push_back(y);
+            vertices.push_back(z);
+        }
+        else if (type == "vn") {
+            float nx, ny, nz;
+            iss >> nx >> ny >> nz;
+            normals.push_back(nx);
+            normals.push_back(ny);
+            normals.push_back(nz);
+        }
+        else if (type == "f") {
+            for (int i = 0; i < 3; ++i) {
+                std::string token;
+                iss >> token;
+
+                unsigned int v_idx = 0, vt_idx = 0, n_idx = 0;
+
+                // Support both "v//vn" and "v/vt/vn"
+                if (token.find("//") != std::string::npos) {
+                    sscanf(token.c_str(), "%d//%d", &v_idx, &n_idx);
+                }
+                else {
+                    sscanf(token.c_str(), "%d/%d/%d", &v_idx, &vt_idx, &n_idx);
+                }
+
+                v_idx--;
+                n_idx--;
+
+                if (v_idx * 3 + 2 >= vertices.size() || n_idx * 3 + 2 >= normals.size()) {
+                    printf("OBJ index out of bounds: v_idx=%d n_idx=%d\n", v_idx, n_idx);
+                    continue;
+                }
+
+                final_vertices.push_back(vertices[v_idx * 3 + 0]);
+                final_vertices.push_back(vertices[v_idx * 3 + 1]);
+                final_vertices.push_back(vertices[v_idx * 3 + 2]);
+
+                final_normals.push_back(normals[n_idx * 3 + 0]);
+                final_normals.push_back(normals[n_idx * 3 + 1]);
+                final_normals.push_back(normals[n_idx * 3 + 2]);
+
+                indices.push_back(static_cast<unsigned short>(indices.size()));
+            }
+        }
+    }
+
+    file.close();
+
+    if (final_vertices.empty() || final_normals.empty()) {
+        printf("OBJ load failed: no vertices/normals found\n");
+        return false;
+    }
+
+    glGenBuffers(1, &shape.vbo_vtx);
+    glBindBuffer(GL_ARRAY_BUFFER, shape.vbo_vtx);
+    glBufferData(GL_ARRAY_BUFFER, final_vertices.size() * sizeof(float), final_vertices.data(), GL_STATIC_DRAW);
+
+    glGenBuffers(1, &shape.vbo_nrm);
+    glBindBuffer(GL_ARRAY_BUFFER, shape.vbo_nrm);
+    glBufferData(GL_ARRAY_BUFFER, final_normals.size() * sizeof(float), final_normals.data(), GL_STATIC_DRAW);
+
+    glGenBuffers(1, &shape.vbo_idx);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, shape.vbo_idx);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, indices.size() * sizeof(unsigned short), indices.data(), GL_STATIC_DRAW);
+
+    shape.num_faces = indices.size() / 3;
+
+    printf("Loaded OBJ: %zu vertices, %zu normals, %d faces\n",
+           final_vertices.size() / 3, final_normals.size() / 3, shape.num_faces);
+
+    return true;
+}
+
+
 static void
 compute_invmat3x3 (float *matMVI3x3, float *matMV)
 {
@@ -107,6 +214,8 @@ init_stage ()
     shape_create (SHAPE_CYLINDER, 20, 20, &s_cylinder);
     shape_create (SHAPE_CONE,     20, 20, &s_cone);
     shape_create (SHAPE_SPHERE,   20, 20, &s_sphere);
+    loadObjToShape("/sdcard/Android/data/com.example.SwingOut/files/GrappleTriangle.obj", s_Grapple);
+
     return 0;
 }
 
@@ -172,6 +281,9 @@ draw_cylinder (float *matP, float *matV, float *matM, float radius, float length
 
     return 0;
 }
+
+
+
 
 
 int
@@ -297,8 +409,8 @@ draw_sphere (float *matP, float *matV, float *matM, float radius, float *color)
 int
 draw_axis (float *matP, float *matV, float *matM)
 {
-    float col_r[4] = {1.0f, 0.0f, 0.0f, 1.0f};
-    float col_g[4] = {0.0f, 1.0f, 0.0f, 1.0f};
+//    float col_r[4] = {1.0f, 0.0f, 0.0f, 1.0f};
+//    float col_g[4] = {0.0f, 1.0f, 0.0f, 1.0f};
     float col_b[4] = {0.0f, 0.0f, 1.0f, 1.0f};
     float col_w[4] = {1.0f, 1.0f, 1.0f, 1.0f};
 
@@ -313,21 +425,23 @@ draw_axis (float *matP, float *matV, float *matM)
         float matR[16];
 
         /* X axis */
-        matrix_identity (matR);
-        matrix_rotate (matR,  90.0f, 0.0f, 1.0f, 0.0f);
-        matrix_mult (matR, matM, matR);
-        draw_cylinder (matP, matV, matR, radius, length, col_r);
-        draw_cone (matP, matV, matR, radius*3, 0.1, col_r);
+//        matrix_identity (matR);
+//        matrix_rotate (matR,  90.0f, 0.0f, 1.0f, 0.0f);
+//        matrix_mult (matR, matM, matR);
+//        draw_cylinder (matP, matV, matR, radius, length, col_r);
+//        draw_cone (matP, matV, matR, radius*3, 0.1, col_r);
 
         /* Y axis */
+//        matrix_identity (matR);
+//        matrix_rotate (matR, -90.0f, 1.0f, 0.0f, 0.0f);
+//        matrix_mult (matR, matM, matR);
+//        draw_cylinder (matP, matV, matR, radius, length, col_g);
+//        draw_cone (matP, matV, matR, radius*3, 0.1, col_g);
+//
+//        /* Z axis */
         matrix_identity (matR);
-        matrix_rotate (matR, -90.0f, 1.0f, 0.0f, 0.0f);
-        matrix_mult (matR, matM, matR);
-        draw_cylinder (matP, matV, matR, radius, length, col_g);
-        draw_cone (matP, matV, matR, radius*3, 0.1, col_g);
+        matrix_rotate (matR, 180.0f, 1.0f, 0.0f, 0.0f);
 
-        /* Z axis */
-        matrix_identity (matR);
         matrix_mult (matR, matM, matR);
         draw_cylinder (matP, matV, matR, radius, length, col_b);
         draw_cone (matP, matV, matR, radius*3, 0.1, col_b);
@@ -341,3 +455,131 @@ draw_axis (float *matP, float *matV, float *matM)
 
     return 0;
 }
+
+
+
+int create_grapple (float *matP, float *matV, float *matM, float radius, float length, float *color)
+{
+    float matB[16], matVM[16], matPVM[16], matVMI3x3[9];
+
+    /* apply radius, length. (matB)=(matM)x(matTmp) */
+    {
+        float matTmp[16];
+        matrix_identity (matTmp);
+//        matrix_scale    (matTmp, radius, radius, length * 0.5f);
+        matrix_scale    (matTmp, 0.1f, 0.1f, 0.1f);
+
+//        matrix_translate (matTmp, 0, 0, 1.0f);
+        matrix_mult (matB, matM, matTmp);
+    }
+
+
+    glEnable (GL_DEPTH_TEST);
+//    glEnable (GL_CULL_FACE);
+    glFrontFace (GL_CW);
+
+    glUseProgram (s_sobj.program);
+
+    glEnableVertexAttribArray (s_sobj.loc_vtx);
+    glEnableVertexAttribArray (s_sobj.loc_nrm);
+
+    matrix_mult (matVM, matV, matB);
+    compute_invmat3x3 (matVMI3x3, matVM);
+    matrix_mult (matPVM, matP, matVM);
+
+    glUniformMatrix4fv (s_loc_mtx_mv,   1, GL_FALSE, matVM );
+    glUniformMatrix4fv (s_loc_mtx_pmv,  1, GL_FALSE, matPVM);
+    glUniformMatrix3fv (s_loc_mtx_nrm,  1, GL_FALSE, matVMI3x3);
+    glUniform3f (s_loc_lightpos, 1.0f, 1.0f, 1.0f);
+    glUniform3f (s_loc_color, color[0], color[1], color[2]);
+    glUniform1f (s_loc_alpha, color[3]);
+
+    if (color[3] < 1.0f)
+        glEnable (GL_BLEND);
+
+    glBindBuffer (GL_ARRAY_BUFFER, s_Grapple.vbo_vtx);
+    glVertexAttribPointer (s_sobj.loc_vtx, 3, GL_FLOAT, GL_FALSE, 0, 0);
+
+    glBindBuffer (GL_ARRAY_BUFFER, s_Grapple.vbo_nrm);
+    glVertexAttribPointer (s_sobj.loc_nrm, 3, GL_FLOAT, GL_FALSE, 0, 0);
+
+    glBindBuffer (GL_ELEMENT_ARRAY_BUFFER, s_Grapple.vbo_idx);
+    glDrawElements (GL_TRIANGLES, s_Grapple.num_faces * 3, GL_UNSIGNED_SHORT, 0);
+
+    glBindBuffer (GL_ARRAY_BUFFER, 0);
+    glBindBuffer (GL_ELEMENT_ARRAY_BUFFER, 0);
+
+    glFrontFace (GL_CCW);
+    glDisable (GL_BLEND);
+    glDisable (GL_DEPTH_TEST);
+//    glDisable (GL_CULL_FACE);
+    GLASSERT();
+
+    return 0;
+}
+
+
+
+int draw_Grapple (float *matP, float *matV, float *matM)
+{
+    float col_r[4] = {1.0f, 0.0f, 0.0f, 1.0f};
+    float col_w[4] = {1.0f, 1.0f, 1.0f, 1.0f};
+
+    float matVM[16], matPVM[16];
+    matrix_mult (matVM,  matV, matM);
+    matrix_mult (matPVM, matP, matVM);
+
+    /* axis arrow */
+    {
+        float radius = 0.03f;
+        float length = 1.0f;
+        float matR[16];
+
+        /* X axis */
+        matrix_identity (matR);
+        matrix_rotate (matR,  180.0f, 1.0f, 0.0f, 0.0f);
+
+        matrix_mult (matR, matM, matR);
+        create_grapple (matP, matV, matR, radius, length, col_r);
+
+    }
+
+    /* center sphere */
+    {
+        float radius = 0.1f;
+        draw_sphere (matP, matV, matM, radius, col_w);
+    }
+
+    return 0;
+}
+
+int draw_Hand (float *matP, float *matV, float *matM) //for now this just draws a sphere
+{
+    float col_w[4] = {1.0f, 1.0f, 1.0f, 1.0f};
+
+    float matVM[16], matPVM[16];
+    matrix_mult (matVM,  matV, matM);
+    matrix_mult (matPVM, matP, matVM);
+
+    /* axis arrow */
+    {
+        float matR[16];
+
+        /* X axis */
+        matrix_identity (matR);
+        matrix_rotate (matR,  180.0f, 1.0f, 0.0f, 0.0f);
+
+        matrix_mult (matR, matM, matR);
+
+    }
+
+    /* center sphere */
+    {
+        float radius = 0.1f;
+        draw_sphere (matP, matV, matM, radius, col_w);
+    }
+
+    return 0;
+}
+
+

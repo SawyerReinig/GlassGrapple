@@ -1,0 +1,80 @@
+[
+  {
+    "level_": 0,
+    "message_": "Start JSON generation. Platform version: 24 min SDK version: arm64-v8a",
+    "file_": "C:\\Users\\Sawyer\\Documents\\Android Projects\\SwingOut\\VRGrappleGame\\app\\src\\main\\cpp\\CMakeLists.txt",
+    "tag_": "release|arm64-v8a",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": 0
+  },
+  {
+    "level_": 0,
+    "message_": "rebuilding JSON C:\\Users\\Sawyer\\Documents\\Android Projects\\SwingOut\\VRGrappleGame\\app\\.cxx\\RelWithDebInfo\\2v202l46\\arm64-v8a\\android_gradle_build.json due to:",
+    "file_": "C:\\Users\\Sawyer\\Documents\\Android Projects\\SwingOut\\VRGrappleGame\\app\\src\\main\\cpp\\CMakeLists.txt",
+    "tag_": "release|arm64-v8a",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": 0
+  },
+  {
+    "level_": 0,
+    "message_": "- no fingerprint file, will remove stale configuration folder",
+    "file_": "C:\\Users\\Sawyer\\Documents\\Android Projects\\SwingOut\\VRGrappleGame\\app\\src\\main\\cpp\\CMakeLists.txt",
+    "tag_": "release|arm64-v8a",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": 0
+  },
+  {
+    "level_": 0,
+    "message_": "@echo off\n\"C:\\\\Program Files\\\\Android\\\\Android Studio\\\\jbr\\\\bin\\\\java\" ^\n  --class-path ^\n  \"C:\\\\Users\\\\Sawyer\\\\.gradle\\\\caches\\\\modules-2\\\\files-2.1\\\\com.google.prefab\\\\cli\\\\2.0.0\\\\f2702b5ca13df54e3ca92f29d6b403fb6285d8df\\\\cli-2.0.0-all.jar\" ^\n  com.google.prefab.cli.AppKt ^\n  --build-system ^\n  cmake ^\n  --platform ^\n  android ^\n  --abi ^\n  arm64-v8a ^\n  --os-version ^\n  24 ^\n  --stl ^\n  c++_static ^\n  --ndk-version ^\n  25 ^\n  --output ^\n  \"C:\\\\Users\\\\Sawyer\\\\AppData\\\\Local\\\\Temp\\\\agp-prefab-staging2318918859366106539\\\\staged-cli-output\" ^\n  \"C:\\\\Users\\\\Sawyer\\\\.gradle\\\\caches\\\\transforms-3\\\\63a0432d4893379bc8692dca1284b91e\\\\transformed\\\\jetified-oboe-1.4.3\\\\prefab\"\n",
+    "file_": "C:\\Users\\Sawyer\\Documents\\Android Projects\\SwingOut\\VRGrappleGame\\app\\src\\main\\cpp\\CMakeLists.txt",
+    "tag_": "release|arm64-v8a",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": 0
+  },
+  {
+    "level_": 0,
+    "message_": "Received process result: 0",
+    "file_": "C:\\Users\\Sawyer\\Documents\\Android Projects\\SwingOut\\VRGrappleGame\\app\\src\\main\\cpp\\CMakeLists.txt",
+    "tag_": "release|arm64-v8a",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": 0
+  },
+  {
+    "level_": 1,
+    "message_": "com.google.prefab.api.NoMatchingLibraryException: No compatible library found for //oboe/oboe. Rejected the following libraries:",
+    "file_": "C:\\Users\\Sawyer\\Documents\\Android Projects\\SwingOut\\VRGrappleGame\\app\\src\\main\\cpp\\CMakeLists.txt",
+    "tag_": "release|arm64-v8a",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": 0
+  }
+]

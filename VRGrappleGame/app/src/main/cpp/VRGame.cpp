@@ -251,4 +251,180 @@ int draw_Sphere (Vec3 pos, Vec3 col, float *matP, float *matV)
 
 
 
+void copyAssetToExternal(AAssetManager* mgr, const char* assetName, const char* destPath) {
+    // Skip if the file already exists
+    std::ifstream test(destPath);
+    if (test.good()) {
+        return;
+    }
+
+    AAsset* asset = AAssetManager_open(mgr, assetName, AASSET_MODE_STREAMING);
+    if (!asset) {
+        __android_log_print(ANDROID_LOG_ERROR, "MP3COPY", "Failed to open asset: %s", assetName);
+        return;
+    }
+
+    FILE* outFile = fopen(destPath, "wb");
+    if (!outFile) {
+        __android_log_print(ANDROID_LOG_ERROR, "MP3COPY", "Failed to open destination: %s", destPath);
+        AAsset_close(asset);
+        return;
+    }
+
+    const size_t bufferSize = 4096;
+    char buffer[bufferSize];
+    int bytesRead = 0;
+
+    while ((bytesRead = AAsset_read(asset, buffer, bufferSize)) > 0) {
+        fwrite(buffer, 1, bytesRead, outFile);
+    }
+
+    fclose(outFile);
+    AAsset_close(asset);
+}
+
+
+void copyAllAssets(AAssetManager* mgr, const char* packageName) {
+    AAssetDir* assetDir = AAssetManager_openDir(mgr, "");
+    if (!assetDir) {
+        __android_log_print(ANDROID_LOG_ERROR, "ASSETCOPY", "Failed to open asset directory");
+        return;
+    }
+
+    const char* filename = nullptr;
+    while ((filename = AAssetDir_getNextFileName(assetDir)) != nullptr) {
+        std::string name(filename);
+
+        // Check file extension
+        if (name.size() > 4) {
+            std::string ext = name.substr(name.size() - 4);
+
+            if (ext == ".mp3" || ext == ".obj") {
+                std::string destPath = "/sdcard/Android/data/";
+                destPath += packageName;
+                destPath += "/files/";
+                destPath += name;
+
+                __android_log_print(ANDROID_LOG_INFO, "ASSETCOPY", "Copying: %s → %s", name.c_str(), destPath.c_str());
+
+                copyAssetToExternal(mgr, name.c_str(), destPath.c_str());
+            }
+        }
+    }
+
+    AAssetDir_close(assetDir);
+}
+
+
+
+#include <limits> // for std::numeric_limits
+
+bool intersectRayPlane(const Vec3& rayOrigin, const Vec3& rayDir, const Vec3& planeNormal, float planeD, float& outT)
+{
+    float denom = dot(planeNormal, rayDir);
+    if (fabs(denom) < 1e-6f) {
+        return false; // Ray is parallel to the plane
+    }
+
+    float t = -(dot(planeNormal, rayOrigin) + planeD) / denom;
+    if (t < 0.0f) {
+        return false; // Intersection behind the ray
+    }
+
+    outT = t;
+    return true;
+}
+
+Vec3 findGrapplePoint(const Vec3& handPos, const Vec3& handDir)
+{
+    float bestT = std::numeric_limits<float>::max();
+    Vec3 bestPoint = handPos;
+
+    // Define each wall: normal vector + D offset
+    struct Plane { Vec3 normal; float d; };
+
+    Plane planes[] = {
+            {{ 1, 0, 0 }, -15.0f},  // x = 15 (positive X wall)
+            {{-1, 0, 0 }, -15.0f},  // x = -15 (negative X wall)
+            {{ 0, 1, 0 },  0.0f },  // y = 0  (floor)
+            {{ 0,-1, 0 }, 13.0f },  // y = 13 (ceiling)
+            {{ 0, 0, 1 }, -15.0f},  // z = 15 (positive Z wall)
+            {{ 0, 0,-1 }, -15.0f},  // z = -15 (negative Z wall)
+    };
+
+    for (const auto& plane : planes)
+    {
+        float t;
+        if (intersectRayPlane(handPos, handDir, plane.normal, plane.d, t))
+        {
+            if (t < bestT)
+            {
+                bestT = t;
+                bestPoint = {
+                        handPos.x + t * handDir.x,
+                        handPos.y + t * handDir.y,
+                        handPos.z + t * handDir.z
+                };
+            }
+        }
+    }
+
+    return bestPoint;
+}
+
+
+void applyGrappleSpring(Vec3 playerPos, Vec3 grapplePoint, Vec3 *playerVel, float deltaTime)
+{
+    const float springK = 3.0f;      // Spring stiffness
+    const float damping = 0.0f;        // Damping to avoid infinite swinging
+    const float restLength = 3.0f;     // How long the rope wants to be (0 = fully pulled)
+
+    // Direction from player to grapple
+    Vec3 delta = {
+            grapplePoint.x - playerPos.x,
+            grapplePoint.y - playerPos.y,
+            grapplePoint.z - playerPos.z
+    };
+
+    float distance = sqrtf(delta.x * delta.x + delta.y * delta.y + delta.z * delta.z);
+
+    // Normalize delta
+    Vec3 direction = {0, 0, 0};
+    if (distance > 0.0001f) {
+        direction.x = delta.x / distance;
+        direction.y = delta.y / distance;
+        direction.z = delta.z / distance;
+    }
+
+    // Spring force (Hooke's Law)
+    float stretch = distance - restLength;
+    if (stretch < 0) stretch = 0;
+    Vec3 springForce = {
+            -springK * stretch * direction.x,
+            -springK * stretch * direction.y,
+            -springK * stretch * direction.z
+    };
+
+    // Damping force
+    float velAlongDir = playerVel->x * direction.x + playerVel->y * direction.y + playerVel->z * direction.z;
+    Vec3 dampingForce = {
+            -damping * velAlongDir * direction.x,
+            -damping * velAlongDir * direction.y,
+            -damping * velAlongDir * direction.z
+    };
+
+    // Total force
+    Vec3 totalForce = {
+            springForce.x + dampingForce.x,
+            springForce.y + dampingForce.y,
+            springForce.z + dampingForce.z
+    };
+
+    // Apply force to velocity
+    playerVel->x -= totalForce.x * deltaTime;
+    playerVel->y -= totalForce.y * deltaTime;
+    playerVel->z -= totalForce.z * deltaTime;
+}
+
+
 

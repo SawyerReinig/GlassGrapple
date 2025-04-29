@@ -222,8 +222,8 @@ Project_SOURCE_DIR:STATIC=C:/Users/Sawyer/Documents/Android Projects/SwingOut/VR
 //Dependencies for target
 native_app_glue_LIB_DEPENDS:STATIC=
 
-//Dependencies for the target
-openxr_app_LIB_DEPENDS:STATIC=general;android;general;native_app_glue;general;openxr_loader;general;EGL;general;GLESv3;general;log;
+//The directory containing a CMake configuration file for oboe.
+oboe_DIR:PATH=oboe_DIR-NOTFOUND
 
 
 ########################

@@ -1,4 +1,4 @@
-# Install script for directory: C:/Users/Sawyer/Documents/Android Projects/android_openxr_gles/VRGrappleGame/app/src/main/cpp
+# Install script for directory: C:/Users/Sawyer/Documents/Android Projects/SwingOut/VRGrappleGame/app/src/main/cpp
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -45,5 +45,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "C:/Users/Sawyer/Documents/Android Projects/android_openxr_gles/VRGrappleGame/app/.cxx/RelWithDebInfo/216t5l24/arm64-v8a/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "C:/Users/Sawyer/Documents/Android Projects/SwingOut/VRGrappleGame/app/.cxx/RelWithDebInfo/216t5l24/arm64-v8a/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

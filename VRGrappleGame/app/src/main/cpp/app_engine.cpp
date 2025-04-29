@@ -2,7 +2,7 @@
 #include "util_oxr.h"
 #include "app_engine.h"
 #include "render_scene.h"
-
+#include "VRGame.h"
 
 AppEngine::AppEngine (android_app* app)
     : m_app(app)
@@ -58,6 +58,12 @@ AppEngine::InitOpenXR_GLES ()
 
     m_runtime_name = oxr_get_runtime_name (m_instance);
     m_system_name  = oxr_get_system_name (m_instance, m_systemId);
+
+    AAssetManager* mgr = m_app->activity->assetManager;
+
+//    copyAllMp3Assets(mgr, "com.example.SwingOut");  // <-- Set the package name to find the assets: SET THIS
+    copyAllAssets(mgr, "com.example.SwingOut");
+
 }
 
 
