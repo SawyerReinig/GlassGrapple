@@ -18,6 +18,7 @@
 #include <fstream>
 // -------- Vec3 Struct & Math Functions --------
 
+
 template <typename T>
 T clamp(T val, T minVal, T maxVal)
 {
@@ -113,8 +114,6 @@ inline float distance(const Vec3& a, const Vec3& b) {
 }
 
 
-
-
 void applyGrappleSpring(Vec3 playerPos, Vec3 grapplePoint, Vec3 *playerVel, float deltaTime);
 
 Vec3 findGrapplePoint(const Vec3& handPos, const Vec3& handDir);
@@ -125,6 +124,7 @@ void copyAssetToExternal(AAssetManager* mgr, const char* assetName, const char* 
 
 int init_Sphere ();
 int draw_Sphere (Vec3 position, Vec3 col, float *matP, float *matV);
+Vec3 ColorFrom255(float r, float g, float b);
 
 #endif //OPENXR_GLES_APP_VRGAME_H
 

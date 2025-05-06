@@ -1,5 +1,0 @@
-com.google.prefab.api.NoMatchingLibraryException: No compatible library found for //oboe/oboe. Rejected the following libraries:
-android.arm64-v8a: User is using a static STL but library requires a shared STL
-android.armeabi-v7a: User is targeting arm64-v8a but library is for armeabi-v7a
-android.x86: User is targeting arm64-v8a but library is for x86
-android.x86_64: User is targeting arm64-v8a but library is for x86_64

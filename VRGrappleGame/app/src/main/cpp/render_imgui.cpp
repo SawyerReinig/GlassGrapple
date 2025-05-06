@@ -110,8 +110,7 @@ render_gui (scene_data_t *scn_data, int highscore)  // I Should try messing with
     {
         ImGui::SetWindowFontScale(2.5f);  // Scale 1.0 is default
 
-//        ImGui::Text("Welcome To SWING OUT");
-        const char* title = "Welcome To SWING OUT";
+        const char* title = "Welcome To GLASS GRAPPLE";
         float win_width = ImGui::GetWindowSize().x;
         float text_width = ImGui::CalcTextSize(title).x;
         ImGui::SetCursorPosX((win_width - text_width) * 0.5f);  // center

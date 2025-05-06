@@ -63,8 +63,11 @@ Vec3 Gray = Vec3(0.973, 1, 0.8);
 Vec3 Brown = Vec3(0.929, 0.749, 0.522);
 
 
-Vec3 worldPink = Vec3(0.756f, 0.1, 0.76f);
-Vec3 worldYellow = Vec3(0.99f, 0.91, 0.02f);
+//Vec3 worldPink = Vec3(0.756f, 0.1, 0.76f);
+Vec3 worldPink = Vec3(1.0f, 0.36, 0.63f);
+//Vec3 worldYellow = Vec3(0.99f, 0.91, 0.02f);
+//Vec3 worldYellow = ColorFrom255(229,150,51);
+Vec3 worldYellow = ColorFrom255(255,255,255);
 
 int lastPickedColor = 0;
 std::vector<Vec3> WallColors;
@@ -457,11 +460,14 @@ void initializeWalls(int NW){
 
 void reSpawn(){
     int score = roundf(-(playerPosOffset.x + 15) / disBetweenWalls);
-    score = clamp(score, 1, (int)Walls.size() - 1);
+    score = clamp(score, 0, (int)Walls.size() - 1);
     if(score > highscore){
         highscore = score;
     }
-
+    rightGrapplePlaced = false;
+    leftGrapplePlaced = false;
+    grapplePointRight = handPosRight;
+    grapplePointLeft = handPosLeft;
     playerPosOffset = Vec3(0.0f,1.0f,0.0f);
     playerVel = Vec3(0.0f,0.0f,0.0f);
     initializeWalls(numWalls);
@@ -488,10 +494,10 @@ init_gles_scene ()
     init_dbgstr (0, 0);
     init_imgui (700, UI_WIN_H);
 
-    Mp3Sound SongLoop = loadMp3File("/sdcard/Android/data/com.example.SwingOut/files/SynthSong.mp3");
+    Mp3Sound SongLoop = loadMp3File("/sdcard/Android/data/com.DRHudooken.GlassGrapple/files/SynthSong.mp3");
     songPlayer = new OboeMp3Player(SongLoop.samples, SongLoop.sampleRate, SongLoop.channels);
 
-    Mp3Sound LoseSound = loadMp3File("/sdcard/Android/data/com.example.SwingOut/files/PigstepLose.mp3");
+    Mp3Sound LoseSound = loadMp3File("/sdcard/Android/data/com.DRHudooken.GlassGrapple/files/PigstepLose.mp3");
     myPlayer = new OboeMp3Player(LoseSound.samples, LoseSound.sampleRate, LoseSound.channels);
 
     create_render_target (&s_rtarget, 700, UI_WIN_H, RTARGET_COLOR);
@@ -508,6 +514,8 @@ init_gles_scene ()
 
     return 0;
 }
+
+
 
 
 //int draw_line (float *mtxPV, float *p0, float *p1, float *color)
@@ -551,6 +559,7 @@ int draw_line (float *mtxPV, const Vec3& p0, const Vec3& p1)
 
 //    glDisableVertexAttribArray (sobj->loc_clr);
 //    glVertexAttrib4fv (sobj->loc_clr, color);
+    glLineWidth(1.5f);
 
     Vec3 envColor = worldPink * (1-(songPlayer->MusicBrightness*2)) + worldYellow * songPlayer->MusicBrightness*2;
     glUniform3f(glGetUniformLocation(sobj->program, "viewPos"), playerPosOffset.x,playerPosOffset.y,playerPosOffset.z);        // 1 unit cells
@@ -560,6 +569,7 @@ int draw_line (float *mtxPV, const Vec3& p0, const Vec3& p1)
 
     glEnable (GL_DEPTH_TEST);
     glDrawArrays (GL_LINES, 0, 2);
+    glLineWidth(1.0f);
 
     return 0;
 }
@@ -834,13 +844,13 @@ int DrawWallWithHole(float *mtxPV, float *color, float holePosNorm, float holeWi
             wallX, holeTopEdge, holeLeft,
 
 // HOLE BOTTOM edge
-            wallX, wallBottom, holeLeft,
-            wallX, wallBottom, holeRight,
-            backWallX, wallBottom, holeRight,
+            wallX, holeBottom, holeLeft,
+            wallX, holeBottom, holeRight,
+            backWallX, holeBottom, holeRight,
 
-            backWallX, wallBottom, holeRight,
-            backWallX, wallBottom, holeLeft,
-            wallX, wallBottom, holeLeft,
+            backWallX, holeBottom, holeRight,
+            backWallX, holeBottom, holeLeft,
+            wallX, holeBottom, holeLeft,
     };
 
     shader_obj_t *sobj = &s_sobj;
@@ -1335,21 +1345,21 @@ int render_gles_scene (XrCompositionLayerProjectionView &layerView,
         if(i == 0){ //left hand
             if(leftGrapplePlaced){
                 draw_line((float *)&matPVM, handPosLeft, grapplePointLeft);
-                draw_Hand ((float *)&matP, (float *)&matV, (float *)&matM);
+                draw_Hand ((float *)&matP, (float *)&matV, (float *)&matM,RainbowShader, playerPosOffset);
 
             }
             else{
-                draw_Grapple ((float *)&matP, (float *)&matV, (float *)&matM);
+                draw_Grapple ((float *)&matP, (float *)&matV, (float *)&matM,RainbowShader, playerPosOffset);
             }
         }
         if(i == 1){ //left hand
             if(rightGrapplePlaced){
                 draw_line((float *)&matPVM, handPosRight, grapplePointRight);
-                draw_Hand ((float *)&matP, (float *)&matV, (float *)&matM);
+                draw_Hand ((float *)&matP, (float *)&matV, (float *)&matM,RainbowShader, playerPosOffset);
 
             }
             else{
-                draw_Grapple ((float *)&matP, (float *)&matV, (float *)&matM);
+                draw_Grapple ((float *)&matP, (float *)&matV, (float *)&matM,RainbowShader, playerPosOffset);
             }
         }
 
@@ -1381,7 +1391,7 @@ int render_gles_scene (XrCompositionLayerProjectionView &layerView,
             float         rad   = loc->jointLocations[i].radius;
             XrVector3f    scale = {rad, rad, rad};
             XrMatrix4x4f_CreateTranslationRotationScale (&matM, &pos, &qtn, &scale);
-            draw_axis ((float *)&matP, (float *)&matV, (float *)&matM);
+//            draw_axis ((float *)&matP, (float *)&matV, (float *)&matM);
 
             GLASSERT();
         }

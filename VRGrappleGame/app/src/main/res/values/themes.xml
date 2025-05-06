@@ -12,5 +12,12 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
+
     </style>
+    <!-- Splash screen theme -->
+    <style name="Theme.GlassGrapple.Splash" parent="Theme.GlassGrapple.Splash">
+        <item name="android:windowSplashScreenBackground">@drawable/splash_screen</item>
+        <item name="android:splashScreenTheme">@style/Theme.OpenXR_GLES_app</item>
+    </style>
+
 </resources>

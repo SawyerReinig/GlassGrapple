@@ -1,38 +1,38 @@
 The target system is: Android - 1 - aarch64
 The host system is: Windows - 10.0.22631 - AMD64
 Determining if the C compiler works passed with the following output:
-Change Dir: C:/Users/Sawyer/Documents/Android Projects/SwingOut/VRGrappleGame/app/.cxx/Debug/1y3c3b1z/arm64-v8a/CMakeFiles/CMakeTmp
+Change Dir: C:/Users/Sawyer/Documents/Android Projects/GlassGrapple/VRGrappleGame/app/.cxx/Debug/1y3c3b1z/arm64-v8a/CMakeFiles/CMakeTmp
 
-Run Build Command:"C:/Users/Sawyer/Documents/Android Projects/AndroidSDKs/cmake/3.10.2.4988404/bin/ninja.exe" "cmTC_f0b4f"
-[1/2] Building C object CMakeFiles/cmTC_f0b4f.dir/testCCompiler.c.o
-[2/2] Linking C executable cmTC_f0b4f
+Run Build Command:"C:/Users/Sawyer/Documents/Android Projects/AndroidSDKs/cmake/3.10.2.4988404/bin/ninja.exe" "cmTC_c635e"
+[1/2] Building C object CMakeFiles/cmTC_c635e.dir/testCCompiler.c.o
+[2/2] Linking C executable cmTC_c635e
 
 
 Detecting C compiler ABI info compiled with the following output:
-Change Dir: C:/Users/Sawyer/Documents/Android Projects/SwingOut/VRGrappleGame/app/.cxx/Debug/1y3c3b1z/arm64-v8a/CMakeFiles/CMakeTmp
+Change Dir: C:/Users/Sawyer/Documents/Android Projects/GlassGrapple/VRGrappleGame/app/.cxx/Debug/1y3c3b1z/arm64-v8a/CMakeFiles/CMakeTmp
 
-Run Build Command:"C:/Users/Sawyer/Documents/Android Projects/AndroidSDKs/cmake/3.10.2.4988404/bin/ninja.exe" "cmTC_4a7b3"
-[1/2] Building C object CMakeFiles/cmTC_4a7b3.dir/CMakeCCompilerABI.c.o
-[2/2] Linking C executable cmTC_4a7b3
+Run Build Command:"C:/Users/Sawyer/Documents/Android Projects/AndroidSDKs/cmake/3.10.2.4988404/bin/ninja.exe" "cmTC_1a2c1"
+[1/2] Building C object CMakeFiles/cmTC_1a2c1.dir/CMakeCCompilerABI.c.o
+[2/2] Linking C executable cmTC_1a2c1
 Android (8490178, based on r450784d) clang version 14.0.6 (https://android.googlesource.com/toolchain/llvm-project 4c603efb0cca074e9238af8b4106c30add4418f6)
 Target: aarch64-none-linux-android24
 Thread model: posix
 InstalledDir: C:/Users/Sawyer/DOCUME~1/ANDROI~1/ANDROI~2/ndk/251~1.893/TOOLCH~1/llvm/prebuilt/WINDOW~1/bin
- "C:/Users/Sawyer/DOCUME~1/ANDROI~1/ANDROI~2/ndk/251~1.893/TOOLCH~1/llvm/prebuilt/WINDOW~1/bin/ld" "--sysroot=C:/Users/Sawyer/Documents/Android Projects/AndroidSDKs/ndk/25.1.8937393/toolchains/llvm/prebuilt/windows-x86_64/sysroot" -pie -EL --fix-cortex-a53-843419 --warn-shared-textrel -z now -z relro -z max-page-size=4096 --hash-style=gnu --enable-new-dtags --eh-frame-hdr -m aarch64linux -dynamic-linker /system/bin/linker64 -o cmTC_4a7b3 "C:/Users/Sawyer/Documents/Android Projects/AndroidSDKs/ndk/25.1.8937393/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/lib/aarch64-linux-android/24/crtbegin_dynamic.o" -LC:/Users/Sawyer/DOCUME~1/ANDROI~1/ANDROI~2/ndk/251~1.893/TOOLCH~1/llvm/prebuilt/WINDOW~1/lib64/clang/14.0.6/lib/linux/aarch64 "-LC:/Users/Sawyer/Documents/Android Projects/AndroidSDKs/ndk/25.1.8937393/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/lib/aarch64-linux-android/24" "-LC:/Users/Sawyer/Documents/Android Projects/AndroidSDKs/ndk/25.1.8937393/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/lib/aarch64-linux-android" "-LC:/Users/Sawyer/Documents/Android Projects/AndroidSDKs/ndk/25.1.8937393/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/lib" --build-id=sha1 --no-rosegment --fatal-warnings --gc-sections --no-undefined --gc-sections CMakeFiles/cmTC_4a7b3.dir/CMakeCCompilerABI.c.o C:/Users/Sawyer/DOCUME~1/ANDROI~1/ANDROI~2/ndk/251~1.893/TOOLCH~1/llvm/prebuilt/WINDOW~1/lib64/clang/14.0.6/lib/linux/libclang_rt.builtins-aarch64-android.a -l:libunwind.a -ldl -lc C:/Users/Sawyer/DOCUME~1/ANDROI~1/ANDROI~2/ndk/251~1.893/TOOLCH~1/llvm/prebuilt/WINDOW~1/lib64/clang/14.0.6/lib/linux/libclang_rt.builtins-aarch64-android.a -l:libunwind.a -ldl "C:/Users/Sawyer/Documents/Android Projects/AndroidSDKs/ndk/25.1.8937393/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/lib/aarch64-linux-android/24/crtend_android.o"
+ "C:/Users/Sawyer/DOCUME~1/ANDROI~1/ANDROI~2/ndk/251~1.893/TOOLCH~1/llvm/prebuilt/WINDOW~1/bin/ld" "--sysroot=C:/Users/Sawyer/Documents/Android Projects/AndroidSDKs/ndk/25.1.8937393/toolchains/llvm/prebuilt/windows-x86_64/sysroot" -pie -EL --fix-cortex-a53-843419 --warn-shared-textrel -z now -z relro -z max-page-size=4096 --hash-style=gnu --enable-new-dtags --eh-frame-hdr -m aarch64linux -dynamic-linker /system/bin/linker64 -o cmTC_1a2c1 "C:/Users/Sawyer/Documents/Android Projects/AndroidSDKs/ndk/25.1.8937393/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/lib/aarch64-linux-android/24/crtbegin_dynamic.o" -LC:/Users/Sawyer/DOCUME~1/ANDROI~1/ANDROI~2/ndk/251~1.893/TOOLCH~1/llvm/prebuilt/WINDOW~1/lib64/clang/14.0.6/lib/linux/aarch64 "-LC:/Users/Sawyer/Documents/Android Projects/AndroidSDKs/ndk/25.1.8937393/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/lib/aarch64-linux-android/24" "-LC:/Users/Sawyer/Documents/Android Projects/AndroidSDKs/ndk/25.1.8937393/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/lib/aarch64-linux-android" "-LC:/Users/Sawyer/Documents/Android Projects/AndroidSDKs/ndk/25.1.8937393/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/lib" --build-id=sha1 --no-rosegment --fatal-warnings --gc-sections --no-undefined --gc-sections CMakeFiles/cmTC_1a2c1.dir/CMakeCCompilerABI.c.o C:/Users/Sawyer/DOCUME~1/ANDROI~1/ANDROI~2/ndk/251~1.893/TOOLCH~1/llvm/prebuilt/WINDOW~1/lib64/clang/14.0.6/lib/linux/libclang_rt.builtins-aarch64-android.a -l:libunwind.a -ldl -lc C:/Users/Sawyer/DOCUME~1/ANDROI~1/ANDROI~2/ndk/251~1.893/TOOLCH~1/llvm/prebuilt/WINDOW~1/lib64/clang/14.0.6/lib/linux/libclang_rt.builtins-aarch64-android.a -l:libunwind.a -ldl "C:/Users/Sawyer/Documents/Android Projects/AndroidSDKs/ndk/25.1.8937393/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/lib/aarch64-linux-android/24/crtend_android.o"
 
 
 Parsed C implicit link information from above output:
   link line regex: [^( *|.*[/\])(CMAKE_LINKER-NOTFOUND|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\]+-)?ld|collect2)[^/\]*( |$)]
-  ignore line: [Change Dir: C:/Users/Sawyer/Documents/Android Projects/SwingOut/VRGrappleGame/app/.cxx/Debug/1y3c3b1z/arm64-v8a/CMakeFiles/CMakeTmp]
+  ignore line: [Change Dir: C:/Users/Sawyer/Documents/Android Projects/GlassGrapple/VRGrappleGame/app/.cxx/Debug/1y3c3b1z/arm64-v8a/CMakeFiles/CMakeTmp]
   ignore line: []
-  ignore line: [Run Build Command:"C:/Users/Sawyer/Documents/Android Projects/AndroidSDKs/cmake/3.10.2.4988404/bin/ninja.exe" "cmTC_4a7b3"]
-  ignore line: [[1/2] Building C object CMakeFiles/cmTC_4a7b3.dir/CMakeCCompilerABI.c.o]
-  ignore line: [[2/2] Linking C executable cmTC_4a7b3]
+  ignore line: [Run Build Command:"C:/Users/Sawyer/Documents/Android Projects/AndroidSDKs/cmake/3.10.2.4988404/bin/ninja.exe" "cmTC_1a2c1"]
+  ignore line: [[1/2] Building C object CMakeFiles/cmTC_1a2c1.dir/CMakeCCompilerABI.c.o]
+  ignore line: [[2/2] Linking C executable cmTC_1a2c1]
   ignore line: [Android (8490178, based on r450784d) clang version 14.0.6 (https://android.googlesource.com/toolchain/llvm-project 4c603efb0cca074e9238af8b4106c30add4418f6)]
   ignore line: [Target: aarch64-none-linux-android24]
   ignore line: [Thread model: posix]
   ignore line: [InstalledDir: C:/Users/Sawyer/DOCUME~1/ANDROI~1/ANDROI~2/ndk/251~1.893/TOOLCH~1/llvm/prebuilt/WINDOW~1/bin]
-  link line: [ "C:/Users/Sawyer/DOCUME~1/ANDROI~1/ANDROI~2/ndk/251~1.893/TOOLCH~1/llvm/prebuilt/WINDOW~1/bin/ld" "--sysroot=C:/Users/Sawyer/Documents/Android Projects/AndroidSDKs/ndk/25.1.8937393/toolchains/llvm/prebuilt/windows-x86_64/sysroot" -pie -EL --fix-cortex-a53-843419 --warn-shared-textrel -z now -z relro -z max-page-size=4096 --hash-style=gnu --enable-new-dtags --eh-frame-hdr -m aarch64linux -dynamic-linker /system/bin/linker64 -o cmTC_4a7b3 "C:/Users/Sawyer/Documents/Android Projects/AndroidSDKs/ndk/25.1.8937393/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/lib/aarch64-linux-android/24/crtbegin_dynamic.o" -LC:/Users/Sawyer/DOCUME~1/ANDROI~1/ANDROI~2/ndk/251~1.893/TOOLCH~1/llvm/prebuilt/WINDOW~1/lib64/clang/14.0.6/lib/linux/aarch64 "-LC:/Users/Sawyer/Documents/Android Projects/AndroidSDKs/ndk/25.1.8937393/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/lib/aarch64-linux-android/24" "-LC:/Users/Sawyer/Documents/Android Projects/AndroidSDKs/ndk/25.1.8937393/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/lib/aarch64-linux-android" "-LC:/Users/Sawyer/Documents/Android Projects/AndroidSDKs/ndk/25.1.8937393/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/lib" --build-id=sha1 --no-rosegment --fatal-warnings --gc-sections --no-undefined --gc-sections CMakeFiles/cmTC_4a7b3.dir/CMakeCCompilerABI.c.o C:/Users/Sawyer/DOCUME~1/ANDROI~1/ANDROI~2/ndk/251~1.893/TOOLCH~1/llvm/prebuilt/WINDOW~1/lib64/clang/14.0.6/lib/linux/libclang_rt.builtins-aarch64-android.a -l:libunwind.a -ldl -lc C:/Users/Sawyer/DOCUME~1/ANDROI~1/ANDROI~2/ndk/251~1.893/TOOLCH~1/llvm/prebuilt/WINDOW~1/lib64/clang/14.0.6/lib/linux/libclang_rt.builtins-aarch64-android.a -l:libunwind.a -ldl "C:/Users/Sawyer/Documents/Android Projects/AndroidSDKs/ndk/25.1.8937393/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/lib/aarch64-linux-android/24/crtend_android.o"]
+  link line: [ "C:/Users/Sawyer/DOCUME~1/ANDROI~1/ANDROI~2/ndk/251~1.893/TOOLCH~1/llvm/prebuilt/WINDOW~1/bin/ld" "--sysroot=C:/Users/Sawyer/Documents/Android Projects/AndroidSDKs/ndk/25.1.8937393/toolchains/llvm/prebuilt/windows-x86_64/sysroot" -pie -EL --fix-cortex-a53-843419 --warn-shared-textrel -z now -z relro -z max-page-size=4096 --hash-style=gnu --enable-new-dtags --eh-frame-hdr -m aarch64linux -dynamic-linker /system/bin/linker64 -o cmTC_1a2c1 "C:/Users/Sawyer/Documents/Android Projects/AndroidSDKs/ndk/25.1.8937393/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/lib/aarch64-linux-android/24/crtbegin_dynamic.o" -LC:/Users/Sawyer/DOCUME~1/ANDROI~1/ANDROI~2/ndk/251~1.893/TOOLCH~1/llvm/prebuilt/WINDOW~1/lib64/clang/14.0.6/lib/linux/aarch64 "-LC:/Users/Sawyer/Documents/Android Projects/AndroidSDKs/ndk/25.1.8937393/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/lib/aarch64-linux-android/24" "-LC:/Users/Sawyer/Documents/Android Projects/AndroidSDKs/ndk/25.1.8937393/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/lib/aarch64-linux-android" "-LC:/Users/Sawyer/Documents/Android Projects/AndroidSDKs/ndk/25.1.8937393/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/lib" --build-id=sha1 --no-rosegment --fatal-warnings --gc-sections --no-undefined --gc-sections CMakeFiles/cmTC_1a2c1.dir/CMakeCCompilerABI.c.o C:/Users/Sawyer/DOCUME~1/ANDROI~1/ANDROI~2/ndk/251~1.893/TOOLCH~1/llvm/prebuilt/WINDOW~1/lib64/clang/14.0.6/lib/linux/libclang_rt.builtins-aarch64-android.a -l:libunwind.a -ldl -lc C:/Users/Sawyer/DOCUME~1/ANDROI~1/ANDROI~2/ndk/251~1.893/TOOLCH~1/llvm/prebuilt/WINDOW~1/lib64/clang/14.0.6/lib/linux/libclang_rt.builtins-aarch64-android.a -l:libunwind.a -ldl "C:/Users/Sawyer/Documents/Android Projects/AndroidSDKs/ndk/25.1.8937393/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/lib/aarch64-linux-android/24/crtend_android.o"]
     arg [C:/Users/Sawyer/DOCUME~1/ANDROI~1/ANDROI~2/ndk/251~1.893/TOOLCH~1/llvm/prebuilt/WINDOW~1/bin/ld] ==> ignore
     arg [--sysroot=C:/Users/Sawyer/Documents/Android Projects/AndroidSDKs/ndk/25.1.8937393/toolchains/llvm/prebuilt/windows-x86_64/sysroot] ==> ignore
     arg [-pie] ==> ignore
@@ -50,7 +50,7 @@ Parsed C implicit link information from above output:
     arg [-dynamic-linker] ==> ignore
     arg [/system/bin/linker64] ==> ignore
     arg [-o] ==> ignore
-    arg [cmTC_4a7b3] ==> ignore
+    arg [cmTC_1a2c1] ==> ignore
     arg [C:/Users/Sawyer/Documents/Android Projects/AndroidSDKs/ndk/25.1.8937393/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/lib/aarch64-linux-android/24/crtbegin_dynamic.o] ==> ignore
     arg [-LC:/Users/Sawyer/DOCUME~1/ANDROI~1/ANDROI~2/ndk/251~1.893/TOOLCH~1/llvm/prebuilt/WINDOW~1/lib64/clang/14.0.6/lib/linux/aarch64] ==> dir [C:/Users/Sawyer/DOCUME~1/ANDROI~1/ANDROI~2/ndk/251~1.893/TOOLCH~1/llvm/prebuilt/WINDOW~1/lib64/clang/14.0.6/lib/linux/aarch64]
     arg [-LC:/Users/Sawyer/Documents/Android Projects/AndroidSDKs/ndk/25.1.8937393/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/lib/aarch64-linux-android/24] ==> dir [C:/Users/Sawyer/Documents/Android Projects/AndroidSDKs/ndk/25.1.8937393/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/lib/aarch64-linux-android/24]
@@ -62,7 +62,7 @@ Parsed C implicit link information from above output:
     arg [--gc-sections] ==> ignore
     arg [--no-undefined] ==> ignore
     arg [--gc-sections] ==> ignore
-    arg [CMakeFiles/cmTC_4a7b3.dir/CMakeCCompilerABI.c.o] ==> ignore
+    arg [CMakeFiles/cmTC_1a2c1.dir/CMakeCCompilerABI.c.o] ==> ignore
     arg [C:/Users/Sawyer/DOCUME~1/ANDROI~1/ANDROI~2/ndk/251~1.893/TOOLCH~1/llvm/prebuilt/WINDOW~1/lib64/clang/14.0.6/lib/linux/libclang_rt.builtins-aarch64-android.a] ==> lib [C:/Users/Sawyer/DOCUME~1/ANDROI~1/ANDROI~2/ndk/251~1.893/TOOLCH~1/llvm/prebuilt/WINDOW~1/lib64/clang/14.0.6/lib/linux/libclang_rt.builtins-aarch64-android.a]
     arg [-l:libunwind.a] ==> lib [-l:libunwind.a]
     arg [-ldl] ==> lib [dl]
@@ -85,11 +85,11 @@ Parsed C implicit link information from above output:
 
 
 Detecting C [-std=c11] compiler features compiled with the following output:
-Change Dir: C:/Users/Sawyer/Documents/Android Projects/SwingOut/VRGrappleGame/app/.cxx/Debug/1y3c3b1z/arm64-v8a/CMakeFiles/CMakeTmp
+Change Dir: C:/Users/Sawyer/Documents/Android Projects/GlassGrapple/VRGrappleGame/app/.cxx/Debug/1y3c3b1z/arm64-v8a/CMakeFiles/CMakeTmp
 
-Run Build Command:"C:/Users/Sawyer/Documents/Android Projects/AndroidSDKs/cmake/3.10.2.4988404/bin/ninja.exe" "cmTC_e75e9"
-[1/2] Building C object CMakeFiles/cmTC_e75e9.dir/feature_tests.c.o
-[2/2] Linking C executable cmTC_e75e9
+Run Build Command:"C:/Users/Sawyer/Documents/Android Projects/AndroidSDKs/cmake/3.10.2.4988404/bin/ninja.exe" "cmTC_2fa52"
+[1/2] Building C object CMakeFiles/cmTC_2fa52.dir/feature_tests.c.o
+[2/2] Linking C executable cmTC_2fa52
 
 
     Feature record: C_FEATURE:1c_function_prototypes
@@ -99,11 +99,11 @@ Run Build Command:"C:/Users/Sawyer/Documents/Android Projects/AndroidSDKs/cmake/
 
 
 Detecting C [-std=c99] compiler features compiled with the following output:
-Change Dir: C:/Users/Sawyer/Documents/Android Projects/SwingOut/VRGrappleGame/app/.cxx/Debug/1y3c3b1z/arm64-v8a/CMakeFiles/CMakeTmp
+Change Dir: C:/Users/Sawyer/Documents/Android Projects/GlassGrapple/VRGrappleGame/app/.cxx/Debug/1y3c3b1z/arm64-v8a/CMakeFiles/CMakeTmp
 
-Run Build Command:"C:/Users/Sawyer/Documents/Android Projects/AndroidSDKs/cmake/3.10.2.4988404/bin/ninja.exe" "cmTC_38f73"
-[1/2] Building C object CMakeFiles/cmTC_38f73.dir/feature_tests.c.o
-[2/2] Linking C executable cmTC_38f73
+Run Build Command:"C:/Users/Sawyer/Documents/Android Projects/AndroidSDKs/cmake/3.10.2.4988404/bin/ninja.exe" "cmTC_35bc5"
+[1/2] Building C object CMakeFiles/cmTC_35bc5.dir/feature_tests.c.o
+[2/2] Linking C executable cmTC_35bc5
 
 
     Feature record: C_FEATURE:1c_function_prototypes
@@ -113,11 +113,11 @@ Run Build Command:"C:/Users/Sawyer/Documents/Android Projects/AndroidSDKs/cmake/
 
 
 Detecting C [-std=c90] compiler features compiled with the following output:
-Change Dir: C:/Users/Sawyer/Documents/Android Projects/SwingOut/VRGrappleGame/app/.cxx/Debug/1y3c3b1z/arm64-v8a/CMakeFiles/CMakeTmp
+Change Dir: C:/Users/Sawyer/Documents/Android Projects/GlassGrapple/VRGrappleGame/app/.cxx/Debug/1y3c3b1z/arm64-v8a/CMakeFiles/CMakeTmp
 
-Run Build Command:"C:/Users/Sawyer/Documents/Android Projects/AndroidSDKs/cmake/3.10.2.4988404/bin/ninja.exe" "cmTC_200e3"
-[1/2] Building C object CMakeFiles/cmTC_200e3.dir/feature_tests.c.o
-[2/2] Linking C executable cmTC_200e3
+Run Build Command:"C:/Users/Sawyer/Documents/Android Projects/AndroidSDKs/cmake/3.10.2.4988404/bin/ninja.exe" "cmTC_81b70"
+[1/2] Building C object CMakeFiles/cmTC_81b70.dir/feature_tests.c.o
+[2/2] Linking C executable cmTC_81b70
 
 
     Feature record: C_FEATURE:1c_function_prototypes
@@ -125,38 +125,38 @@ Run Build Command:"C:/Users/Sawyer/Documents/Android Projects/AndroidSDKs/cmake/
     Feature record: C_FEATURE:0c_static_assert
     Feature record: C_FEATURE:0c_variadic_macros
 Determining if the CXX compiler works passed with the following output:
-Change Dir: C:/Users/Sawyer/Documents/Android Projects/SwingOut/VRGrappleGame/app/.cxx/Debug/1y3c3b1z/arm64-v8a/CMakeFiles/CMakeTmp
+Change Dir: C:/Users/Sawyer/Documents/Android Projects/GlassGrapple/VRGrappleGame/app/.cxx/Debug/1y3c3b1z/arm64-v8a/CMakeFiles/CMakeTmp
 
-Run Build Command:"C:/Users/Sawyer/Documents/Android Projects/AndroidSDKs/cmake/3.10.2.4988404/bin/ninja.exe" "cmTC_84af6"
-[1/2] Building CXX object CMakeFiles/cmTC_84af6.dir/testCXXCompiler.cxx.o
-[2/2] Linking CXX executable cmTC_84af6
+Run Build Command:"C:/Users/Sawyer/Documents/Android Projects/AndroidSDKs/cmake/3.10.2.4988404/bin/ninja.exe" "cmTC_fb686"
+[1/2] Building CXX object CMakeFiles/cmTC_fb686.dir/testCXXCompiler.cxx.o
+[2/2] Linking CXX executable cmTC_fb686
 
 
 Detecting CXX compiler ABI info compiled with the following output:
-Change Dir: C:/Users/Sawyer/Documents/Android Projects/SwingOut/VRGrappleGame/app/.cxx/Debug/1y3c3b1z/arm64-v8a/CMakeFiles/CMakeTmp
+Change Dir: C:/Users/Sawyer/Documents/Android Projects/GlassGrapple/VRGrappleGame/app/.cxx/Debug/1y3c3b1z/arm64-v8a/CMakeFiles/CMakeTmp
 
-Run Build Command:"C:/Users/Sawyer/Documents/Android Projects/AndroidSDKs/cmake/3.10.2.4988404/bin/ninja.exe" "cmTC_4ee18"
-[1/2] Building CXX object CMakeFiles/cmTC_4ee18.dir/CMakeCXXCompilerABI.cpp.o
-[2/2] Linking CXX executable cmTC_4ee18
+Run Build Command:"C:/Users/Sawyer/Documents/Android Projects/AndroidSDKs/cmake/3.10.2.4988404/bin/ninja.exe" "cmTC_98570"
+[1/2] Building CXX object CMakeFiles/cmTC_98570.dir/CMakeCXXCompilerABI.cpp.o
+[2/2] Linking CXX executable cmTC_98570
 Android (8490178, based on r450784d) clang version 14.0.6 (https://android.googlesource.com/toolchain/llvm-project 4c603efb0cca074e9238af8b4106c30add4418f6)
 Target: aarch64-none-linux-android24
 Thread model: posix
 InstalledDir: C:/Users/Sawyer/DOCUME~1/ANDROI~1/ANDROI~2/ndk/251~1.893/TOOLCH~1/llvm/prebuilt/WINDOW~1/bin
- "C:/Users/Sawyer/DOCUME~1/ANDROI~1/ANDROI~2/ndk/251~1.893/TOOLCH~1/llvm/prebuilt/WINDOW~1/bin/ld" "--sysroot=C:/Users/Sawyer/Documents/Android Projects/AndroidSDKs/ndk/25.1.8937393/toolchains/llvm/prebuilt/windows-x86_64/sysroot" -pie -EL --fix-cortex-a53-843419 --warn-shared-textrel -z now -z relro -z max-page-size=4096 --hash-style=gnu --enable-new-dtags --eh-frame-hdr -m aarch64linux -dynamic-linker /system/bin/linker64 -o cmTC_4ee18 "C:/Users/Sawyer/Documents/Android Projects/AndroidSDKs/ndk/25.1.8937393/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/lib/aarch64-linux-android/24/crtbegin_dynamic.o" -LC:/Users/Sawyer/DOCUME~1/ANDROI~1/ANDROI~2/ndk/251~1.893/TOOLCH~1/llvm/prebuilt/WINDOW~1/lib64/clang/14.0.6/lib/linux/aarch64 "-LC:/Users/Sawyer/Documents/Android Projects/AndroidSDKs/ndk/25.1.8937393/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/lib/aarch64-linux-android/24" "-LC:/Users/Sawyer/Documents/Android Projects/AndroidSDKs/ndk/25.1.8937393/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/lib/aarch64-linux-android" "-LC:/Users/Sawyer/Documents/Android Projects/AndroidSDKs/ndk/25.1.8937393/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/lib" --build-id=sha1 --no-rosegment --fatal-warnings --gc-sections --no-undefined --gc-sections CMakeFiles/cmTC_4ee18.dir/CMakeCXXCompilerABI.cpp.o -lc++ -lm C:/Users/Sawyer/DOCUME~1/ANDROI~1/ANDROI~2/ndk/251~1.893/TOOLCH~1/llvm/prebuilt/WINDOW~1/lib64/clang/14.0.6/lib/linux/libclang_rt.builtins-aarch64-android.a -l:libunwind.a -ldl -lc C:/Users/Sawyer/DOCUME~1/ANDROI~1/ANDROI~2/ndk/251~1.893/TOOLCH~1/llvm/prebuilt/WINDOW~1/lib64/clang/14.0.6/lib/linux/libclang_rt.builtins-aarch64-android.a -l:libunwind.a -ldl "C:/Users/Sawyer/Documents/Android Projects/AndroidSDKs/ndk/25.1.8937393/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/lib/aarch64-linux-android/24/crtend_android.o"
+ "C:/Users/Sawyer/DOCUME~1/ANDROI~1/ANDROI~2/ndk/251~1.893/TOOLCH~1/llvm/prebuilt/WINDOW~1/bin/ld" "--sysroot=C:/Users/Sawyer/Documents/Android Projects/AndroidSDKs/ndk/25.1.8937393/toolchains/llvm/prebuilt/windows-x86_64/sysroot" -pie -EL --fix-cortex-a53-843419 --warn-shared-textrel -z now -z relro -z max-page-size=4096 --hash-style=gnu --enable-new-dtags --eh-frame-hdr -m aarch64linux -dynamic-linker /system/bin/linker64 -o cmTC_98570 "C:/Users/Sawyer/Documents/Android Projects/AndroidSDKs/ndk/25.1.8937393/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/lib/aarch64-linux-android/24/crtbegin_dynamic.o" -LC:/Users/Sawyer/DOCUME~1/ANDROI~1/ANDROI~2/ndk/251~1.893/TOOLCH~1/llvm/prebuilt/WINDOW~1/lib64/clang/14.0.6/lib/linux/aarch64 "-LC:/Users/Sawyer/Documents/Android Projects/AndroidSDKs/ndk/25.1.8937393/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/lib/aarch64-linux-android/24" "-LC:/Users/Sawyer/Documents/Android Projects/AndroidSDKs/ndk/25.1.8937393/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/lib/aarch64-linux-android" "-LC:/Users/Sawyer/Documents/Android Projects/AndroidSDKs/ndk/25.1.8937393/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/lib" --build-id=sha1 --no-rosegment --fatal-warnings --gc-sections --no-undefined --gc-sections CMakeFiles/cmTC_98570.dir/CMakeCXXCompilerABI.cpp.o -lc++ -lm C:/Users/Sawyer/DOCUME~1/ANDROI~1/ANDROI~2/ndk/251~1.893/TOOLCH~1/llvm/prebuilt/WINDOW~1/lib64/clang/14.0.6/lib/linux/libclang_rt.builtins-aarch64-android.a -l:libunwind.a -ldl -lc C:/Users/Sawyer/DOCUME~1/ANDROI~1/ANDROI~2/ndk/251~1.893/TOOLCH~1/llvm/prebuilt/WINDOW~1/lib64/clang/14.0.6/lib/linux/libclang_rt.builtins-aarch64-android.a -l:libunwind.a -ldl "C:/Users/Sawyer/Documents/Android Projects/AndroidSDKs/ndk/25.1.8937393/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/lib/aarch64-linux-android/24/crtend_android.o"
 
 
 Parsed CXX implicit link information from above output:
   link line regex: [^( *|.*[/\])(CMAKE_LINKER-NOTFOUND|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\]+-)?ld|collect2)[^/\]*( |$)]
-  ignore line: [Change Dir: C:/Users/Sawyer/Documents/Android Projects/SwingOut/VRGrappleGame/app/.cxx/Debug/1y3c3b1z/arm64-v8a/CMakeFiles/CMakeTmp]
+  ignore line: [Change Dir: C:/Users/Sawyer/Documents/Android Projects/GlassGrapple/VRGrappleGame/app/.cxx/Debug/1y3c3b1z/arm64-v8a/CMakeFiles/CMakeTmp]
   ignore line: []
-  ignore line: [Run Build Command:"C:/Users/Sawyer/Documents/Android Projects/AndroidSDKs/cmake/3.10.2.4988404/bin/ninja.exe" "cmTC_4ee18"]
-  ignore line: [[1/2] Building CXX object CMakeFiles/cmTC_4ee18.dir/CMakeCXXCompilerABI.cpp.o]
-  ignore line: [[2/2] Linking CXX executable cmTC_4ee18]
+  ignore line: [Run Build Command:"C:/Users/Sawyer/Documents/Android Projects/AndroidSDKs/cmake/3.10.2.4988404/bin/ninja.exe" "cmTC_98570"]
+  ignore line: [[1/2] Building CXX object CMakeFiles/cmTC_98570.dir/CMakeCXXCompilerABI.cpp.o]
+  ignore line: [[2/2] Linking CXX executable cmTC_98570]
   ignore line: [Android (8490178, based on r450784d) clang version 14.0.6 (https://android.googlesource.com/toolchain/llvm-project 4c603efb0cca074e9238af8b4106c30add4418f6)]
   ignore line: [Target: aarch64-none-linux-android24]
   ignore line: [Thread model: posix]
   ignore line: [InstalledDir: C:/Users/Sawyer/DOCUME~1/ANDROI~1/ANDROI~2/ndk/251~1.893/TOOLCH~1/llvm/prebuilt/WINDOW~1/bin]
-  link line: [ "C:/Users/Sawyer/DOCUME~1/ANDROI~1/ANDROI~2/ndk/251~1.893/TOOLCH~1/llvm/prebuilt/WINDOW~1/bin/ld" "--sysroot=C:/Users/Sawyer/Documents/Android Projects/AndroidSDKs/ndk/25.1.8937393/toolchains/llvm/prebuilt/windows-x86_64/sysroot" -pie -EL --fix-cortex-a53-843419 --warn-shared-textrel -z now -z relro -z max-page-size=4096 --hash-style=gnu --enable-new-dtags --eh-frame-hdr -m aarch64linux -dynamic-linker /system/bin/linker64 -o cmTC_4ee18 "C:/Users/Sawyer/Documents/Android Projects/AndroidSDKs/ndk/25.1.8937393/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/lib/aarch64-linux-android/24/crtbegin_dynamic.o" -LC:/Users/Sawyer/DOCUME~1/ANDROI~1/ANDROI~2/ndk/251~1.893/TOOLCH~1/llvm/prebuilt/WINDOW~1/lib64/clang/14.0.6/lib/linux/aarch64 "-LC:/Users/Sawyer/Documents/Android Projects/AndroidSDKs/ndk/25.1.8937393/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/lib/aarch64-linux-android/24" "-LC:/Users/Sawyer/Documents/Android Projects/AndroidSDKs/ndk/25.1.8937393/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/lib/aarch64-linux-android" "-LC:/Users/Sawyer/Documents/Android Projects/AndroidSDKs/ndk/25.1.8937393/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/lib" --build-id=sha1 --no-rosegment --fatal-warnings --gc-sections --no-undefined --gc-sections CMakeFiles/cmTC_4ee18.dir/CMakeCXXCompilerABI.cpp.o -lc++ -lm C:/Users/Sawyer/DOCUME~1/ANDROI~1/ANDROI~2/ndk/251~1.893/TOOLCH~1/llvm/prebuilt/WINDOW~1/lib64/clang/14.0.6/lib/linux/libclang_rt.builtins-aarch64-android.a -l:libunwind.a -ldl -lc C:/Users/Sawyer/DOCUME~1/ANDROI~1/ANDROI~2/ndk/251~1.893/TOOLCH~1/llvm/prebuilt/WINDOW~1/lib64/clang/14.0.6/lib/linux/libclang_rt.builtins-aarch64-android.a -l:libunwind.a -ldl "C:/Users/Sawyer/Documents/Android Projects/AndroidSDKs/ndk/25.1.8937393/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/lib/aarch64-linux-android/24/crtend_android.o"]
+  link line: [ "C:/Users/Sawyer/DOCUME~1/ANDROI~1/ANDROI~2/ndk/251~1.893/TOOLCH~1/llvm/prebuilt/WINDOW~1/bin/ld" "--sysroot=C:/Users/Sawyer/Documents/Android Projects/AndroidSDKs/ndk/25.1.8937393/toolchains/llvm/prebuilt/windows-x86_64/sysroot" -pie -EL --fix-cortex-a53-843419 --warn-shared-textrel -z now -z relro -z max-page-size=4096 --hash-style=gnu --enable-new-dtags --eh-frame-hdr -m aarch64linux -dynamic-linker /system/bin/linker64 -o cmTC_98570 "C:/Users/Sawyer/Documents/Android Projects/AndroidSDKs/ndk/25.1.8937393/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/lib/aarch64-linux-android/24/crtbegin_dynamic.o" -LC:/Users/Sawyer/DOCUME~1/ANDROI~1/ANDROI~2/ndk/251~1.893/TOOLCH~1/llvm/prebuilt/WINDOW~1/lib64/clang/14.0.6/lib/linux/aarch64 "-LC:/Users/Sawyer/Documents/Android Projects/AndroidSDKs/ndk/25.1.8937393/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/lib/aarch64-linux-android/24" "-LC:/Users/Sawyer/Documents/Android Projects/AndroidSDKs/ndk/25.1.8937393/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/lib/aarch64-linux-android" "-LC:/Users/Sawyer/Documents/Android Projects/AndroidSDKs/ndk/25.1.8937393/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/lib" --build-id=sha1 --no-rosegment --fatal-warnings --gc-sections --no-undefined --gc-sections CMakeFiles/cmTC_98570.dir/CMakeCXXCompilerABI.cpp.o -lc++ -lm C:/Users/Sawyer/DOCUME~1/ANDROI~1/ANDROI~2/ndk/251~1.893/TOOLCH~1/llvm/prebuilt/WINDOW~1/lib64/clang/14.0.6/lib/linux/libclang_rt.builtins-aarch64-android.a -l:libunwind.a -ldl -lc C:/Users/Sawyer/DOCUME~1/ANDROI~1/ANDROI~2/ndk/251~1.893/TOOLCH~1/llvm/prebuilt/WINDOW~1/lib64/clang/14.0.6/lib/linux/libclang_rt.builtins-aarch64-android.a -l:libunwind.a -ldl "C:/Users/Sawyer/Documents/Android Projects/AndroidSDKs/ndk/25.1.8937393/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/lib/aarch64-linux-android/24/crtend_android.o"]
     arg [C:/Users/Sawyer/DOCUME~1/ANDROI~1/ANDROI~2/ndk/251~1.893/TOOLCH~1/llvm/prebuilt/WINDOW~1/bin/ld] ==> ignore
     arg [--sysroot=C:/Users/Sawyer/Documents/Android Projects/AndroidSDKs/ndk/25.1.8937393/toolchains/llvm/prebuilt/windows-x86_64/sysroot] ==> ignore
     arg [-pie] ==> ignore
@@ -174,7 +174,7 @@ Parsed CXX implicit link information from above output:
     arg [-dynamic-linker] ==> ignore
     arg [/system/bin/linker64] ==> ignore
     arg [-o] ==> ignore
-    arg [cmTC_4ee18] ==> ignore
+    arg [cmTC_98570] ==> ignore
     arg [C:/Users/Sawyer/Documents/Android Projects/AndroidSDKs/ndk/25.1.8937393/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/lib/aarch64-linux-android/24/crtbegin_dynamic.o] ==> ignore
     arg [-LC:/Users/Sawyer/DOCUME~1/ANDROI~1/ANDROI~2/ndk/251~1.893/TOOLCH~1/llvm/prebuilt/WINDOW~1/lib64/clang/14.0.6/lib/linux/aarch64] ==> dir [C:/Users/Sawyer/DOCUME~1/ANDROI~1/ANDROI~2/ndk/251~1.893/TOOLCH~1/llvm/prebuilt/WINDOW~1/lib64/clang/14.0.6/lib/linux/aarch64]
     arg [-LC:/Users/Sawyer/Documents/Android Projects/AndroidSDKs/ndk/25.1.8937393/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/lib/aarch64-linux-android/24] ==> dir [C:/Users/Sawyer/Documents/Android Projects/AndroidSDKs/ndk/25.1.8937393/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/lib/aarch64-linux-android/24]
@@ -186,7 +186,7 @@ Parsed CXX implicit link information from above output:
     arg [--gc-sections] ==> ignore
     arg [--no-undefined] ==> ignore
     arg [--gc-sections] ==> ignore
-    arg [CMakeFiles/cmTC_4ee18.dir/CMakeCXXCompilerABI.cpp.o] ==> ignore
+    arg [CMakeFiles/cmTC_98570.dir/CMakeCXXCompilerABI.cpp.o] ==> ignore
     arg [-lc++] ==> lib [c++]
     arg [-lm] ==> lib [m]
     arg [C:/Users/Sawyer/DOCUME~1/ANDROI~1/ANDROI~2/ndk/251~1.893/TOOLCH~1/llvm/prebuilt/WINDOW~1/lib64/clang/14.0.6/lib/linux/libclang_rt.builtins-aarch64-android.a] ==> lib [C:/Users/Sawyer/DOCUME~1/ANDROI~1/ANDROI~2/ndk/251~1.893/TOOLCH~1/llvm/prebuilt/WINDOW~1/lib64/clang/14.0.6/lib/linux/libclang_rt.builtins-aarch64-android.a]
@@ -211,11 +211,11 @@ Parsed CXX implicit link information from above output:
 
 
 Detecting CXX [-std=c++1z] compiler features compiled with the following output:
-Change Dir: C:/Users/Sawyer/Documents/Android Projects/SwingOut/VRGrappleGame/app/.cxx/Debug/1y3c3b1z/arm64-v8a/CMakeFiles/CMakeTmp
+Change Dir: C:/Users/Sawyer/Documents/Android Projects/GlassGrapple/VRGrappleGame/app/.cxx/Debug/1y3c3b1z/arm64-v8a/CMakeFiles/CMakeTmp
 
-Run Build Command:"C:/Users/Sawyer/Documents/Android Projects/AndroidSDKs/cmake/3.10.2.4988404/bin/ninja.exe" "cmTC_a4421"
-[1/2] Building CXX object CMakeFiles/cmTC_a4421.dir/feature_tests.cxx.o
-[2/2] Linking CXX executable cmTC_a4421
+Run Build Command:"C:/Users/Sawyer/Documents/Android Projects/AndroidSDKs/cmake/3.10.2.4988404/bin/ninja.exe" "cmTC_07f9a"
+[1/2] Building CXX object CMakeFiles/cmTC_07f9a.dir/feature_tests.cxx.o
+[2/2] Linking CXX executable cmTC_07f9a
 
 
     Feature record: CXX_FEATURE:1cxx_aggregate_default_initializers
@@ -278,11 +278,11 @@ Run Build Command:"C:/Users/Sawyer/Documents/Android Projects/AndroidSDKs/cmake/
 
 
 Detecting CXX [-std=c++14] compiler features compiled with the following output:
-Change Dir: C:/Users/Sawyer/Documents/Android Projects/SwingOut/VRGrappleGame/app/.cxx/Debug/1y3c3b1z/arm64-v8a/CMakeFiles/CMakeTmp
+Change Dir: C:/Users/Sawyer/Documents/Android Projects/GlassGrapple/VRGrappleGame/app/.cxx/Debug/1y3c3b1z/arm64-v8a/CMakeFiles/CMakeTmp
 
-Run Build Command:"C:/Users/Sawyer/Documents/Android Projects/AndroidSDKs/cmake/3.10.2.4988404/bin/ninja.exe" "cmTC_f86a9"
-[1/2] Building CXX object CMakeFiles/cmTC_f86a9.dir/feature_tests.cxx.o
-[2/2] Linking CXX executable cmTC_f86a9
+Run Build Command:"C:/Users/Sawyer/Documents/Android Projects/AndroidSDKs/cmake/3.10.2.4988404/bin/ninja.exe" "cmTC_24b67"
+[1/2] Building CXX object CMakeFiles/cmTC_24b67.dir/feature_tests.cxx.o
+[2/2] Linking CXX executable cmTC_24b67
 
 
     Feature record: CXX_FEATURE:1cxx_aggregate_default_initializers
@@ -345,11 +345,11 @@ Run Build Command:"C:/Users/Sawyer/Documents/Android Projects/AndroidSDKs/cmake/
 
 
 Detecting CXX [-std=c++11] compiler features compiled with the following output:
-Change Dir: C:/Users/Sawyer/Documents/Android Projects/SwingOut/VRGrappleGame/app/.cxx/Debug/1y3c3b1z/arm64-v8a/CMakeFiles/CMakeTmp
+Change Dir: C:/Users/Sawyer/Documents/Android Projects/GlassGrapple/VRGrappleGame/app/.cxx/Debug/1y3c3b1z/arm64-v8a/CMakeFiles/CMakeTmp
 
-Run Build Command:"C:/Users/Sawyer/Documents/Android Projects/AndroidSDKs/cmake/3.10.2.4988404/bin/ninja.exe" "cmTC_efae9"
-[1/2] Building CXX object CMakeFiles/cmTC_efae9.dir/feature_tests.cxx.o
-[2/2] Linking CXX executable cmTC_efae9
+Run Build Command:"C:/Users/Sawyer/Documents/Android Projects/AndroidSDKs/cmake/3.10.2.4988404/bin/ninja.exe" "cmTC_507fe"
+[1/2] Building CXX object CMakeFiles/cmTC_507fe.dir/feature_tests.cxx.o
+[2/2] Linking CXX executable cmTC_507fe
 
 
     Feature record: CXX_FEATURE:0cxx_aggregate_default_initializers
@@ -412,11 +412,11 @@ Run Build Command:"C:/Users/Sawyer/Documents/Android Projects/AndroidSDKs/cmake/
 
 
 Detecting CXX [-std=c++98] compiler features compiled with the following output:
-Change Dir: C:/Users/Sawyer/Documents/Android Projects/SwingOut/VRGrappleGame/app/.cxx/Debug/1y3c3b1z/arm64-v8a/CMakeFiles/CMakeTmp
+Change Dir: C:/Users/Sawyer/Documents/Android Projects/GlassGrapple/VRGrappleGame/app/.cxx/Debug/1y3c3b1z/arm64-v8a/CMakeFiles/CMakeTmp
 
-Run Build Command:"C:/Users/Sawyer/Documents/Android Projects/AndroidSDKs/cmake/3.10.2.4988404/bin/ninja.exe" "cmTC_17a76"
-[1/2] Building CXX object CMakeFiles/cmTC_17a76.dir/feature_tests.cxx.o
-[2/2] Linking CXX executable cmTC_17a76
+Run Build Command:"C:/Users/Sawyer/Documents/Android Projects/AndroidSDKs/cmake/3.10.2.4988404/bin/ninja.exe" "cmTC_2aa5f"
+[1/2] Building CXX object CMakeFiles/cmTC_2aa5f.dir/feature_tests.cxx.o
+[2/2] Linking CXX executable cmTC_2aa5f
 
 
     Feature record: CXX_FEATURE:0cxx_aggregate_default_initializers

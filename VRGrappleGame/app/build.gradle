@@ -5,8 +5,8 @@ plugins {
 android {
     compileSdk 35
     defaultConfig {
-        namespace "com.SawyerCompany.SawyerVRTeapot"  // <-- Replace with your package name
-        applicationId "com.example.SwingOut"
+        namespace "com.DRHudooken.SawyerVRTeapot"  // <-- Replace with your package name
+        applicationId "com.DRHudooken.GlassGrapple"
         minSdk 24
         targetSdk 30
         versionCode 1

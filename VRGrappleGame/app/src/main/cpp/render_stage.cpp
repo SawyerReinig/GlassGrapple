@@ -9,6 +9,8 @@
 #include "util_matrix.h"
 #include "shapes.h"
 #include "assertgl.h"
+#include "VRGame.h"
+
 
 
 static shader_obj_t s_sobj;
@@ -214,7 +216,7 @@ init_stage ()
     shape_create (SHAPE_CYLINDER, 20, 20, &s_cylinder);
     shape_create (SHAPE_CONE,     20, 20, &s_cone);
     shape_create (SHAPE_SPHERE,   20, 20, &s_sphere);
-    loadObjToShape("/sdcard/Android/data/com.example.SwingOut/files/GrappleTriangle.obj", s_Grapple);
+    loadObjToShape("/sdcard/Android/data/com.DRHudooken.GlassGrapple/files/GrappleTriangle.obj", s_Grapple);
 
     return 0;
 }
@@ -285,70 +287,121 @@ draw_cylinder (float *matP, float *matV, float *matM, float radius, float length
 
 
 
+//
+//int
+//draw_cone (float *matP, float *matV, float *matM, float radius, float length, float *color)
+//{
+//    float matB[16], matVM[16], matPVM[16], matVMI3x3[9];
+//
+//    /* apply radius, length. (matB)=(matM)x(matTmp) */
+//    {
+//        float matTmp[16];
+//        matrix_identity (matTmp);
+//        matrix_translate (matTmp, 0, 0, 1 + length);
+//        matrix_scale    (matTmp, radius, radius, length);
+//        //matrix_translate (matTmp, 0, 0, 1.0f);
+//        matrix_mult (matB, matM, matTmp);
+//    }
+//
+//
+//    glEnable (GL_DEPTH_TEST);
+//    glDisable (GL_CULL_FACE);
+//    glFrontFace (GL_CW);
+//
+//    glUseProgram (s_sobj.program);
+//
+//    glEnableVertexAttribArray (s_sobj.loc_vtx);
+//    glEnableVertexAttribArray (s_sobj.loc_nrm);
+//
+//    matrix_mult (matVM, matV, matB);
+//    compute_invmat3x3 (matVMI3x3, matVM);
+//    matrix_mult (matPVM, matP, matVM);
+//
+//    glUniformMatrix4fv (s_loc_mtx_mv,   1, GL_FALSE, matVM );
+//    glUniformMatrix4fv (s_loc_mtx_pmv,  1, GL_FALSE, matPVM);
+//    glUniformMatrix3fv (s_loc_mtx_nrm,  1, GL_FALSE, matVMI3x3);
+//    glUniform3f (s_loc_lightpos, 1.0f, 1.0f, 1.0f);
+//    glUniform3f (s_loc_color, color[0], color[1], color[2]);
+//    glUniform1f (s_loc_alpha, color[3]);
+//
+//    if (color[3] < 1.0f)
+//        glEnable (GL_BLEND);
+//
+//    glBindBuffer (GL_ARRAY_BUFFER, s_cone.vbo_vtx);
+//    glVertexAttribPointer (s_sobj.loc_vtx, 3, GL_FLOAT, GL_FALSE, 0, 0);
+//
+//    glBindBuffer (GL_ARRAY_BUFFER, s_cone.vbo_nrm);
+//    glVertexAttribPointer (s_sobj.loc_nrm, 3, GL_FLOAT, GL_FALSE, 0, 0);
+//
+//    glBindBuffer (GL_ELEMENT_ARRAY_BUFFER, s_cone.vbo_idx);
+//    glDrawElements (GL_TRIANGLES, s_cone.num_faces * 3, GL_UNSIGNED_SHORT, 0);
+//
+//    glBindBuffer (GL_ARRAY_BUFFER, 0);
+//    glBindBuffer (GL_ELEMENT_ARRAY_BUFFER, 0);
+//
+//    glFrontFace (GL_CCW);
+//    glDisable (GL_BLEND);
+//    glDisable (GL_DEPTH_TEST);
+//    glDisable (GL_CULL_FACE);
+//    GLASSERT();
+//
+//    return 0;
+//}
 
-int
-draw_cone (float *matP, float *matV, float *matM, float radius, float length, float *color)
-{
-    float matB[16], matVM[16], matPVM[16], matVMI3x3[9];
-
-    /* apply radius, length. (matB)=(matM)x(matTmp) */
-    {
-        float matTmp[16];
-        matrix_identity (matTmp);
-        matrix_translate (matTmp, 0, 0, 1 + length);
-        matrix_scale    (matTmp, radius, radius, length);
-        //matrix_translate (matTmp, 0, 0, 1.0f);
-        matrix_mult (matB, matM, matTmp);
-    }
-
-
-    glEnable (GL_DEPTH_TEST);
-    glDisable (GL_CULL_FACE);
-    glFrontFace (GL_CW);
-
-    glUseProgram (s_sobj.program);
-
-    glEnableVertexAttribArray (s_sobj.loc_vtx);
-    glEnableVertexAttribArray (s_sobj.loc_nrm);
-
-    matrix_mult (matVM, matV, matB);
-    compute_invmat3x3 (matVMI3x3, matVM);
-    matrix_mult (matPVM, matP, matVM);
-
-    glUniformMatrix4fv (s_loc_mtx_mv,   1, GL_FALSE, matVM );
-    glUniformMatrix4fv (s_loc_mtx_pmv,  1, GL_FALSE, matPVM);
-    glUniformMatrix3fv (s_loc_mtx_nrm,  1, GL_FALSE, matVMI3x3);
-    glUniform3f (s_loc_lightpos, 1.0f, 1.0f, 1.0f);
-    glUniform3f (s_loc_color, color[0], color[1], color[2]);
-    glUniform1f (s_loc_alpha, color[3]);
-
-    if (color[3] < 1.0f)
-        glEnable (GL_BLEND);
-
-    glBindBuffer (GL_ARRAY_BUFFER, s_cone.vbo_vtx);
-    glVertexAttribPointer (s_sobj.loc_vtx, 3, GL_FLOAT, GL_FALSE, 0, 0);
-
-    glBindBuffer (GL_ARRAY_BUFFER, s_cone.vbo_nrm);
-    glVertexAttribPointer (s_sobj.loc_nrm, 3, GL_FLOAT, GL_FALSE, 0, 0);
-
-    glBindBuffer (GL_ELEMENT_ARRAY_BUFFER, s_cone.vbo_idx);
-    glDrawElements (GL_TRIANGLES, s_cone.num_faces * 3, GL_UNSIGNED_SHORT, 0);
-
-    glBindBuffer (GL_ARRAY_BUFFER, 0);
-    glBindBuffer (GL_ELEMENT_ARRAY_BUFFER, 0);
-
-    glFrontFace (GL_CCW);
-    glDisable (GL_BLEND);
-    glDisable (GL_DEPTH_TEST);
-    glDisable (GL_CULL_FACE);
-    GLASSERT();
-
-    return 0;
-}
+//
+//int
+//draw_axis (float *matP, float *matV, float *matM)
+//{
+////    float col_r[4] = {1.0f, 0.0f, 0.0f, 1.0f};
+////    float col_g[4] = {0.0f, 1.0f, 0.0f, 1.0f};
+//    float col_b[4] = {0.0f, 0.0f, 1.0f, 1.0f};
+//    float col_w[4] = {1.0f, 1.0f, 1.0f, 1.0f};
+//
+//    float matVM[16], matPVM[16];
+//    matrix_mult (matVM,  matV, matM);
+//    matrix_mult (matPVM, matP, matVM);
+//
+//    /* axis arrow */
+//    {
+//        float radius = 0.03f;
+//        float length = 1.0f;
+//        float matR[16];
+//
+//        /* X axis */
+////        matrix_identity (matR);
+////        matrix_rotate (matR,  90.0f, 0.0f, 1.0f, 0.0f);
+////        matrix_mult (matR, matM, matR);
+////        draw_cylinder (matP, matV, matR, radius, length, col_r);
+////        draw_cone (matP, matV, matR, radius*3, 0.1, col_r);
+//
+//        /* Y axis */
+////        matrix_identity (matR);
+////        matrix_rotate (matR, -90.0f, 1.0f, 0.0f, 0.0f);
+////        matrix_mult (matR, matM, matR);
+////        draw_cylinder (matP, matV, matR, radius, length, col_g);
+////        draw_cone (matP, matV, matR, radius*3, 0.1, col_g);
+////
+////        /* Z axis */
+//        matrix_identity (matR);
+//        matrix_rotate (matR, 180.0f, 1.0f, 0.0f, 0.0f);
+//
+//        matrix_mult (matR, matM, matR);
+//        draw_cylinder (matP, matV, matR, radius, length, col_b);
+//        draw_cone (matP, matV, matR, radius*3, 0.1, col_b);
+//    }
+//
+//    /* center sphere */
+//    {
+////        float radius = 0.1f;
+////        draw_sphere (matP, matV, matM, radius, col_w);
+//    }
+//
+//    return 0;
+//}
 
 
-int
-draw_sphere (float *matP, float *matV, float *matM, float radius, float *color)
+
+int draw_sphere (float *matP, float *matV, float *matM, float radius, Vec3 color, shader_obj_t rainbowShader, Vec3 playerPosOffset)
 {
     float matB[16], matVM[16], matPVM[16], matVMI3x3[9];
 
@@ -365,7 +418,7 @@ draw_sphere (float *matP, float *matV, float *matM, float radius, float *color)
     glEnable (GL_CULL_FACE);
     glFrontFace (GL_CW);
 
-    glUseProgram (s_sobj.program);
+    glUseProgram (rainbowShader.program);
 
     glEnableVertexAttribArray (s_sobj.loc_vtx);
     glEnableVertexAttribArray (s_sobj.loc_nrm);
@@ -374,14 +427,20 @@ draw_sphere (float *matP, float *matV, float *matM, float radius, float *color)
     compute_invmat3x3 (matVMI3x3, matVM);
     matrix_mult (matPVM, matP, matVM);
 
-    glUniformMatrix4fv (s_loc_mtx_mv,   1, GL_FALSE, matVM );
-    glUniformMatrix4fv (s_loc_mtx_pmv,  1, GL_FALSE, matPVM);
-    glUniformMatrix3fv (s_loc_mtx_nrm,  1, GL_FALSE, matVMI3x3);
-    glUniform3f (s_loc_lightpos, 1.0f, 1.0f, 1.0f);
-    glUniform3f (s_loc_color, color[0], color[1], color[2]);
-    glUniform1f (s_loc_alpha, color[3]);
+//    glUniformMatrix4fv (s_loc_mtx_mv,   1, GL_FALSE, matVM );
+//    glUniformMatrix4fv (s_loc_mtx_pmv,  1, GL_FALSE, matPVM);
+//    glUniformMatrix3fv (s_loc_mtx_nrm,  1, GL_FALSE, matVMI3x3);
+//    glUniform3f (s_loc_lightpos, 1.0f, 1.0f, 1.0f);
 
-    if (color[3] < 1.0f)
+    glUniformMatrix4fv (glGetUniformLocation(s_sobj.program, "u_PMVMatrix" ),  1, GL_FALSE, matPVM);
+    glUniform3f(glGetUniformLocation(rainbowShader.program, "viewPos"), playerPosOffset.y+2,playerPosOffset.y+2,playerPosOffset.y+2);        // 1 unit cells
+    glUniform3f(glGetUniformLocation(rainbowShader.program, "envColor"), 0.8f,0.8f,0.8f);
+
+
+//    glUniform3f (s_loc_color, color[0], color[1], color[2]);
+//    glUniform1f (s_loc_alpha, color[3]);
+
+    if (color.z < 1.0f)
         glEnable (GL_BLEND);
 
     glBindBuffer (GL_ARRAY_BUFFER, s_sphere.vbo_vtx);
@@ -406,59 +465,7 @@ draw_sphere (float *matP, float *matV, float *matM, float radius, float *color)
 }
 
 
-int
-draw_axis (float *matP, float *matV, float *matM)
-{
-//    float col_r[4] = {1.0f, 0.0f, 0.0f, 1.0f};
-//    float col_g[4] = {0.0f, 1.0f, 0.0f, 1.0f};
-    float col_b[4] = {0.0f, 0.0f, 1.0f, 1.0f};
-    float col_w[4] = {1.0f, 1.0f, 1.0f, 1.0f};
-
-    float matVM[16], matPVM[16];
-    matrix_mult (matVM,  matV, matM);
-    matrix_mult (matPVM, matP, matVM);
-
-    /* axis arrow */
-    {
-        float radius = 0.03f;
-        float length = 1.0f;
-        float matR[16];
-
-        /* X axis */
-//        matrix_identity (matR);
-//        matrix_rotate (matR,  90.0f, 0.0f, 1.0f, 0.0f);
-//        matrix_mult (matR, matM, matR);
-//        draw_cylinder (matP, matV, matR, radius, length, col_r);
-//        draw_cone (matP, matV, matR, radius*3, 0.1, col_r);
-
-        /* Y axis */
-//        matrix_identity (matR);
-//        matrix_rotate (matR, -90.0f, 1.0f, 0.0f, 0.0f);
-//        matrix_mult (matR, matM, matR);
-//        draw_cylinder (matP, matV, matR, radius, length, col_g);
-//        draw_cone (matP, matV, matR, radius*3, 0.1, col_g);
-//
-//        /* Z axis */
-        matrix_identity (matR);
-        matrix_rotate (matR, 180.0f, 1.0f, 0.0f, 0.0f);
-
-        matrix_mult (matR, matM, matR);
-        draw_cylinder (matP, matV, matR, radius, length, col_b);
-        draw_cone (matP, matV, matR, radius*3, 0.1, col_b);
-    }
-
-    /* center sphere */
-    {
-        float radius = 0.1f;
-        draw_sphere (matP, matV, matM, radius, col_w);
-    }
-
-    return 0;
-}
-
-
-
-int create_grapple (float *matP, float *matV, float *matM, float radius, float length, float *color)
+int create_grapple (float *matP, float *matV, float *matM, Vec3 color, shader_obj_t rainbowShader, Vec3 playerPosOffset)
 {
     float matB[16], matVM[16], matPVM[16], matVMI3x3[9];
 
@@ -478,7 +485,8 @@ int create_grapple (float *matP, float *matV, float *matM, float radius, float l
 //    glEnable (GL_CULL_FACE);
     glFrontFace (GL_CW);
 
-    glUseProgram (s_sobj.program);
+//    glUseProgram (s_sobj.program);
+    glUseProgram (rainbowShader.program);
 
     glEnableVertexAttribArray (s_sobj.loc_vtx);
     glEnableVertexAttribArray (s_sobj.loc_nrm);
@@ -487,14 +495,17 @@ int create_grapple (float *matP, float *matV, float *matM, float radius, float l
     compute_invmat3x3 (matVMI3x3, matVM);
     matrix_mult (matPVM, matP, matVM);
 
-    glUniformMatrix4fv (s_loc_mtx_mv,   1, GL_FALSE, matVM );
-    glUniformMatrix4fv (s_loc_mtx_pmv,  1, GL_FALSE, matPVM);
-    glUniformMatrix3fv (s_loc_mtx_nrm,  1, GL_FALSE, matVMI3x3);
-    glUniform3f (s_loc_lightpos, 1.0f, 1.0f, 1.0f);
-    glUniform3f (s_loc_color, color[0], color[1], color[2]);
-    glUniform1f (s_loc_alpha, color[3]);
+//    glUniformMatrix4fv (s_loc_mtx_mv,   1, GL_FALSE, matVM );
+        glUniformMatrix4fv (glGetUniformLocation(s_sobj.program, "u_PMVMatrix" ),  1, GL_FALSE, matPVM);
+//    glUniformMatrix3fv (s_loc_mtx_nrm,  1, GL_FALSE, matVMI3x3);
+//    glUniform3f (s_loc_lightpos, 1.0f, 1.0f, 1.0f);
+//    glUniform3f (s_loc_color, color[0], color[1], color[2]);
+//    glUniform1f (s_loc_alpha, color[3]);
 
-    if (color[3] < 1.0f)
+    glUniform3f(glGetUniformLocation(rainbowShader.program, "viewPos"), playerPosOffset.x,playerPosOffset.y,playerPosOffset.z);        // 1 unit cells
+    glUniform3f(glGetUniformLocation(rainbowShader.program, "envColor"), 0.8f,0.8f,0.8f);
+
+    if (color.z < 1.0f)
         glEnable (GL_BLEND);
 
     glBindBuffer (GL_ARRAY_BUFFER, s_Grapple.vbo_vtx);
@@ -520,10 +531,14 @@ int create_grapple (float *matP, float *matV, float *matM, float radius, float l
 
 
 
-int draw_Grapple (float *matP, float *matV, float *matM)
+
+int draw_Grapple (float *matP, float *matV, float *matM,shader_obj_t RainbowShader,  Vec3 playerPosOffset)
 {
-    float col_r[4] = {1.0f, 0.0f, 0.0f, 1.0f};
-    float col_w[4] = {1.0f, 1.0f, 1.0f, 1.0f};
+//    float col_r[4] = {1.0f, 0.0f, 0.0f, 1.0f};
+//    float col_w[4] = {1.0f, 1.0f, 1.0f, 1.0f};
+    Vec3 col_r = {1.0f, 0.0f, 0.0f};
+    Vec3 col_w = {1.0f, 1.0f, 1.0f};
+
 
     float matVM[16], matPVM[16];
     matrix_mult (matVM,  matV, matM);
@@ -531,8 +546,6 @@ int draw_Grapple (float *matP, float *matV, float *matM)
 
     /* axis arrow */
     {
-        float radius = 0.03f;
-        float length = 1.0f;
         float matR[16];
 
         /* X axis */
@@ -540,22 +553,22 @@ int draw_Grapple (float *matP, float *matV, float *matM)
         matrix_rotate (matR,  180.0f, 1.0f, 0.0f, 0.0f);
 
         matrix_mult (matR, matM, matR);
-        create_grapple (matP, matV, matR, radius, length, col_r);
+        create_grapple (matP, matV, matR, col_r, RainbowShader, playerPosOffset);
 
     }
 
     /* center sphere */
     {
         float radius = 0.1f;
-        draw_sphere (matP, matV, matM, radius, col_w);
+        draw_sphere (matP, matV, matM, radius, col_w, RainbowShader, playerPosOffset);
     }
 
     return 0;
 }
 
-int draw_Hand (float *matP, float *matV, float *matM) //for now this just draws a sphere
+int draw_Hand (float *matP, float *matV, float *matM, shader_obj_t RainbowShader, Vec3 playerPosOffset)
 {
-    float col_w[4] = {1.0f, 1.0f, 1.0f, 1.0f};
+    Vec3 col_w = {1.0f, 1.0f, 1.0f};
 
     float matVM[16], matPVM[16];
     matrix_mult (matVM,  matV, matM);
@@ -576,7 +589,7 @@ int draw_Hand (float *matP, float *matV, float *matM) //for now this just draws 
     /* center sphere */
     {
         float radius = 0.1f;
-        draw_sphere (matP, matV, matM, radius, col_w);
+        draw_sphere (matP, matV, matM, radius, col_w, RainbowShader, playerPosOffset);
     }
 
     return 0;

@@ -61,8 +61,8 @@ AppEngine::InitOpenXR_GLES ()
 
     AAssetManager* mgr = m_app->activity->assetManager;
 
-//    copyAllMp3Assets(mgr, "com.example.SwingOut");  // <-- Set the package name to find the assets: SET THIS
-    copyAllAssets(mgr, "com.example.SwingOut");
+//    copyAllMp3Assets(mgr, "com.DRHudooken.GlassGrapple");  // <-- Set the package name to find the assets: SET THIS
+    copyAllAssets(mgr, "com.DRHudooken.GlassGrapple");
 
 }
 

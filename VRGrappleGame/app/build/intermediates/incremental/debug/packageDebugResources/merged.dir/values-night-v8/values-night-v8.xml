@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:ns1="http://schemas.android.com/tools">
+    <style name="Theme.GlassGrapple.Splash" parent="Theme.GlassGrapple.Splash">
+        <item name="android:windowSplashScreenBackground">@drawable/splash_screen</item>
+        <item name="android:splashScreenTheme">@style/Theme.OpenXR_GLES_app</item>
+    </style>
     <style name="Theme.OpenXR_GLES_app" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
         
         <item name="colorPrimary">@color/purple_200</item>

@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.SawyerCompany.SawyerVRTeapot.app-mergeDebugResources-16:/values-v21/values-v21.xml",
+            "outputFile": "com.DRHudooken.SawyerVRTeapot.app-mergeDebugResources-16:/values-v21/values-v21.xml",
             "map": [
                 {
                     "source": "C:\\Users\\Sawyer\\.gradle\\caches\\transforms-3\\8bed5ac701b76de2ecec911c6f68a0fb\\transformed\\material-1.4.0\\res\\values-v21\\values-v21.xml",

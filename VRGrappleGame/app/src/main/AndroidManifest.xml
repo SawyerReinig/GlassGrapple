@@ -13,6 +13,7 @@
 
   <application
       android:allowBackup="false"
+      android:icon="@mipmap/ic_glassgrapple100"
       android:label="@string/app_name"
       android:hasCode="true">
 
@@ -21,8 +22,10 @@
     <!-- Theme.Black.NoTitleBar.Fullscreen gives solid black instead of a (bad stereoscopic) gradient on app transition. -->
     <!-- If targeting API level 24+, configChanges should additionally include 'density'. -->
     <!-- If targeting API level 24+, android:resizeableActivity="false" should be added. -->
+<!--    android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen"   this was the old theme-->
+
     <activity android:name="com.oxrapp.glesapp.OXRAppMainActivity"
-              android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen"
+              android:theme="@style/Theme.GlassGrapple.Splash"
               android:launchMode="singleTask"
               android:screenOrientation="landscape"
               android:excludeFromRecents="false"

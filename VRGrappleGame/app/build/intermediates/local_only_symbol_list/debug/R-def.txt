@@ -9,7 +9,11 @@ color teal_700
 color white
 drawable ic_launcher_background
 drawable ic_launcher_foreground
+drawable splash_screen
+mipmap ic_glassgrapple
+mipmap ic_glassgrapple100
 mipmap ic_launcher
 mipmap ic_launcher_round
 string app_name
+style Theme.GlassGrapple.Splash
 style Theme.OpenXR_GLES_app

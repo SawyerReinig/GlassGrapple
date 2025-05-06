@@ -1,0 +1,530 @@
+CMAKE SERVER: message: "\n"
+
+CMAKE SERVER: message: "[== \"CMake Server\" ==[\n"
+
+CMAKE SERVER: message: "{\"supportedProtocolVersions\":[{\"isExperimental\":true,\"major\":1,\"minor\":1}],\"type\":\"hello\"}\n"
+
+CMAKE SERVER: message: "]== \"CMake Server\" ==]\n"
+
+CMAKE SERVER: message: "[== \"CMake Server\" ==[\n"
+
+CMAKE SERVER: message: "{\n  \"type\": \"handshake\",\n  \"cookie\": \"gradle-cmake-cookie\",\n  \"protocolVersion\": {\n    \"isExperimental\": true,\n    \"major\": 1,\n    \"minor\": 1\n  },\n  \"sourceDirectory\": \"C:/Users/Sawyer/Documents/Android Projects/GlassGrapple/VRGrappleGame/app/src/main/cpp\",\n  \"buildDirectory\": \"C:/Users/Sawyer/Documents/Android Projects/GlassGrapple/VRGrappleGame/app/.cxx/RelWithDebInfo/4w5464c5/arm64-v8a\",\n  \"generator\": \"Ninja\"\n}\n"
+
+CMAKE SERVER: message: "]== \"CMake Server\" ==]\n"
+
+CMAKE SERVER: message: "\n"
+
+CMAKE SERVER: message: "[== \"CMake Server\" ==[\n"
+
+CMAKE SERVER: message: "{\"cookie\":\"gradle-cmake-cookie\",\"inReplyTo\":\"handshake\",\"type\":\"reply\"}\n"
+
+CMAKE SERVER: message: "]== \"CMake Server\" ==]\n"
+
+CMAKE SERVER: message: "[== \"CMake Server\" ==[\n"
+
+CMAKE SERVER: message: "{\n  \"type\": \"configure\",\n  \"cacheArguments\": [\n    \"\",\n    \"-DCMAKE_SYSTEM_NAME\\u003dAndroid\",\n    \"-DCMAKE_EXPORT_COMPILE_COMMANDS\\u003dON\",\n    \"-DCMAKE_SYSTEM_VERSION\\u003d24\",\n    \"-DANDROID_PLATFORM\\u003dandroid-24\",\n    \"-DANDROID_ABI\\u003darm64-v8a\",\n    \"-DCMAKE_ANDROID_ARCH_ABI\\u003darm64-v8a\",\n    \"-DANDROID_NDK\\u003dC:\\\\Users\\\\Sawyer\\\\Documents\\\\Android Projects\\\\AndroidSDKs\\\\ndk\\\\25.1.8937393\",\n    \"-DCMAKE_ANDROID_NDK\\u003dC:\\\\Users\\\\Sawyer\\\\Documents\\\\Android Projects\\\\AndroidSDKs\\\\ndk\\\\25.1.8937393\",\n    \"-DCMAKE_TOOLCHAIN_FILE\\u003dC:\\\\Users\\\\Sawyer\\\\Documents\\\\Android Projects\\\\AndroidSDKs\\\\ndk\\\\25.1.8937393\\\\build\\\\cmake\\\\android.toolchain.cmake\",\n    \"-DCMAKE_MAKE_PROGRAM\\u003dC:\\\\Users\\\\Sawyer\\\\Documents\\\\Android Projects\\\\AndroidSDKs\\\\cmake\\\\3.10.2.4988404\\\\bin\\\\ninja.exe\",\n    \"-DCMAKE_LIBRARY_OUTPUT_DIRECTORY\\u003dC:\\\\Users\\\\Sawyer\\\\Documents\\\\Android Projects\\\\GlassGrapple\\\\VRGrappleGame\\\\app\\\\build\\\\intermediates\\\\cxx\\\\RelWithDebInfo\\\\4w5464c5\\\\obj\\\\arm64-v8a\",\n    \"-DCMAKE_RUNTIME_OUTPUT_DIRECTORY\\u003dC:\\\\Users\\\\Sawyer\\\\Documents\\\\Android Projects\\\\GlassGrapple\\\\VRGrappleGame\\\\app\\\\build\\\\intermediates\\\\cxx\\\\RelWithDebInfo\\\\4w5464c5\\\\obj\\\\arm64-v8a\",\n    \"-DCMAKE_BUILD_TYPE\\u003dRelWithDebInfo\",\n    \"-DCMAKE_FIND_ROOT_PATH\\u003dC:\\\\Users\\\\Sawyer\\\\Documents\\\\Android Projects\\\\GlassGrapple\\\\VRGrappleGame\\\\app\\\\.cxx\\\\RelWithDebInfo\\\\4w5464c5\\\\prefab\\\\arm64-v8a\\\\prefab\",\n    \"-DANDROID_STL\\u003dc++_shared\"\n  ]\n}\n"
+
+CMAKE SERVER: message: "]== \"CMake Server\" ==]\n"
+
+CMAKE SERVER: message: "\n"
+
+CMAKE SERVER: message: "[== \"CMake Server\" ==[\n"
+
+CMAKE SERVER: message: "{\"cookie\":\"\",\"inReplyTo\":\"configure\",\"message\":\"CMake Warning at C:/Users/Sawyer/Documents/Android Projects/AndroidSDKs/ndk/25.1.8937393/build/cmake/android-legacy.toolchain.cmake:415 (message):\\n  An old version of CMake is being used that cannot automatically detect\\n  compiler attributes.  Compiler identification is being bypassed.  Some\\n  values may be wrong or missing.  Update to CMake 3.19 or newer to use\\n  CMake\'s built-in compiler identification.\\nCall Stack (most recent call first):\\n  C:/Users/Sawyer/Documents/Android Projects/AndroidSDKs/ndk/25.1.8937393/build/cmake/android.toolchain.cmake:54 (include)\\n  C:/Users/Sawyer/Documents/Android Projects/AndroidSDKs/cmake/3.10.2.4988404/share/cmake-3.10/Modules/CMakeDetermineSystem.cmake:94 (include)\\n  CMakeLists.txt\\n\\n\",\"title\":\"Warning\",\"type\":\"message\"}\n"
+
+CMAKE SERVER: message: "]== \"CMake Server\" ==]\n"
+
+CMAKE SERVER: level: WARN
+message: "CMake Warning at C:/Users/Sawyer/Documents/Android Projects/AndroidSDKs/ndk/25.1.8937393/build/cmake/android-legacy.toolchain.cmake:415 (message):\r\n  An old version of CMake is being used that cannot automatically detect\r\n  compiler attributes.  Compiler identification is being bypassed.  Some\r\n  values may be wrong or missing.  Update to CMake 3.19 or newer to use\r\n  CMake\'s built-in compiler identification.\r\nCall Stack (most recent call first):\r\n  C:/Users/Sawyer/Documents/Android Projects/AndroidSDKs/ndk/25.1.8937393/build/cmake/android.toolchain.cmake:54 (include)\r\n  C:/Users/Sawyer/Documents/Android Projects/AndroidSDKs/cmake/3.10.2.4988404/share/cmake-3.10/Modules/CMakeDetermineSystem.cmake:94 (include)\r\n  CMakeLists.txt\r\n"
+
+CMAKE SERVER: level: WARN
+message: "CMake Warning at C:/Users/Sawyer/Documents/Android Projects/AndroidSDKs/ndk/25.1.8937393/build/cmake/android-legacy.toolchain.cmake:415 (message):\r\n  An old version of CMake is being used that cannot automatically detect\r\n  compiler attributes.  Compiler identification is being bypassed.  Some\r\n  values may be wrong or missing.  Update to CMake 3.19 or newer to use\r\n  CMake\'s built-in compiler identification.\r\nCall Stack (most recent call first):\r\n  C:/Users/Sawyer/Documents/Android Projects/AndroidSDKs/ndk/25.1.8937393/build/cmake/android.toolchain.cmake:54 (include)\r\n  C:/Users/Sawyer/Documents/Android Projects/AndroidSDKs/cmake/3.10.2.4988404/share/cmake-3.10/Modules/CMakeDetermineSystem.cmake:94 (include)\r\n  CMakeLists.txt\r\n"
+
+CMAKE SERVER: message: "\n"
+
+CMAKE SERVER: message: "[== \"CMake Server\" ==[\n"
+
+CMAKE SERVER: message: "{\"cookie\":\"\",\"inReplyTo\":\"configure\",\"message\":\"Check for working C compiler: C:/Users/Sawyer/Documents/Android Projects/AndroidSDKs/ndk/25.1.8937393/toolchains/llvm/prebuilt/windows-x86_64/bin/clang.exe\",\"type\":\"message\"}\n"
+
+CMAKE SERVER: message: "]== \"CMake Server\" ==]\n"
+
+CMAKE SERVER: message: "Check for working C compiler: C:/Users/Sawyer/Documents/Android Projects/AndroidSDKs/ndk/25.1.8937393/toolchains/llvm/prebuilt/windows-x86_64/bin/clang.exe"
+
+CMAKE SERVER: message: "Check for working C compiler: C:/Users/Sawyer/Documents/Android Projects/AndroidSDKs/ndk/25.1.8937393/toolchains/llvm/prebuilt/windows-x86_64/bin/clang.exe"
+
+CMAKE SERVER: message: "\n"
+
+CMAKE SERVER: message: "[== \"CMake Server\" ==[\n"
+
+CMAKE SERVER: message: "{\"cookie\":\"\",\"inReplyTo\":\"configure\",\"message\":\"CMake Warning at C:/Users/Sawyer/Documents/Android Projects/AndroidSDKs/ndk/25.1.8937393/build/cmake/android-legacy.toolchain.cmake:415 (message):\\n  An old version of CMake is being used that cannot automatically detect\\n  compiler attributes.  Compiler identification is being bypassed.  Some\\n  values may be wrong or missing.  Update to CMake 3.19 or newer to use\\n  CMake\'s built-in compiler identification.\\nCall Stack (most recent call first):\\n  C:/Users/Sawyer/Documents/Android Projects/AndroidSDKs/ndk/25.1.8937393/build/cmake/android.toolchain.cmake:54 (include)\\n  C:/Users/Sawyer/Documents/Android Projects/GlassGrapple/VRGrappleGame/app/.cxx/RelWithDebInfo/4w5464c5/arm64-v8a/CMakeFiles/3.10.2/CMakeSystem.cmake:6 (include)\\n  C:/Users/Sawyer/Documents/Android Projects/GlassGrapple/VRGrappleGame/app/.cxx/RelWithDebInfo/4w5464c5/arm64-v8a/CMakeFiles/CMakeTmp/CMakeLists.txt:2 (project)\\n\\n\",\"title\":\"Warning\",\"type\":\"message\"}\n"
+
+CMAKE SERVER: message: "]== \"CMake Server\" ==]\n"
+
+CMAKE SERVER: level: WARN
+message: "CMake Warning at C:/Users/Sawyer/Documents/Android Projects/AndroidSDKs/ndk/25.1.8937393/build/cmake/android-legacy.toolchain.cmake:415 (message):\r\n  An old version of CMake is being used that cannot automatically detect\r\n  compiler attributes.  Compiler identification is being bypassed.  Some\r\n  values may be wrong or missing.  Update to CMake 3.19 or newer to use\r\n  CMake\'s built-in compiler identification.\r\nCall Stack (most recent call first):\r\n  C:/Users/Sawyer/Documents/Android Projects/AndroidSDKs/ndk/25.1.8937393/build/cmake/android.toolchain.cmake:54 (include)\r\n  C:/Users/Sawyer/Documents/Android Projects/GlassGrapple/VRGrappleGame/app/.cxx/RelWithDebInfo/4w5464c5/arm64-v8a/CMakeFiles/3.10.2/CMakeSystem.cmake:6 (include)\r\n  C:/Users/Sawyer/Documents/Android Projects/GlassGrapple/VRGrappleGame/app/.cxx/RelWithDebInfo/4w5464c5/arm64-v8a/CMakeFiles/CMakeTmp/CMakeLists.txt:2 (project)\r\n"
+
+CMAKE SERVER: level: WARN
+message: "CMake Warning at C:/Users/Sawyer/Documents/Android Projects/AndroidSDKs/ndk/25.1.8937393/build/cmake/android-legacy.toolchain.cmake:415 (message):\r\n  An old version of CMake is being used that cannot automatically detect\r\n  compiler attributes.  Compiler identification is being bypassed.  Some\r\n  values may be wrong or missing.  Update to CMake 3.19 or newer to use\r\n  CMake\'s built-in compiler identification.\r\nCall Stack (most recent call first):\r\n  C:/Users/Sawyer/Documents/Android Projects/AndroidSDKs/ndk/25.1.8937393/build/cmake/android.toolchain.cmake:54 (include)\r\n  C:/Users/Sawyer/Documents/Android Projects/GlassGrapple/VRGrappleGame/app/.cxx/RelWithDebInfo/4w5464c5/arm64-v8a/CMakeFiles/3.10.2/CMakeSystem.cmake:6 (include)\r\n  C:/Users/Sawyer/Documents/Android Projects/GlassGrapple/VRGrappleGame/app/.cxx/RelWithDebInfo/4w5464c5/arm64-v8a/CMakeFiles/CMakeTmp/CMakeLists.txt:2 (project)\r\n"
+
+CMAKE SERVER: message: "\n"
+
+CMAKE SERVER: message: "[== \"CMake Server\" ==[\n"
+
+CMAKE SERVER: message: "{\"cookie\":\"\",\"inReplyTo\":\"configure\",\"progressCurrent\":33,\"progressMaximum\":1000,\"progressMessage\":\"Configuring\",\"progressMinimum\":0,\"type\":\"progress\"}\n"
+
+CMAKE SERVER: message: "]== \"CMake Server\" ==]\n"
+
+CMAKE SERVER: message: "\n"
+
+CMAKE SERVER: message: "[== \"CMake Server\" ==[\n"
+
+CMAKE SERVER: message: "{\"cookie\":\"\",\"inReplyTo\":\"configure\",\"message\":\"Check for working C compiler: C:/Users/Sawyer/Documents/Android Projects/AndroidSDKs/ndk/25.1.8937393/toolchains/llvm/prebuilt/windows-x86_64/bin/clang.exe -- works\",\"type\":\"message\"}\n"
+
+CMAKE SERVER: message: "]== \"CMake Server\" ==]\n"
+
+CMAKE SERVER: message: "Check for working C compiler: C:/Users/Sawyer/Documents/Android Projects/AndroidSDKs/ndk/25.1.8937393/toolchains/llvm/prebuilt/windows-x86_64/bin/clang.exe -- works"
+
+CMAKE SERVER: message: "Check for working C compiler: C:/Users/Sawyer/Documents/Android Projects/AndroidSDKs/ndk/25.1.8937393/toolchains/llvm/prebuilt/windows-x86_64/bin/clang.exe -- works"
+
+CMAKE SERVER: message: "\n"
+
+CMAKE SERVER: message: "[== \"CMake Server\" ==[\n"
+
+CMAKE SERVER: message: "{\"cookie\":\"\",\"inReplyTo\":\"configure\",\"message\":\"Detecting C compiler ABI info\",\"type\":\"message\"}\n"
+
+CMAKE SERVER: message: "]== \"CMake Server\" ==]\n"
+
+CMAKE SERVER: message: "Detecting C compiler ABI info"
+
+CMAKE SERVER: message: "Detecting C compiler ABI info"
+
+CMAKE SERVER: message: "\n"
+
+CMAKE SERVER: message: "[== \"CMake Server\" ==[\n"
+
+CMAKE SERVER: message: "{\"cookie\":\"\",\"inReplyTo\":\"configure\",\"message\":\"CMake Warning at C:/Users/Sawyer/Documents/Android Projects/AndroidSDKs/ndk/25.1.8937393/build/cmake/android-legacy.toolchain.cmake:415 (message):\\n  An old version of CMake is being used that cannot automatically detect\\n  compiler attributes.  Compiler identification is being bypassed.  Some\\n  values may be wrong or missing.  Update to CMake 3.19 or newer to use\\n  CMake\'s built-in compiler identification.\\nCall Stack (most recent call first):\\n  C:/Users/Sawyer/Documents/Android Projects/AndroidSDKs/ndk/25.1.8937393/build/cmake/android.toolchain.cmake:54 (include)\\n  C:/Users/Sawyer/Documents/Android Projects/GlassGrapple/VRGrappleGame/app/.cxx/RelWithDebInfo/4w5464c5/arm64-v8a/CMakeFiles/3.10.2/CMakeSystem.cmake:6 (include)\\n  C:/Users/Sawyer/Documents/Android Projects/GlassGrapple/VRGrappleGame/app/.cxx/RelWithDebInfo/4w5464c5/arm64-v8a/CMakeFiles/CMakeTmp/CMakeLists.txt:2 (project)\\n\\n\",\"title\":\"Warning\",\"type\":\"message\"}\n"
+
+CMAKE SERVER: message: "]== \"CMake Server\" ==]\n"
+
+CMAKE SERVER: level: WARN
+message: "CMake Warning at C:/Users/Sawyer/Documents/Android Projects/AndroidSDKs/ndk/25.1.8937393/build/cmake/android-legacy.toolchain.cmake:415 (message):\r\n  An old version of CMake is being used that cannot automatically detect\r\n  compiler attributes.  Compiler identification is being bypassed.  Some\r\n  values may be wrong or missing.  Update to CMake 3.19 or newer to use\r\n  CMake\'s built-in compiler identification.\r\nCall Stack (most recent call first):\r\n  C:/Users/Sawyer/Documents/Android Projects/AndroidSDKs/ndk/25.1.8937393/build/cmake/android.toolchain.cmake:54 (include)\r\n  C:/Users/Sawyer/Documents/Android Projects/GlassGrapple/VRGrappleGame/app/.cxx/RelWithDebInfo/4w5464c5/arm64-v8a/CMakeFiles/3.10.2/CMakeSystem.cmake:6 (include)\r\n  C:/Users/Sawyer/Documents/Android Projects/GlassGrapple/VRGrappleGame/app/.cxx/RelWithDebInfo/4w5464c5/arm64-v8a/CMakeFiles/CMakeTmp/CMakeLists.txt:2 (project)\r\n"
+
+CMAKE SERVER: level: WARN
+message: "CMake Warning at C:/Users/Sawyer/Documents/Android Projects/AndroidSDKs/ndk/25.1.8937393/build/cmake/android-legacy.toolchain.cmake:415 (message):\r\n  An old version of CMake is being used that cannot automatically detect\r\n  compiler attributes.  Compiler identification is being bypassed.  Some\r\n  values may be wrong or missing.  Update to CMake 3.19 or newer to use\r\n  CMake\'s built-in compiler identification.\r\nCall Stack (most recent call first):\r\n  C:/Users/Sawyer/Documents/Android Projects/AndroidSDKs/ndk/25.1.8937393/build/cmake/android.toolchain.cmake:54 (include)\r\n  C:/Users/Sawyer/Documents/Android Projects/GlassGrapple/VRGrappleGame/app/.cxx/RelWithDebInfo/4w5464c5/arm64-v8a/CMakeFiles/3.10.2/CMakeSystem.cmake:6 (include)\r\n  C:/Users/Sawyer/Documents/Android Projects/GlassGrapple/VRGrappleGame/app/.cxx/RelWithDebInfo/4w5464c5/arm64-v8a/CMakeFiles/CMakeTmp/CMakeLists.txt:2 (project)\r\n"
+
+CMAKE SERVER: message: "\n"
+
+CMAKE SERVER: message: "[== \"CMake Server\" ==[\n"
+
+CMAKE SERVER: message: "{\"cookie\":\"\",\"inReplyTo\":\"configure\",\"progressCurrent\":65,\"progressMaximum\":1000,\"progressMessage\":\"Configuring\",\"progressMinimum\":0,\"type\":\"progress\"}\n"
+
+CMAKE SERVER: message: "]== \"CMake Server\" ==]\n"
+
+CMAKE SERVER: message: "\n"
+
+CMAKE SERVER: message: "[== \"CMake Server\" ==[\n"
+
+CMAKE SERVER: message: "{\"cookie\":\"\",\"inReplyTo\":\"configure\",\"message\":\"Detecting C compiler ABI info - done\",\"type\":\"message\"}\n"
+
+CMAKE SERVER: message: "]== \"CMake Server\" ==]\n"
+
+CMAKE SERVER: message: "Detecting C compiler ABI info - done"
+
+CMAKE SERVER: message: "Detecting C compiler ABI info - done"
+
+CMAKE SERVER: message: "\n"
+
+CMAKE SERVER: message: "[== \"CMake Server\" ==[\n"
+
+CMAKE SERVER: message: "{\"cookie\":\"\",\"inReplyTo\":\"configure\",\"message\":\"Detecting C compile features\",\"type\":\"message\"}\n"
+
+CMAKE SERVER: message: "]== \"CMake Server\" ==]\n"
+
+CMAKE SERVER: message: "Detecting C compile features"
+
+CMAKE SERVER: message: "Detecting C compile features"
+
+CMAKE SERVER: message: "\n"
+
+CMAKE SERVER: message: "[== \"CMake Server\" ==[\n"
+
+CMAKE SERVER: message: "{\"cookie\":\"\",\"inReplyTo\":\"configure\",\"message\":\"CMake Warning at C:/Users/Sawyer/Documents/Android Projects/AndroidSDKs/ndk/25.1.8937393/build/cmake/android-legacy.toolchain.cmake:415 (message):\\n  An old version of CMake is being used that cannot automatically detect\\n  compiler attributes.  Compiler identification is being bypassed.  Some\\n  values may be wrong or missing.  Update to CMake 3.19 or newer to use\\n  CMake\'s built-in compiler identification.\\nCall Stack (most recent call first):\\n  C:/Users/Sawyer/Documents/Android Projects/AndroidSDKs/ndk/25.1.8937393/build/cmake/android.toolchain.cmake:54 (include)\\n  C:/Users/Sawyer/Documents/Android Projects/GlassGrapple/VRGrappleGame/app/.cxx/RelWithDebInfo/4w5464c5/arm64-v8a/CMakeFiles/3.10.2/CMakeSystem.cmake:6 (include)\\n  C:/Users/Sawyer/Documents/Android Projects/GlassGrapple/VRGrappleGame/app/.cxx/RelWithDebInfo/4w5464c5/arm64-v8a/CMakeFiles/CMakeTmp/CMakeLists.txt:2 (project)\\n\\n\",\"title\":\"Warning\",\"type\":\"message\"}\n"
+
+CMAKE SERVER: message: "]== \"CMake Server\" ==]\n"
+
+CMAKE SERVER: level: WARN
+message: "CMake Warning at C:/Users/Sawyer/Documents/Android Projects/AndroidSDKs/ndk/25.1.8937393/build/cmake/android-legacy.toolchain.cmake:415 (message):\r\n  An old version of CMake is being used that cannot automatically detect\r\n  compiler attributes.  Compiler identification is being bypassed.  Some\r\n  values may be wrong or missing.  Update to CMake 3.19 or newer to use\r\n  CMake\'s built-in compiler identification.\r\nCall Stack (most recent call first):\r\n  C:/Users/Sawyer/Documents/Android Projects/AndroidSDKs/ndk/25.1.8937393/build/cmake/android.toolchain.cmake:54 (include)\r\n  C:/Users/Sawyer/Documents/Android Projects/GlassGrapple/VRGrappleGame/app/.cxx/RelWithDebInfo/4w5464c5/arm64-v8a/CMakeFiles/3.10.2/CMakeSystem.cmake:6 (include)\r\n  C:/Users/Sawyer/Documents/Android Projects/GlassGrapple/VRGrappleGame/app/.cxx/RelWithDebInfo/4w5464c5/arm64-v8a/CMakeFiles/CMakeTmp/CMakeLists.txt:2 (project)\r\n"
+
+CMAKE SERVER: level: WARN
+message: "CMake Warning at C:/Users/Sawyer/Documents/Android Projects/AndroidSDKs/ndk/25.1.8937393/build/cmake/android-legacy.toolchain.cmake:415 (message):\r\n  An old version of CMake is being used that cannot automatically detect\r\n  compiler attributes.  Compiler identification is being bypassed.  Some\r\n  values may be wrong or missing.  Update to CMake 3.19 or newer to use\r\n  CMake\'s built-in compiler identification.\r\nCall Stack (most recent call first):\r\n  C:/Users/Sawyer/Documents/Android Projects/AndroidSDKs/ndk/25.1.8937393/build/cmake/android.toolchain.cmake:54 (include)\r\n  C:/Users/Sawyer/Documents/Android Projects/GlassGrapple/VRGrappleGame/app/.cxx/RelWithDebInfo/4w5464c5/arm64-v8a/CMakeFiles/3.10.2/CMakeSystem.cmake:6 (include)\r\n  C:/Users/Sawyer/Documents/Android Projects/GlassGrapple/VRGrappleGame/app/.cxx/RelWithDebInfo/4w5464c5/arm64-v8a/CMakeFiles/CMakeTmp/CMakeLists.txt:2 (project)\r\n"
+
+CMAKE SERVER: message: "\n"
+
+CMAKE SERVER: message: "[== \"CMake Server\" ==[\n"
+
+CMAKE SERVER: message: "{\"cookie\":\"\",\"inReplyTo\":\"configure\",\"progressCurrent\":96,\"progressMaximum\":1000,\"progressMessage\":\"Configuring\",\"progressMinimum\":0,\"type\":\"progress\"}\n"
+
+CMAKE SERVER: message: "]== \"CMake Server\" ==]\n"
+
+CMAKE SERVER: message: "\n"
+
+CMAKE SERVER: message: "[== \"CMake Server\" ==[\n"
+
+CMAKE SERVER: message: "{\"cookie\":\"\",\"inReplyTo\":\"configure\",\"message\":\"CMake Warning at C:/Users/Sawyer/Documents/Android Projects/AndroidSDKs/ndk/25.1.8937393/build/cmake/android-legacy.toolchain.cmake:415 (message):\\n  An old version of CMake is being used that cannot automatically detect\\n  compiler attributes.  Compiler identification is being bypassed.  Some\\n  values may be wrong or missing.  Update to CMake 3.19 or newer to use\\n  CMake\'s built-in compiler identification.\\nCall Stack (most recent call first):\\n  C:/Users/Sawyer/Documents/Android Projects/AndroidSDKs/ndk/25.1.8937393/build/cmake/android.toolchain.cmake:54 (include)\\n  C:/Users/Sawyer/Documents/Android Projects/GlassGrapple/VRGrappleGame/app/.cxx/RelWithDebInfo/4w5464c5/arm64-v8a/CMakeFiles/3.10.2/CMakeSystem.cmake:6 (include)\\n  C:/Users/Sawyer/Documents/Android Projects/GlassGrapple/VRGrappleGame/app/.cxx/RelWithDebInfo/4w5464c5/arm64-v8a/CMakeFiles/CMakeTmp/CMakeLists.txt:2 (project)\\n\\n\",\"title\":\"Warning\",\"type\":\"message\"}\n"
+
+CMAKE SERVER: message: "]== \"CMake Server\" ==]\n"
+
+CMAKE SERVER: level: WARN
+message: "CMake Warning at C:/Users/Sawyer/Documents/Android Projects/AndroidSDKs/ndk/25.1.8937393/build/cmake/android-legacy.toolchain.cmake:415 (message):\r\n  An old version of CMake is being used that cannot automatically detect\r\n  compiler attributes.  Compiler identification is being bypassed.  Some\r\n  values may be wrong or missing.  Update to CMake 3.19 or newer to use\r\n  CMake\'s built-in compiler identification.\r\nCall Stack (most recent call first):\r\n  C:/Users/Sawyer/Documents/Android Projects/AndroidSDKs/ndk/25.1.8937393/build/cmake/android.toolchain.cmake:54 (include)\r\n  C:/Users/Sawyer/Documents/Android Projects/GlassGrapple/VRGrappleGame/app/.cxx/RelWithDebInfo/4w5464c5/arm64-v8a/CMakeFiles/3.10.2/CMakeSystem.cmake:6 (include)\r\n  C:/Users/Sawyer/Documents/Android Projects/GlassGrapple/VRGrappleGame/app/.cxx/RelWithDebInfo/4w5464c5/arm64-v8a/CMakeFiles/CMakeTmp/CMakeLists.txt:2 (project)\r\n"
+
+CMAKE SERVER: level: WARN
+message: "CMake Warning at C:/Users/Sawyer/Documents/Android Projects/AndroidSDKs/ndk/25.1.8937393/build/cmake/android-legacy.toolchain.cmake:415 (message):\r\n  An old version of CMake is being used that cannot automatically detect\r\n  compiler attributes.  Compiler identification is being bypassed.  Some\r\n  values may be wrong or missing.  Update to CMake 3.19 or newer to use\r\n  CMake\'s built-in compiler identification.\r\nCall Stack (most recent call first):\r\n  C:/Users/Sawyer/Documents/Android Projects/AndroidSDKs/ndk/25.1.8937393/build/cmake/android.toolchain.cmake:54 (include)\r\n  C:/Users/Sawyer/Documents/Android Projects/GlassGrapple/VRGrappleGame/app/.cxx/RelWithDebInfo/4w5464c5/arm64-v8a/CMakeFiles/3.10.2/CMakeSystem.cmake:6 (include)\r\n  C:/Users/Sawyer/Documents/Android Projects/GlassGrapple/VRGrappleGame/app/.cxx/RelWithDebInfo/4w5464c5/arm64-v8a/CMakeFiles/CMakeTmp/CMakeLists.txt:2 (project)\r\n"
+
+CMAKE SERVER: message: "\n"
+
+CMAKE SERVER: message: "[== \"CMake Server\" ==[\n"
+
+CMAKE SERVER: message: "{\"cookie\":\"\",\"inReplyTo\":\"configure\",\"progressCurrent\":126,\"progressMaximum\":1000,\"progressMessage\":\"Configuring\",\"progressMinimum\":0,\"type\":\"progress\"}\n"
+
+CMAKE SERVER: message: "]== \"CMake Server\" ==]\n"
+
+CMAKE SERVER: message: "\n"
+
+CMAKE SERVER: message: "[== \"CMake Server\" ==[\n"
+
+CMAKE SERVER: message: "{\"cookie\":\"\",\"inReplyTo\":\"configure\",\"message\":\"CMake Warning at C:/Users/Sawyer/Documents/Android Projects/AndroidSDKs/ndk/25.1.8937393/build/cmake/android-legacy.toolchain.cmake:415 (message):\\n  An old version of CMake is being used that cannot automatically detect\\n  compiler attributes.  Compiler identification is being bypassed.  Some\\n  values may be wrong or missing.  Update to CMake 3.19 or newer to use\\n  CMake\'s built-in compiler identification.\\nCall Stack (most recent call first):\\n  C:/Users/Sawyer/Documents/Android Projects/AndroidSDKs/ndk/25.1.8937393/build/cmake/android.toolchain.cmake:54 (include)\\n  C:/Users/Sawyer/Documents/Android Projects/GlassGrapple/VRGrappleGame/app/.cxx/RelWithDebInfo/4w5464c5/arm64-v8a/CMakeFiles/3.10.2/CMakeSystem.cmake:6 (include)\\n  C:/Users/Sawyer/Documents/Android Projects/GlassGrapple/VRGrappleGame/app/.cxx/RelWithDebInfo/4w5464c5/arm64-v8a/CMakeFiles/CMakeTmp/CMakeLists.txt:2 (project)\\n\\n\",\"title\":\"Warning\",\"type\":\"message\"}\n"
+
+CMAKE SERVER: message: "]== \"CMake Server\" ==]\n"
+
+CMAKE SERVER: level: WARN
+message: "CMake Warning at C:/Users/Sawyer/Documents/Android Projects/AndroidSDKs/ndk/25.1.8937393/build/cmake/android-legacy.toolchain.cmake:415 (message):\r\n  An old version of CMake is being used that cannot automatically detect\r\n  compiler attributes.  Compiler identification is being bypassed.  Some\r\n  values may be wrong or missing.  Update to CMake 3.19 or newer to use\r\n  CMake\'s built-in compiler identification.\r\nCall Stack (most recent call first):\r\n  C:/Users/Sawyer/Documents/Android Projects/AndroidSDKs/ndk/25.1.8937393/build/cmake/android.toolchain.cmake:54 (include)\r\n  C:/Users/Sawyer/Documents/Android Projects/GlassGrapple/VRGrappleGame/app/.cxx/RelWithDebInfo/4w5464c5/arm64-v8a/CMakeFiles/3.10.2/CMakeSystem.cmake:6 (include)\r\n  C:/Users/Sawyer/Documents/Android Projects/GlassGrapple/VRGrappleGame/app/.cxx/RelWithDebInfo/4w5464c5/arm64-v8a/CMakeFiles/CMakeTmp/CMakeLists.txt:2 (project)\r\n"
+
+CMAKE SERVER: level: WARN
+message: "CMake Warning at C:/Users/Sawyer/Documents/Android Projects/AndroidSDKs/ndk/25.1.8937393/build/cmake/android-legacy.toolchain.cmake:415 (message):\r\n  An old version of CMake is being used that cannot automatically detect\r\n  compiler attributes.  Compiler identification is being bypassed.  Some\r\n  values may be wrong or missing.  Update to CMake 3.19 or newer to use\r\n  CMake\'s built-in compiler identification.\r\nCall Stack (most recent call first):\r\n  C:/Users/Sawyer/Documents/Android Projects/AndroidSDKs/ndk/25.1.8937393/build/cmake/android.toolchain.cmake:54 (include)\r\n  C:/Users/Sawyer/Documents/Android Projects/GlassGrapple/VRGrappleGame/app/.cxx/RelWithDebInfo/4w5464c5/arm64-v8a/CMakeFiles/3.10.2/CMakeSystem.cmake:6 (include)\r\n  C:/Users/Sawyer/Documents/Android Projects/GlassGrapple/VRGrappleGame/app/.cxx/RelWithDebInfo/4w5464c5/arm64-v8a/CMakeFiles/CMakeTmp/CMakeLists.txt:2 (project)\r\n"
+
+CMAKE SERVER: message: "\n"
+
+CMAKE SERVER: message: "[== \"CMake Server\" ==[\n"
+
+CMAKE SERVER: message: "{\"cookie\":\"\",\"inReplyTo\":\"configure\",\"progressCurrent\":155,\"progressMaximum\":1000,\"progressMessage\":\"Configuring\",\"progressMinimum\":0,\"type\":\"progress\"}\n"
+
+CMAKE SERVER: message: "]== \"CMake Server\" ==]\n"
+
+CMAKE SERVER: message: "\n"
+
+CMAKE SERVER: message: "[== \"CMake Server\" ==[\n"
+
+CMAKE SERVER: message: "{\"cookie\":\"\",\"inReplyTo\":\"configure\",\"message\":\"Detecting C compile features - done\",\"type\":\"message\"}\n"
+
+CMAKE SERVER: message: "]== \"CMake Server\" ==]\n"
+
+CMAKE SERVER: message: "Detecting C compile features - done"
+
+CMAKE SERVER: message: "Detecting C compile features - done"
+
+CMAKE SERVER: message: "\n"
+
+CMAKE SERVER: message: "[== \"CMake Server\" ==[\n"
+
+CMAKE SERVER: message: "{\"cookie\":\"\",\"inReplyTo\":\"configure\",\"message\":\"Check for working CXX compiler: C:/Users/Sawyer/Documents/Android Projects/AndroidSDKs/ndk/25.1.8937393/toolchains/llvm/prebuilt/windows-x86_64/bin/clang++.exe\",\"type\":\"message\"}\n"
+
+CMAKE SERVER: message: "]== \"CMake Server\" ==]\n"
+
+CMAKE SERVER: message: "Check for working CXX compiler: C:/Users/Sawyer/Documents/Android Projects/AndroidSDKs/ndk/25.1.8937393/toolchains/llvm/prebuilt/windows-x86_64/bin/clang++.exe"
+
+CMAKE SERVER: message: "Check for working CXX compiler: C:/Users/Sawyer/Documents/Android Projects/AndroidSDKs/ndk/25.1.8937393/toolchains/llvm/prebuilt/windows-x86_64/bin/clang++.exe"
+
+CMAKE SERVER: message: "\n"
+
+CMAKE SERVER: message: "[== \"CMake Server\" ==[\n"
+
+CMAKE SERVER: message: "{\"cookie\":\"\",\"inReplyTo\":\"configure\",\"message\":\"CMake Warning at C:/Users/Sawyer/Documents/Android Projects/AndroidSDKs/ndk/25.1.8937393/build/cmake/android-legacy.toolchain.cmake:415 (message):\\n  An old version of CMake is being used that cannot automatically detect\\n  compiler attributes.  Compiler identification is being bypassed.  Some\\n  values may be wrong or missing.  Update to CMake 3.19 or newer to use\\n  CMake\'s built-in compiler identification.\\nCall Stack (most recent call first):\\n  C:/Users/Sawyer/Documents/Android Projects/AndroidSDKs/ndk/25.1.8937393/build/cmake/android.toolchain.cmake:54 (include)\\n  C:/Users/Sawyer/Documents/Android Projects/GlassGrapple/VRGrappleGame/app/.cxx/RelWithDebInfo/4w5464c5/arm64-v8a/CMakeFiles/3.10.2/CMakeSystem.cmake:6 (include)\\n  C:/Users/Sawyer/Documents/Android Projects/GlassGrapple/VRGrappleGame/app/.cxx/RelWithDebInfo/4w5464c5/arm64-v8a/CMakeFiles/CMakeTmp/CMakeLists.txt:2 (project)\\n\\n\",\"title\":\"Warning\",\"type\":\"message\"}\n"
+
+CMAKE SERVER: message: "]== \"CMake Server\" ==]\n"
+
+CMAKE SERVER: level: WARN
+message: "CMake Warning at C:/Users/Sawyer/Documents/Android Projects/AndroidSDKs/ndk/25.1.8937393/build/cmake/android-legacy.toolchain.cmake:415 (message):\r\n  An old version of CMake is being used that cannot automatically detect\r\n  compiler attributes.  Compiler identification is being bypassed.  Some\r\n  values may be wrong or missing.  Update to CMake 3.19 or newer to use\r\n  CMake\'s built-in compiler identification.\r\nCall Stack (most recent call first):\r\n  C:/Users/Sawyer/Documents/Android Projects/AndroidSDKs/ndk/25.1.8937393/build/cmake/android.toolchain.cmake:54 (include)\r\n  C:/Users/Sawyer/Documents/Android Projects/GlassGrapple/VRGrappleGame/app/.cxx/RelWithDebInfo/4w5464c5/arm64-v8a/CMakeFiles/3.10.2/CMakeSystem.cmake:6 (include)\r\n  C:/Users/Sawyer/Documents/Android Projects/GlassGrapple/VRGrappleGame/app/.cxx/RelWithDebInfo/4w5464c5/arm64-v8a/CMakeFiles/CMakeTmp/CMakeLists.txt:2 (project)\r\n"
+
+CMAKE SERVER: level: WARN
+message: "CMake Warning at C:/Users/Sawyer/Documents/Android Projects/AndroidSDKs/ndk/25.1.8937393/build/cmake/android-legacy.toolchain.cmake:415 (message):\r\n  An old version of CMake is being used that cannot automatically detect\r\n  compiler attributes.  Compiler identification is being bypassed.  Some\r\n  values may be wrong or missing.  Update to CMake 3.19 or newer to use\r\n  CMake\'s built-in compiler identification.\r\nCall Stack (most recent call first):\r\n  C:/Users/Sawyer/Documents/Android Projects/AndroidSDKs/ndk/25.1.8937393/build/cmake/android.toolchain.cmake:54 (include)\r\n  C:/Users/Sawyer/Documents/Android Projects/GlassGrapple/VRGrappleGame/app/.cxx/RelWithDebInfo/4w5464c5/arm64-v8a/CMakeFiles/3.10.2/CMakeSystem.cmake:6 (include)\r\n  C:/Users/Sawyer/Documents/Android Projects/GlassGrapple/VRGrappleGame/app/.cxx/RelWithDebInfo/4w5464c5/arm64-v8a/CMakeFiles/CMakeTmp/CMakeLists.txt:2 (project)\r\n"
+
+CMAKE SERVER: message: "\n"
+
+CMAKE SERVER: message: "[== \"CMake Server\" ==[\n"
+
+CMAKE SERVER: message: "{\"cookie\":\"\",\"inReplyTo\":\"configure\",\"progressCurrent\":184,\"progressMaximum\":1000,\"progressMessage\":\"Configuring\",\"progressMinimum\":0,\"type\":\"progress\"}\n"
+
+CMAKE SERVER: message: "]== \"CMake Server\" ==]\n"
+
+CMAKE SERVER: message: "\n"
+
+CMAKE SERVER: message: "[== \"CMake Server\" ==[\n"
+
+CMAKE SERVER: message: "{\"cookie\":\"\",\"inReplyTo\":\"configure\",\"message\":\"Check for working CXX compiler: C:/Users/Sawyer/Documents/Android Projects/AndroidSDKs/ndk/25.1.8937393/toolchains/llvm/prebuilt/windows-x86_64/bin/clang++.exe -- works\",\"type\":\"message\"}\n"
+
+CMAKE SERVER: message: "]== \"CMake Server\" ==]\n"
+
+CMAKE SERVER: message: "Check for working CXX compiler: C:/Users/Sawyer/Documents/Android Projects/AndroidSDKs/ndk/25.1.8937393/toolchains/llvm/prebuilt/windows-x86_64/bin/clang++.exe -- works"
+
+CMAKE SERVER: message: "Check for working CXX compiler: C:/Users/Sawyer/Documents/Android Projects/AndroidSDKs/ndk/25.1.8937393/toolchains/llvm/prebuilt/windows-x86_64/bin/clang++.exe -- works"
+
+CMAKE SERVER: message: "\n"
+
+CMAKE SERVER: message: "[== \"CMake Server\" ==[\n"
+
+CMAKE SERVER: message: "{\"cookie\":\"\",\"inReplyTo\":\"configure\",\"message\":\"Detecting CXX compiler ABI info\",\"type\":\"message\"}\n"
+
+CMAKE SERVER: message: "]== \"CMake Server\" ==]\n"
+
+CMAKE SERVER: message: "Detecting CXX compiler ABI info"
+
+CMAKE SERVER: message: "Detecting CXX compiler ABI info"
+
+CMAKE SERVER: message: "\n"
+
+CMAKE SERVER: message: "[== \"CMake Server\" ==[\n"
+
+CMAKE SERVER: message: "{\"cookie\":\"\",\"inReplyTo\":\"configure\",\"message\":\"CMake Warning at C:/Users/Sawyer/Documents/Android Projects/AndroidSDKs/ndk/25.1.8937393/build/cmake/android-legacy.toolchain.cmake:415 (message):\\n  An old version of CMake is being used that cannot automatically detect\\n  compiler attributes.  Compiler identification is being bypassed.  Some\\n  values may be wrong or missing.  Update to CMake 3.19 or newer to use\\n  CMake\'s built-in compiler identification.\\nCall Stack (most recent call first):\\n  C:/Users/Sawyer/Documents/Android Projects/AndroidSDKs/ndk/25.1.8937393/build/cmake/android.toolchain.cmake:54 (include)\\n  C:/Users/Sawyer/Documents/Android Projects/GlassGrapple/VRGrappleGame/app/.cxx/RelWithDebInfo/4w5464c5/arm64-v8a/CMakeFiles/3.10.2/CMakeSystem.cmake:6 (include)\\n  C:/Users/Sawyer/Documents/Android Projects/GlassGrapple/VRGrappleGame/app/.cxx/RelWithDebInfo/4w5464c5/arm64-v8a/CMakeFiles/CMakeTmp/CMakeLists.txt:2 (project)\\n\\n\",\"title\":\"Warning\",\"type\":\"message\"}\n"
+
+CMAKE SERVER: message: "]== \"CMake Server\" ==]\n"
+
+CMAKE SERVER: level: WARN
+message: "CMake Warning at C:/Users/Sawyer/Documents/Android Projects/AndroidSDKs/ndk/25.1.8937393/build/cmake/android-legacy.toolchain.cmake:415 (message):\r\n  An old version of CMake is being used that cannot automatically detect\r\n  compiler attributes.  Compiler identification is being bypassed.  Some\r\n  values may be wrong or missing.  Update to CMake 3.19 or newer to use\r\n  CMake\'s built-in compiler identification.\r\nCall Stack (most recent call first):\r\n  C:/Users/Sawyer/Documents/Android Projects/AndroidSDKs/ndk/25.1.8937393/build/cmake/android.toolchain.cmake:54 (include)\r\n  C:/Users/Sawyer/Documents/Android Projects/GlassGrapple/VRGrappleGame/app/.cxx/RelWithDebInfo/4w5464c5/arm64-v8a/CMakeFiles/3.10.2/CMakeSystem.cmake:6 (include)\r\n  C:/Users/Sawyer/Documents/Android Projects/GlassGrapple/VRGrappleGame/app/.cxx/RelWithDebInfo/4w5464c5/arm64-v8a/CMakeFiles/CMakeTmp/CMakeLists.txt:2 (project)\r\n"
+
+CMAKE SERVER: level: WARN
+message: "CMake Warning at C:/Users/Sawyer/Documents/Android Projects/AndroidSDKs/ndk/25.1.8937393/build/cmake/android-legacy.toolchain.cmake:415 (message):\r\n  An old version of CMake is being used that cannot automatically detect\r\n  compiler attributes.  Compiler identification is being bypassed.  Some\r\n  values may be wrong or missing.  Update to CMake 3.19 or newer to use\r\n  CMake\'s built-in compiler identification.\r\nCall Stack (most recent call first):\r\n  C:/Users/Sawyer/Documents/Android Projects/AndroidSDKs/ndk/25.1.8937393/build/cmake/android.toolchain.cmake:54 (include)\r\n  C:/Users/Sawyer/Documents/Android Projects/GlassGrapple/VRGrappleGame/app/.cxx/RelWithDebInfo/4w5464c5/arm64-v8a/CMakeFiles/3.10.2/CMakeSystem.cmake:6 (include)\r\n  C:/Users/Sawyer/Documents/Android Projects/GlassGrapple/VRGrappleGame/app/.cxx/RelWithDebInfo/4w5464c5/arm64-v8a/CMakeFiles/CMakeTmp/CMakeLists.txt:2 (project)\r\n"
+
+CMAKE SERVER: message: "\n"
+
+CMAKE SERVER: message: "[== \"CMake Server\" ==[\n"
+
+CMAKE SERVER: message: "{\"cookie\":\"\",\"inReplyTo\":\"configure\",\"progressCurrent\":211,\"progressMaximum\":1000,\"progressMessage\":\"Configuring\",\"progressMinimum\":0,\"type\":\"progress\"}\n"
+
+CMAKE SERVER: message: "]== \"CMake Server\" ==]\n"
+
+CMAKE SERVER: message: "\n"
+
+CMAKE SERVER: message: "[== \"CMake Server\" ==[\n"
+
+CMAKE SERVER: message: "{\"cookie\":\"\",\"inReplyTo\":\"configure\",\"message\":\"Detecting CXX compiler ABI info - done\",\"type\":\"message\"}\n"
+
+CMAKE SERVER: message: "]== \"CMake Server\" ==]\n"
+
+CMAKE SERVER: message: "Detecting CXX compiler ABI info - done"
+
+CMAKE SERVER: message: "Detecting CXX compiler ABI info - done"
+
+CMAKE SERVER: message: "\n"
+
+CMAKE SERVER: message: "[== \"CMake Server\" ==[\n"
+
+CMAKE SERVER: message: "{\"cookie\":\"\",\"inReplyTo\":\"configure\",\"message\":\"Detecting CXX compile features\",\"type\":\"message\"}\n"
+
+CMAKE SERVER: message: "]== \"CMake Server\" ==]\n"
+
+CMAKE SERVER: message: "Detecting CXX compile features"
+
+CMAKE SERVER: message: "Detecting CXX compile features"
+
+CMAKE SERVER: message: "\n"
+
+CMAKE SERVER: message: "[== \"CMake Server\" ==[\n"
+
+CMAKE SERVER: message: "{\"cookie\":\"\",\"inReplyTo\":\"configure\",\"message\":\"CMake Warning at C:/Users/Sawyer/Documents/Android Projects/AndroidSDKs/ndk/25.1.8937393/build/cmake/android-legacy.toolchain.cmake:415 (message):\\n  An old version of CMake is being used that cannot automatically detect\\n  compiler attributes.  Compiler identification is being bypassed.  Some\\n  values may be wrong or missing.  Update to CMake 3.19 or newer to use\\n  CMake\'s built-in compiler identification.\\nCall Stack (most recent call first):\\n  C:/Users/Sawyer/Documents/Android Projects/AndroidSDKs/ndk/25.1.8937393/build/cmake/android.toolchain.cmake:54 (include)\\n  C:/Users/Sawyer/Documents/Android Projects/GlassGrapple/VRGrappleGame/app/.cxx/RelWithDebInfo/4w5464c5/arm64-v8a/CMakeFiles/3.10.2/CMakeSystem.cmake:6 (include)\\n  C:/Users/Sawyer/Documents/Android Projects/GlassGrapple/VRGrappleGame/app/.cxx/RelWithDebInfo/4w5464c5/arm64-v8a/CMakeFiles/CMakeTmp/CMakeLists.txt:2 (project)\\n\\n\",\"title\":\"Warning\",\"type\":\"message\"}\n"
+
+CMAKE SERVER: message: "]== \"CMake Server\" ==]\n"
+
+CMAKE SERVER: level: WARN
+message: "CMake Warning at C:/Users/Sawyer/Documents/Android Projects/AndroidSDKs/ndk/25.1.8937393/build/cmake/android-legacy.toolchain.cmake:415 (message):\r\n  An old version of CMake is being used that cannot automatically detect\r\n  compiler attributes.  Compiler identification is being bypassed.  Some\r\n  values may be wrong or missing.  Update to CMake 3.19 or newer to use\r\n  CMake\'s built-in compiler identification.\r\nCall Stack (most recent call first):\r\n  C:/Users/Sawyer/Documents/Android Projects/AndroidSDKs/ndk/25.1.8937393/build/cmake/android.toolchain.cmake:54 (include)\r\n  C:/Users/Sawyer/Documents/Android Projects/GlassGrapple/VRGrappleGame/app/.cxx/RelWithDebInfo/4w5464c5/arm64-v8a/CMakeFiles/3.10.2/CMakeSystem.cmake:6 (include)\r\n  C:/Users/Sawyer/Documents/Android Projects/GlassGrapple/VRGrappleGame/app/.cxx/RelWithDebInfo/4w5464c5/arm64-v8a/CMakeFiles/CMakeTmp/CMakeLists.txt:2 (project)\r\n"
+
+CMAKE SERVER: level: WARN
+message: "CMake Warning at C:/Users/Sawyer/Documents/Android Projects/AndroidSDKs/ndk/25.1.8937393/build/cmake/android-legacy.toolchain.cmake:415 (message):\r\n  An old version of CMake is being used that cannot automatically detect\r\n  compiler attributes.  Compiler identification is being bypassed.  Some\r\n  values may be wrong or missing.  Update to CMake 3.19 or newer to use\r\n  CMake\'s built-in compiler identification.\r\nCall Stack (most recent call first):\r\n  C:/Users/Sawyer/Documents/Android Projects/AndroidSDKs/ndk/25.1.8937393/build/cmake/android.toolchain.cmake:54 (include)\r\n  C:/Users/Sawyer/Documents/Android Projects/GlassGrapple/VRGrappleGame/app/.cxx/RelWithDebInfo/4w5464c5/arm64-v8a/CMakeFiles/3.10.2/CMakeSystem.cmake:6 (include)\r\n  C:/Users/Sawyer/Documents/Android Projects/GlassGrapple/VRGrappleGame/app/.cxx/RelWithDebInfo/4w5464c5/arm64-v8a/CMakeFiles/CMakeTmp/CMakeLists.txt:2 (project)\r\n"
+
+CMAKE SERVER: message: "\n"
+
+CMAKE SERVER: message: "[== \"CMake Server\" ==[\n"
+
+CMAKE SERVER: message: "{\"cookie\":\"\",\"inReplyTo\":\"configure\",\"progressCurrent\":237,\"progressMaximum\":1000,\"progressMessage\":\"Configuring\",\"progressMinimum\":0,\"type\":\"progress\"}\n"
+
+CMAKE SERVER: message: "]== \"CMake Server\" ==]\n"
+
+CMAKE SERVER: message: "\n"
+
+CMAKE SERVER: message: "[== \"CMake Server\" ==[\n"
+
+CMAKE SERVER: message: "{\"cookie\":\"\",\"inReplyTo\":\"configure\",\"message\":\"CMake Warning at C:/Users/Sawyer/Documents/Android Projects/AndroidSDKs/ndk/25.1.8937393/build/cmake/android-legacy.toolchain.cmake:415 (message):\\n  An old version of CMake is being used that cannot automatically detect\\n  compiler attributes.  Compiler identification is being bypassed.  Some\\n  values may be wrong or missing.  Update to CMake 3.19 or newer to use\\n  CMake\'s built-in compiler identification.\\nCall Stack (most recent call first):\\n  C:/Users/Sawyer/Documents/Android Projects/AndroidSDKs/ndk/25.1.8937393/build/cmake/android.toolchain.cmake:54 (include)\\n  C:/Users/Sawyer/Documents/Android Projects/GlassGrapple/VRGrappleGame/app/.cxx/RelWithDebInfo/4w5464c5/arm64-v8a/CMakeFiles/3.10.2/CMakeSystem.cmake:6 (include)\\n  C:/Users/Sawyer/Documents/Android Projects/GlassGrapple/VRGrappleGame/app/.cxx/RelWithDebInfo/4w5464c5/arm64-v8a/CMakeFiles/CMakeTmp/CMakeLists.txt:2 (project)\\n\\n\",\"title\":\"Warning\",\"type\":\"message\"}\n"
+
+CMAKE SERVER: message: "]== \"CMake Server\" ==]\n"
+
+CMAKE SERVER: level: WARN
+message: "CMake Warning at C:/Users/Sawyer/Documents/Android Projects/AndroidSDKs/ndk/25.1.8937393/build/cmake/android-legacy.toolchain.cmake:415 (message):\r\n  An old version of CMake is being used that cannot automatically detect\r\n  compiler attributes.  Compiler identification is being bypassed.  Some\r\n  values may be wrong or missing.  Update to CMake 3.19 or newer to use\r\n  CMake\'s built-in compiler identification.\r\nCall Stack (most recent call first):\r\n  C:/Users/Sawyer/Documents/Android Projects/AndroidSDKs/ndk/25.1.8937393/build/cmake/android.toolchain.cmake:54 (include)\r\n  C:/Users/Sawyer/Documents/Android Projects/GlassGrapple/VRGrappleGame/app/.cxx/RelWithDebInfo/4w5464c5/arm64-v8a/CMakeFiles/3.10.2/CMakeSystem.cmake:6 (include)\r\n  C:/Users/Sawyer/Documents/Android Projects/GlassGrapple/VRGrappleGame/app/.cxx/RelWithDebInfo/4w5464c5/arm64-v8a/CMakeFiles/CMakeTmp/CMakeLists.txt:2 (project)\r\n"
+
+CMAKE SERVER: level: WARN
+message: "CMake Warning at C:/Users/Sawyer/Documents/Android Projects/AndroidSDKs/ndk/25.1.8937393/build/cmake/android-legacy.toolchain.cmake:415 (message):\r\n  An old version of CMake is being used that cannot automatically detect\r\n  compiler attributes.  Compiler identification is being bypassed.  Some\r\n  values may be wrong or missing.  Update to CMake 3.19 or newer to use\r\n  CMake\'s built-in compiler identification.\r\nCall Stack (most recent call first):\r\n  C:/Users/Sawyer/Documents/Android Projects/AndroidSDKs/ndk/25.1.8937393/build/cmake/android.toolchain.cmake:54 (include)\r\n  C:/Users/Sawyer/Documents/Android Projects/GlassGrapple/VRGrappleGame/app/.cxx/RelWithDebInfo/4w5464c5/arm64-v8a/CMakeFiles/3.10.2/CMakeSystem.cmake:6 (include)\r\n  C:/Users/Sawyer/Documents/Android Projects/GlassGrapple/VRGrappleGame/app/.cxx/RelWithDebInfo/4w5464c5/arm64-v8a/CMakeFiles/CMakeTmp/CMakeLists.txt:2 (project)\r\n"
+
+CMAKE SERVER: message: "\n"
+
+CMAKE SERVER: message: "[== \"CMake Server\" ==[\n"
+
+CMAKE SERVER: message: "{\"cookie\":\"\",\"inReplyTo\":\"configure\",\"progressCurrent\":262,\"progressMaximum\":1000,\"progressMessage\":\"Configuring\",\"progressMinimum\":0,\"type\":\"progress\"}\n"
+
+CMAKE SERVER: message: "]== \"CMake Server\" ==]\n"
+
+CMAKE SERVER: message: "\n"
+
+CMAKE SERVER: message: "[== \"CMake Server\" ==[\n"
+
+CMAKE SERVER: message: "{\"cookie\":\"\",\"inReplyTo\":\"configure\",\"message\":\"CMake Warning at C:/Users/Sawyer/Documents/Android Projects/AndroidSDKs/ndk/25.1.8937393/build/cmake/android-legacy.toolchain.cmake:415 (message):\\n  An old version of CMake is being used that cannot automatically detect\\n  compiler attributes.  Compiler identification is being bypassed.  Some\\n  values may be wrong or missing.  Update to CMake 3.19 or newer to use\\n  CMake\'s built-in compiler identification.\\nCall Stack (most recent call first):\\n  C:/Users/Sawyer/Documents/Android Projects/AndroidSDKs/ndk/25.1.8937393/build/cmake/android.toolchain.cmake:54 (include)\\n  C:/Users/Sawyer/Documents/Android Projects/GlassGrapple/VRGrappleGame/app/.cxx/RelWithDebInfo/4w5464c5/arm64-v8a/CMakeFiles/3.10.2/CMakeSystem.cmake:6 (include)\\n  C:/Users/Sawyer/Documents/Android Projects/GlassGrapple/VRGrappleGame/app/.cxx/RelWithDebInfo/4w5464c5/arm64-v8a/CMakeFiles/CMakeTmp/CMakeLists.txt:2 (project)\\n\\n\",\"title\":\"Warning\",\"type\":\"message\"}\n"
+
+CMAKE SERVER: message: "]== \"CMake Server\" ==]\n"
+
+CMAKE SERVER: level: WARN
+message: "CMake Warning at C:/Users/Sawyer/Documents/Android Projects/AndroidSDKs/ndk/25.1.8937393/build/cmake/android-legacy.toolchain.cmake:415 (message):\r\n  An old version of CMake is being used that cannot automatically detect\r\n  compiler attributes.  Compiler identification is being bypassed.  Some\r\n  values may be wrong or missing.  Update to CMake 3.19 or newer to use\r\n  CMake\'s built-in compiler identification.\r\nCall Stack (most recent call first):\r\n  C:/Users/Sawyer/Documents/Android Projects/AndroidSDKs/ndk/25.1.8937393/build/cmake/android.toolchain.cmake:54 (include)\r\n  C:/Users/Sawyer/Documents/Android Projects/GlassGrapple/VRGrappleGame/app/.cxx/RelWithDebInfo/4w5464c5/arm64-v8a/CMakeFiles/3.10.2/CMakeSystem.cmake:6 (include)\r\n  C:/Users/Sawyer/Documents/Android Projects/GlassGrapple/VRGrappleGame/app/.cxx/RelWithDebInfo/4w5464c5/arm64-v8a/CMakeFiles/CMakeTmp/CMakeLists.txt:2 (project)\r\n"
+
+CMAKE SERVER: level: WARN
+message: "CMake Warning at C:/Users/Sawyer/Documents/Android Projects/AndroidSDKs/ndk/25.1.8937393/build/cmake/android-legacy.toolchain.cmake:415 (message):\r\n  An old version of CMake is being used that cannot automatically detect\r\n  compiler attributes.  Compiler identification is being bypassed.  Some\r\n  values may be wrong or missing.  Update to CMake 3.19 or newer to use\r\n  CMake\'s built-in compiler identification.\r\nCall Stack (most recent call first):\r\n  C:/Users/Sawyer/Documents/Android Projects/AndroidSDKs/ndk/25.1.8937393/build/cmake/android.toolchain.cmake:54 (include)\r\n  C:/Users/Sawyer/Documents/Android Projects/GlassGrapple/VRGrappleGame/app/.cxx/RelWithDebInfo/4w5464c5/arm64-v8a/CMakeFiles/3.10.2/CMakeSystem.cmake:6 (include)\r\n  C:/Users/Sawyer/Documents/Android Projects/GlassGrapple/VRGrappleGame/app/.cxx/RelWithDebInfo/4w5464c5/arm64-v8a/CMakeFiles/CMakeTmp/CMakeLists.txt:2 (project)\r\n"
+
+CMAKE SERVER: message: "\n"
+
+CMAKE SERVER: message: "[== \"CMake Server\" ==[\n"
+
+CMAKE SERVER: message: "{\"cookie\":\"\",\"inReplyTo\":\"configure\",\"progressCurrent\":287,\"progressMaximum\":1000,\"progressMessage\":\"Configuring\",\"progressMinimum\":0,\"type\":\"progress\"}\n"
+
+CMAKE SERVER: message: "]== \"CMake Server\" ==]\n"
+
+CMAKE SERVER: message: "\n"
+
+CMAKE SERVER: message: "[== \"CMake Server\" ==[\n"
+
+CMAKE SERVER: message: "{\"cookie\":\"\",\"inReplyTo\":\"configure\",\"message\":\"CMake Warning at C:/Users/Sawyer/Documents/Android Projects/AndroidSDKs/ndk/25.1.8937393/build/cmake/android-legacy.toolchain.cmake:415 (message):\\n  An old version of CMake is being used that cannot automatically detect\\n  compiler attributes.  Compiler identification is being bypassed.  Some\\n  values may be wrong or missing.  Update to CMake 3.19 or newer to use\\n  CMake\'s built-in compiler identification.\\nCall Stack (most recent call first):\\n  C:/Users/Sawyer/Documents/Android Projects/AndroidSDKs/ndk/25.1.8937393/build/cmake/android.toolchain.cmake:54 (include)\\n  C:/Users/Sawyer/Documents/Android Projects/GlassGrapple/VRGrappleGame/app/.cxx/RelWithDebInfo/4w5464c5/arm64-v8a/CMakeFiles/3.10.2/CMakeSystem.cmake:6 (include)\\n  C:/Users/Sawyer/Documents/Android Projects/GlassGrapple/VRGrappleGame/app/.cxx/RelWithDebInfo/4w5464c5/arm64-v8a/CMakeFiles/CMakeTmp/CMakeLists.txt:2 (project)\\n\\n\",\"title\":\"Warning\",\"type\":\"message\"}\n"
+
+CMAKE SERVER: message: "]== \"CMake Server\" ==]\n"
+
+CMAKE SERVER: level: WARN
+message: "CMake Warning at C:/Users/Sawyer/Documents/Android Projects/AndroidSDKs/ndk/25.1.8937393/build/cmake/android-legacy.toolchain.cmake:415 (message):\r\n  An old version of CMake is being used that cannot automatically detect\r\n  compiler attributes.  Compiler identification is being bypassed.  Some\r\n  values may be wrong or missing.  Update to CMake 3.19 or newer to use\r\n  CMake\'s built-in compiler identification.\r\nCall Stack (most recent call first):\r\n  C:/Users/Sawyer/Documents/Android Projects/AndroidSDKs/ndk/25.1.8937393/build/cmake/android.toolchain.cmake:54 (include)\r\n  C:/Users/Sawyer/Documents/Android Projects/GlassGrapple/VRGrappleGame/app/.cxx/RelWithDebInfo/4w5464c5/arm64-v8a/CMakeFiles/3.10.2/CMakeSystem.cmake:6 (include)\r\n  C:/Users/Sawyer/Documents/Android Projects/GlassGrapple/VRGrappleGame/app/.cxx/RelWithDebInfo/4w5464c5/arm64-v8a/CMakeFiles/CMakeTmp/CMakeLists.txt:2 (project)\r\n"
+
+CMAKE SERVER: level: WARN
+message: "CMake Warning at C:/Users/Sawyer/Documents/Android Projects/AndroidSDKs/ndk/25.1.8937393/build/cmake/android-legacy.toolchain.cmake:415 (message):\r\n  An old version of CMake is being used that cannot automatically detect\r\n  compiler attributes.  Compiler identification is being bypassed.  Some\r\n  values may be wrong or missing.  Update to CMake 3.19 or newer to use\r\n  CMake\'s built-in compiler identification.\r\nCall Stack (most recent call first):\r\n  C:/Users/Sawyer/Documents/Android Projects/AndroidSDKs/ndk/25.1.8937393/build/cmake/android.toolchain.cmake:54 (include)\r\n  C:/Users/Sawyer/Documents/Android Projects/GlassGrapple/VRGrappleGame/app/.cxx/RelWithDebInfo/4w5464c5/arm64-v8a/CMakeFiles/3.10.2/CMakeSystem.cmake:6 (include)\r\n  C:/Users/Sawyer/Documents/Android Projects/GlassGrapple/VRGrappleGame/app/.cxx/RelWithDebInfo/4w5464c5/arm64-v8a/CMakeFiles/CMakeTmp/CMakeLists.txt:2 (project)\r\n"
+
+CMAKE SERVER: message: "\n"
+
+CMAKE SERVER: message: "[== \"CMake Server\" ==[\n"
+
+CMAKE SERVER: message: "{\"cookie\":\"\",\"inReplyTo\":\"configure\",\"progressCurrent\":311,\"progressMaximum\":1000,\"progressMessage\":\"Configuring\",\"progressMinimum\":0,\"type\":\"progress\"}\n"
+
+CMAKE SERVER: message: "]== \"CMake Server\" ==]\n"
+
+CMAKE SERVER: message: "\n"
+
+CMAKE SERVER: message: "[== \"CMake Server\" ==[\n"
+
+CMAKE SERVER: message: "{\"cookie\":\"\",\"inReplyTo\":\"configure\",\"message\":\"Detecting CXX compile features - done\",\"type\":\"message\"}\n"
+
+CMAKE SERVER: message: "]== \"CMake Server\" ==]\n"
+
+CMAKE SERVER: message: "Detecting CXX compile features - done"
+
+CMAKE SERVER: message: "Detecting CXX compile features - done"
+
+CMAKE SERVER: message: "\n"
+
+CMAKE SERVER: message: "[== \"CMake Server\" ==[\n"
+
+CMAKE SERVER: message: "{\"cookie\":\"\",\"inReplyTo\":\"configure\",\"message\":\"CMAKE_PREFIX_PATH = C:/Users/Sawyer/Documents/Android Projects/AndroidSDKs/ndk/25.1.8937393/toolchains/llvm/prebuilt/windows-x86_64\",\"type\":\"message\"}\n"
+
+CMAKE SERVER: message: "]== \"CMake Server\" ==]\n"
+
+CMAKE SERVER: message: "CMAKE_PREFIX_PATH = C:/Users/Sawyer/Documents/Android Projects/AndroidSDKs/ndk/25.1.8937393/toolchains/llvm/prebuilt/windows-x86_64"
+
+CMAKE SERVER: message: "CMAKE_PREFIX_PATH = C:/Users/Sawyer/Documents/Android Projects/AndroidSDKs/ndk/25.1.8937393/toolchains/llvm/prebuilt/windows-x86_64"
+
+CMAKE SERVER: message: "\n"
+
+CMAKE SERVER: message: "[== \"CMake Server\" ==[\n"
+
+CMAKE SERVER: message: "{\"cookie\":\"\",\"inReplyTo\":\"configure\",\"progressCurrent\":1000,\"progressMaximum\":1000,\"progressMessage\":\"Configuring\",\"progressMinimum\":0,\"type\":\"progress\"}\n"
+
+CMAKE SERVER: message: "]== \"CMake Server\" ==]\n"
+
+CMAKE SERVER: message: "\n"
+
+CMAKE SERVER: message: "[== \"CMake Server\" ==[\n"
+
+CMAKE SERVER: message: "{\"cookie\":\"\",\"inReplyTo\":\"configure\",\"message\":\"Configuring done\",\"type\":\"message\"}\n"
+
+CMAKE SERVER: message: "]== \"CMake Server\" ==]\n"
+
+CMAKE SERVER: message: "Configuring done"
+
+CMAKE SERVER: message: "Configuring done"
+
+CMAKE SERVER: message: "\n"
+
+CMAKE SERVER: message: "[== \"CMake Server\" ==[\n"
+
+CMAKE SERVER: message: "{\"cookie\":\"\",\"inReplyTo\":\"configure\",\"type\":\"reply\"}\n"
+
+CMAKE SERVER: message: "]== \"CMake Server\" ==]\n"
+
+CMAKE SERVER: message: "[== \"CMake Server\" ==[\n"
+
+CMAKE SERVER: message: "{\"type\":\"compute\"}\n"
+
+CMAKE SERVER: message: "]== \"CMake Server\" ==]\n"
+
+CMAKE SERVER: message: "\n"
+
+CMAKE SERVER: message: "[== \"CMake Server\" ==[\n"
+
+CMAKE SERVER: message: "{\"cookie\":\"\",\"inReplyTo\":\"compute\",\"progressCurrent\":1000,\"progressMaximum\":1000,\"progressMessage\":\"Generating\",\"progressMinimum\":0,\"type\":\"progress\"}\n"
+
+CMAKE SERVER: message: "]== \"CMake Server\" ==]\n"
+
+CMAKE SERVER: message: "\n"
+
+CMAKE SERVER: message: "[== \"CMake Server\" ==[\n"
+
+CMAKE SERVER: message: "{\"cookie\":\"\",\"inReplyTo\":\"compute\",\"message\":\"Generating done\",\"type\":\"message\"}\n"
+
+CMAKE SERVER: message: "]== \"CMake Server\" ==]\n"
+
+CMAKE SERVER: message: "Generating done"
+
+CMAKE SERVER: message: "\n"
+
+CMAKE SERVER: message: "[== \"CMake Server\" ==[\n"
+
+CMAKE SERVER: message: "{\"cookie\":\"\",\"inReplyTo\":\"compute\",\"type\":\"reply\"}\n"
+
+CMAKE SERVER: message: "]== \"CMake Server\" ==]\n"
+
+CMAKE SERVER: message: "[== \"CMake Server\" ==[\n"
+
+CMAKE SERVER: message: "{\"type\":\"cmakeInputs\"}\n"
+
+CMAKE SERVER: message: "]== \"CMake Server\" ==]\n"
+
+CMAKE SERVER: message: "\n"
+
+CMAKE SERVER: message: "[== \"CMake Server\" ==[\n"
+
+CMAKE SERVER: message: "{\"buildFiles\":[{\"isCMake\":true,\"isTemporary\":false,\"sources\":[\"../../../../../../AndroidSDKs/cmake/3.10.2.4988404/share/cmake-3.10/Modules/CMakeDetermineSystem.cmake\",\"../../../../../../AndroidSDKs/cmake/3.10.2.4988404/share/cmake-3.10/Modules/Platform/Android-Determine.cmake\",\"../../../../../../AndroidSDKs/cmake/3.10.2.4988404/share/cmake-3.10/Modules/CMakeSystem.cmake.in\",\"../../../../../../AndroidSDKs/cmake/3.10.2.4988404/share/cmake-3.10/Modules/CMakeSystemSpecificInitialize.cmake\",\"../../../../../../AndroidSDKs/cmake/3.10.2.4988404/share/cmake-3.10/Modules/Platform/Android-Initialize.cmake\",\"../../../../../../AndroidSDKs/cmake/3.10.2.4988404/share/cmake-3.10/Modules/CMakeDetermineCCompiler.cmake\",\"../../../../../../AndroidSDKs/cmake/3.10.2.4988404/share/cmake-3.10/Modules/CMakeDetermineCompiler.cmake\",\"../../../../../../AndroidSDKs/cmake/3.10.2.4988404/share/cmake-3.10/Modules/Platform/Android-Determine-C.cmake\",\"../../../../../../AndroidSDKs/cmake/3.10.2.4988404/share/cmake-3.10/Modules/Platform/Android/Determine-Compiler.cmake\",\"../../../../../../AndroidSDKs/cmake/3.10.2.4988404/share/cmake-3.10/Modules/CMakeFindBinUtils.cmake\",\"../../../../../../AndroidSDKs/cmake/3.10.2.4988404/share/cmake-3.10/Modules/Compiler/Clang-FindBinUtils.cmake\",\"../../../../../../AndroidSDKs/cmake/3.10.2.4988404/share/cmake-3.10/Modules/CMakeCCompiler.cmake.in\",\"../../../../../../AndroidSDKs/cmake/3.10.2.4988404/share/cmake-3.10/Modules/CMakeDetermineCXXCompiler.cmake\",\"../../../../../../AndroidSDKs/cmake/3.10.2.4988404/share/cmake-3.10/Modules/CMakeDetermineCompiler.cmake\",\"../../../../../../AndroidSDKs/cmake/3.10.2.4988404/share/cmake-3.10/Modules/Platform/Android-Determine-CXX.cmake\",\"../../../../../../AndroidSDKs/cmake/3.10.2.4988404/share/cmake-3.10/Modules/Platform/Android/Determine-Compiler.cmake\",\"../../../../../../AndroidSDKs/cmake/3.10.2.4988404/share/cmake-3.10/Modules/CMakeFindBinUtils.cmake\",\"../../../../../../AndroidSDKs/cmake/3.10.2.4988404/share/cmake-3.10/Modules/Compiler/Clang-FindBinUtils.cmake\",\"../../../../../../AndroidSDKs/cmake/3.10.2.4988404/share/cmake-3.10/Modules/CMakeCXXCompiler.cmake.in\",\"../../../../../../AndroidSDKs/cmake/3.10.2.4988404/share/cmake-3.10/Modules/CMakeSystemSpecificInformation.cmake\",\"../../../../../../AndroidSDKs/cmake/3.10.2.4988404/share/cmake-3.10/Modules/CMakeGenericSystem.cmake\",\"../../../../../../AndroidSDKs/cmake/3.10.2.4988404/share/cmake-3.10/Modules/Platform/Android.cmake\",\"../../../../../../AndroidSDKs/cmake/3.10.2.4988404/share/cmake-3.10/Modules/Platform/Linux.cmake\",\"../../../../../../AndroidSDKs/cmake/3.10.2.4988404/share/cmake-3.10/Modules/Platform/UnixPaths.cmake\",\"../../../../../../AndroidSDKs/cmake/3.10.2.4988404/share/cmake-3.10/Modules/CMakeCInformation.cmake\",\"../../../../../../AndroidSDKs/cmake/3.10.2.4988404/share/cmake-3.10/Modules/CMakeLanguageInformation.cmake\",\"../../../../../../AndroidSDKs/cmake/3.10.2.4988404/share/cmake-3.10/Modules/Compiler/Clang-C.cmake\",\"../../../../../../AndroidSDKs/cmake/3.10.2.4988404/share/cmake-3.10/Modules/Compiler/Clang.cmake\",\"../../../../../../AndroidSDKs/cmake/3.10.2.4988404/share/cmake-3.10/Modules/Compiler/CMakeCommonCompilerMacros.cmake\",\"../../../../../../AndroidSDKs/cmake/3.10.2.4988404/share/cmake-3.10/Modules/Compiler/GNU.cmake\",\"../../../../../../AndroidSDKs/cmake/3.10.2.4988404/share/cmake-3.10/Modules/Compiler/CMakeCommonCompilerMacros.cmake\",\"../../../../../../AndroidSDKs/cmake/3.10.2.4988404/share/cmake-3.10/Modules/Platform/Android-Clang-C.cmake\",\"../../../../../../AndroidSDKs/cmake/3.10.2.4988404/share/cmake-3.10/Modules/Platform/Android-Clang.cmake\",\"../../../../../../AndroidSDKs/cmake/3.10.2.4988404/share/cmake-3.10/Modules/CMakeCommonLanguageInclude.cmake\",\"../../../../../../AndroidSDKs/cmake/3.10.2.4988404/share/cmake-3.10/Modules/CMakeTestCCompiler.cmake\",\"../../../../../../AndroidSDKs/cmake/3.10.2.4988404/share/cmake-3.10/Modules/CMakeTestCompilerCommon.cmake\",\"../../../../../../AndroidSDKs/cmake/3.10.2.4988404/share/cmake-3.10/Modules/CMakeDetermineCompilerABI.cmake\",\"../../../../../../AndroidSDKs/cmake/3.10.2.4988404/share/cmake-3.10/Modules/CMakeParseImplicitLinkInfo.cmake\",\"../../../../../../AndroidSDKs/cmake/3.10.2.4988404/share/cmake-3.10/Modules/CMakeCCompilerABI.c\",\"../../../../../../AndroidSDKs/cmake/3.10.2.4988404/share/cmake-3.10/Modules/CMakeDetermineCompileFeatures.cmake\",\"../../../../../../AndroidSDKs/cmake/3.10.2.4988404/share/cmake-3.10/Modules/Internal/FeatureTesting.cmake\",\"../../../../../../AndroidSDKs/cmake/3.10.2.4988404/share/cmake-3.10/Modules/Compiler/Clang-C-FeatureTests.cmake\",\"../../../../../../AndroidSDKs/cmake/3.10.2.4988404/share/cmake-3.10/Modules/Compiler/Clang-C-FeatureTests.cmake\",\"../../../../../../AndroidSDKs/cmake/3.10.2.4988404/share/cmake-3.10/Modules/Compiler/Clang-C-FeatureTests.cmake\",\"../../../../../../AndroidSDKs/cmake/3.10.2.4988404/share/cmake-3.10/Modules/CMakeCCompiler.cmake.in\",\"../../../../../../AndroidSDKs/cmake/3.10.2.4988404/share/cmake-3.10/Modules/CMakeCXXInformation.cmake\",\"../../../../../../AndroidSDKs/cmake/3.10.2.4988404/share/cmake-3.10/Modules/CMakeLanguageInformation.cmake\",\"../../../../../../AndroidSDKs/cmake/3.10.2.4988404/share/cmake-3.10/Modules/Compiler/Clang-CXX.cmake\",\"../../../../../../AndroidSDKs/cmake/3.10.2.4988404/share/cmake-3.10/Modules/Compiler/Clang.cmake\",\"../../../../../../AndroidSDKs/cmake/3.10.2.4988404/share/cmake-3.10/Modules/Platform/Android-Clang-CXX.cmake\",\"../../../../../../AndroidSDKs/cmake/3.10.2.4988404/share/cmake-3.10/Modules/Platform/Android-Clang.cmake\",\"../../../../../../AndroidSDKs/cmake/3.10.2.4988404/share/cmake-3.10/Modules/CMakeCommonLanguageInclude.cmake\",\"../../../../../../AndroidSDKs/cmake/3.10.2.4988404/share/cmake-3.10/Modules/CMakeTestCXXCompiler.cmake\",\"../../../../../../AndroidSDKs/cmake/3.10.2.4988404/share/cmake-3.10/Modules/CMakeTestCompilerCommon.cmake\",\"../../../../../../AndroidSDKs/cmake/3.10.2.4988404/share/cmake-3.10/Modules/CMakeDetermineCompilerABI.cmake\",\"../../../../../../AndroidSDKs/cmake/3.10.2.4988404/share/cmake-3.10/Modules/CMakeParseImplicitLinkInfo.cmake\",\"../../../../../../AndroidSDKs/cmake/3.10.2.4988404/share/cmake-3.10/Modules/CMakeCXXCompilerABI.cpp\",\"../../../../../../AndroidSDKs/cmake/3.10.2.4988404/share/cmake-3.10/Modules/CMakeDetermineCompileFeatures.cmake\",\"../../../../../../AndroidSDKs/cmake/3.10.2.4988404/share/cmake-3.10/Modules/Internal/FeatureTesting.cmake\",\"../../../../../../AndroidSDKs/cmake/3.10.2.4988404/share/cmake-3.10/Modules/Compiler/Clang-CXX-FeatureTests.cmake\",\"../../../../../../AndroidSDKs/cmake/3.10.2.4988404/share/cmake-3.10/Modules/Compiler/Clang-CXX-TestableFeatures.cmake\",\"../../../../../../AndroidSDKs/cmake/3.10.2.4988404/share/cmake-3.10/Modules/Compiler/Clang-CXX-FeatureTests.cmake\",\"../../../../../../AndroidSDKs/cmake/3.10.2.4988404/share/cmake-3.10/Modules/Compiler/Clang-CXX-TestableFeatures.cmake\",\"../../../../../../AndroidSDKs/cmake/3.10.2.4988404/share/cmake-3.10/Modules/Compiler/Clang-CXX-FeatureTests.cmake\",\"../../../../../../AndroidSDKs/cmake/3.10.2.4988404/share/cmake-3.10/Modules/Compiler/Clang-CXX-TestableFeatures.cmake\",\"../../../../../../AndroidSDKs/cmake/3.10.2.4988404/share/cmake-3.10/Modules/Compiler/Clang-CXX-FeatureTests.cmake\",\"../../../../../../AndroidSDKs/cmake/3.10.2.4988404/share/cmake-3.10/Modules/Compiler/Clang-CXX-TestableFeatures.cmake\",\"../../../../../../AndroidSDKs/cmake/3.10.2.4988404/share/cmake-3.10/Modules/CMakeCXXCompiler.cmake.in\"]},{\"isCMake\":false,\"isTemporary\":false,\"sources\":[\"CMakeLists.txt\",\"../../../../../../AndroidSDKs/ndk/25.1.8937393/build/cmake/android.toolchain.cmake\",\"../../../../../../AndroidSDKs/ndk/25.1.8937393/build/cmake/android-legacy.toolchain.cmake\",\"../../../../../../AndroidSDKs/ndk/25.1.8937393/build/cmake/platforms.cmake\",\"../../../../../../AndroidSDKs/ndk/25.1.8937393/build/cmake/compiler_id.cmake\",\"../../../../../../AndroidSDKs/ndk/25.1.8937393/build/cmake/android.toolchain.cmake\",\"../../../.cxx/RelWithDebInfo/4w5464c5/prefab/arm64-v8a/prefab/lib/aarch64-linux-android/cmake/oboe/oboeConfigVersion.cmake\",\"../../../.cxx/RelWithDebInfo/4w5464c5/prefab/arm64-v8a/prefab/lib/aarch64-linux-android/cmake/oboe/oboeConfig.cmake\"]},{\"isCMake\":false,\"isTemporary\":true,\"sources\":[\"../../../.cxx/RelWithDebInfo/4w5464c5/arm64-v8a/CMakeFiles/3.10.2/CMakeSystem.cmake\",\"../../../.cxx/RelWithDebInfo/4w5464c5/arm64-v8a/CMakeFiles/3.10.2/CMakeCCompiler.cmake\",\"../../../.cxx/RelWithDebInfo/4w5464c5/arm64-v8a/CMakeFiles/3.10.2/CMakeCXXCompiler.cmake\",\"../../../.cxx/RelWithDebInfo/4w5464c5/arm64-v8a/CMakeFiles/feature_tests.c\",\"../../../.cxx/RelWithDebInfo/4w5464c5/arm64-v8a/CMakeFiles/feature_tests.c\",\"../../../.cxx/RelWithDebInfo/4w5464c5/arm64-v8a/CMakeFiles/feature_tests.c\",\"../../../.cxx/RelWithDebInfo/4w5464c5/arm64-v8a/CMakeFiles/3.10.2/CMakeCCompiler.cmake\",\"../../../.cxx/RelWithDebInfo/4w5464c5/arm64-v8a/CMakeFiles/feature_tests.cxx\",\"../../../.cxx/RelWithDebInfo/4w5464c5/arm64-v8a/CMakeFiles/feature_tests.cxx\",\"../../../.cxx/RelWithDebInfo/4w5464c5/arm64-v8a/CMakeFiles/feature_tests.cxx\",\"../../../.cxx/RelWithDebInfo/4w5464c5/arm64-v8a/CMakeFiles/feature_tests.cxx\",\"../../../.cxx/RelWithDebInfo/4w5464c5/arm64-v8a/CMakeFiles/3.10.2/CMakeCXXCompiler.cmake\"]}],\"cmakeRootDirectory\":\"C:/Users/Sawyer/Documents/Android Projects/AndroidSDKs/cmake/3.10.2.4988404/share/cmake-3.10\",\"cookie\":\"\",\"inReplyTo\":\"cmakeInputs\",\"sourceDirectory\":\"C:/Users/Sawyer/Documents/Android Projects/GlassGrapple/VRGrappleGame/app/src/main/cpp\",\"type\":\"reply\"}\n"
+
+CMAKE SERVER: message: "]== \"CMake Server\" ==]\n"
+
+CMAKE SERVER: message: "[== \"CMake Server\" ==[\n"
+
+CMAKE SERVER: message: "{\"type\":\"codemodel\"}\n"
+
+CMAKE SERVER: message: "]== \"CMake Server\" ==]\n"
+
+CMAKE SERVER: message: "\n"
+
+CMAKE SERVER: message: "[== \"CMake Server\" ==[\n"
+
+CMAKE SERVER: message: "{\"configurations\":[{\"name\":\"RelWithDebInfo\",\"projects\":[{\"buildDirectory\":\"C:/Users/Sawyer/Documents/Android Projects/GlassGrapple/VRGrappleGame/app/.cxx/RelWithDebInfo/4w5464c5/arm64-v8a\",\"name\":\"Project\",\"sourceDirectory\":\"C:/Users/Sawyer/Documents/Android Projects/GlassGrapple/VRGrappleGame/app/src/main/cpp\",\"targets\":[{\"artifacts\":[\"C:/Users/Sawyer/Documents/Android Projects/GlassGrapple/VRGrappleGame/app/.cxx/RelWithDebInfo/4w5464c5/arm64-v8a/libnative_app_glue.a\"],\"buildDirectory\":\"C:/Users/Sawyer/Documents/Android Projects/GlassGrapple/VRGrappleGame/app/.cxx/RelWithDebInfo/4w5464c5/arm64-v8a\",\"fileGroups\":[{\"compileFlags\":\"-g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security  -O2 -g -DNDEBUG -fPIC  \",\"defines\":[\"IMGUI_IMPL_OPENGL_ES2\",\"USE_OXR_HANDTRACK\",\"XR_OS_ANDROID\",\"XR_USE_GRAPHICS_API_OPENGL_ES\",\"XR_USE_PLATFORM_ANDROID\"],\"isGenerated\":false,\"language\":\"C\",\"sources\":[\"../../../../../../AndroidSDKs/ndk/25.1.8937393/sources/android/native_app_glue/android_native_app_glue.c\"]}],\"fullName\":\"libnative_app_glue.a\",\"linkerLanguage\":\"C\",\"name\":\"native_app_glue\",\"sourceDirectory\":\"C:/Users/Sawyer/Documents/Android Projects/GlassGrapple/VRGrappleGame/app/src/main/cpp\",\"sysroot\":\"C:/Users/Sawyer/Documents/Android Projects/AndroidSDKs/ndk/25.1.8937393/toolchains/llvm/prebuilt/windows-x86_64/sysroot\",\"type\":\"STATIC_LIBRARY\"},{\"artifacts\":[\"C:/Users/Sawyer/Documents/Android Projects/GlassGrapple/VRGrappleGame/app/build/intermediates/cxx/RelWithDebInfo/4w5464c5/obj/arm64-v8a/libopenxr_app.so\"],\"buildDirectory\":\"C:/Users/Sawyer/Documents/Android Projects/GlassGrapple/VRGrappleGame/app/.cxx/RelWithDebInfo/4w5464c5/arm64-v8a\",\"fileGroups\":[{\"compileFlags\":\"-g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security  -O2 -g -DNDEBUG -fPIC  \",\"defines\":[\"IMGUI_IMPL_OPENGL_ES2\",\"USE_OXR_HANDTRACK\",\"XR_OS_ANDROID\",\"XR_USE_GRAPHICS_API_OPENGL_ES\",\"XR_USE_PLATFORM_ANDROID\",\"openxr_app_EXPORTS\"],\"includePath\":[{\"path\":\"C:/Users/Sawyer/Documents/Android Projects/AndroidSDKs/ndk/25.1.8937393/sources/android/native_app_glue\"},{\"path\":\"C:/Users/Sawyer/Documents/Android Projects/GlassGrapple/VRGrappleGame/app/src/main/cpp/../../../../../third_party/OpenXR-SDK/include\"},{\"path\":\"C:/Users/Sawyer/Documents/Android Projects/GlassGrapple/VRGrappleGame/app/src/main/cpp/../../../../../third_party/OpenXR-SDK/src\"},{\"path\":\"C:/Users/Sawyer/Documents/Android Projects/GlassGrapple/VRGrappleGame/app/src/main/cpp/../../../../../common\"},{\"path\":\"C:/Users/Sawyer/Documents/Android Projects/GlassGrapple/VRGrappleGame/app/src/main/cpp/../../../../../common/winsys\"},{\"path\":\"C:/Users/Sawyer/Documents/Android Projects/GlassGrapple/VRGrappleGame/app/src/main/cpp/../../../../../third_party\"},{\"path\":\"C:/Users/Sawyer/Documents/Android Projects/GlassGrapple/VRGrappleGame/app/src/main/cpp/../../../../../third_party/imgui\"},{\"path\":\"C:/Users/Sawyer/Documents/Android Projects/GlassGrapple/VRGrappleGame/app/src/main/cpp/../../../../../third_party/imgui/examples\"},{\"isSystem\":true,\"path\":\"C:/Users/Sawyer/.gradle/caches/transforms-3/63a0432d4893379bc8692dca1284b91e/transformed/jetified-oboe-1.4.3/prefab/modules/oboe/include\"}],\"isGenerated\":false,\"language\":\"C\",\"sources\":[\"../../../../../common/util_egl.c\",\"../../../../../common/util_shader.c\",\"../../../../../common/util_matrix.c\",\"../../../../../common/util_render_target.c\",\"../../../../../common/util_debugstr.c\",\"../../../../../common/assertegl.c\",\"../../../../../common/assertgl.c\",\"../../../../../common/winsys/winsys_null.c\"]},{\"compileFlags\":\"-g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security   -std=gnu++11 -Wall -Werror -O2 -g -DNDEBUG -fPIC  \",\"defines\":[\"IMGUI_IMPL_OPENGL_ES2\",\"USE_OXR_HANDTRACK\",\"XR_OS_ANDROID\",\"XR_USE_GRAPHICS_API_OPENGL_ES\",\"XR_USE_PLATFORM_ANDROID\",\"openxr_app_EXPORTS\"],\"includePath\":[{\"path\":\"C:/Users/Sawyer/Documents/Android Projects/AndroidSDKs/ndk/25.1.8937393/sources/android/native_app_glue\"},{\"path\":\"C:/Users/Sawyer/Documents/Android Projects/GlassGrapple/VRGrappleGame/app/src/main/cpp/../../../../../third_party/OpenXR-SDK/include\"},{\"path\":\"C:/Users/Sawyer/Documents/Android Projects/GlassGrapple/VRGrappleGame/app/src/main/cpp/../../../../../third_party/OpenXR-SDK/src\"},{\"path\":\"C:/Users/Sawyer/Documents/Android Projects/GlassGrapple/VRGrappleGame/app/src/main/cpp/../../../../../common\"},{\"path\":\"C:/Users/Sawyer/Documents/Android Projects/GlassGrapple/VRGrappleGame/app/src/main/cpp/../../../../../common/winsys\"},{\"path\":\"C:/Users/Sawyer/Documents/Android Projects/GlassGrapple/VRGrappleGame/app/src/main/cpp/../../../../../third_party\"},{\"path\":\"C:/Users/Sawyer/Documents/Android Projects/GlassGrapple/VRGrappleGame/app/src/main/cpp/../../../../../third_party/imgui\"},{\"path\":\"C:/Users/Sawyer/Documents/Android Projects/GlassGrapple/VRGrappleGame/app/src/main/cpp/../../../../../third_party/imgui/examples\"},{\"isSystem\":true,\"path\":\"C:/Users/Sawyer/.gradle/caches/transforms-3/63a0432d4893379bc8692dca1284b91e/transformed/jetified-oboe-1.4.3/prefab/modules/oboe/include\"}],\"isGenerated\":false,\"language\":\"CXX\",\"sources\":[\"VRGame.cpp\",\"android_main.cpp\",\"app_engine.cpp\",\"render_imgui.cpp\",\"render_scene.cpp\",\"render_stage.cpp\",\"render_texplate.cpp\",\"shapes.cpp\",\"teapot.cpp\",\"../../../../../common/util_oxr.cpp\",\"../../../../../third_party/imgui/imgui.cpp\",\"../../../../../third_party/imgui/imgui_draw.cpp\",\"../../../../../third_party/imgui/imgui_widgets.cpp\",\"../../../../../third_party/imgui/examples/imgui_impl_opengl3.cpp\"]},{\"isGenerated\":false,\"sources\":[\"OboePlayer.h\",\"VRGame.h\",\"app_engine.h\",\"dr_mp3.h\",\"render_imgui.h\",\"render_scene.h\",\"render_stage.h\",\"render_texplate.h\",\"shapes.h\",\"teapot.h\"]}],\"fullName\":\"libopenxr_app.so\",\"linkFlags\":\"-Wl,--build-id=sha1 -Wl,--no-rosegment -Wl,--fatal-warnings -Wl,--gc-sections -Wl,--no-undefined -Qunused-arguments  -u ANativeActivity_onCreate\",\"linkLibraries\":\"-landroid libnative_app_glue.a \\\"C:\\\\Users\\\\Sawyer\\\\Documents\\\\Android Projects\\\\GlassGrapple\\\\VRGrappleGame\\\\app\\\\src\\\\main\\\\cpp\\\\..\\\\..\\\\..\\\\..\\\\..\\\\\\\\third_party\\\\Oculus_OpenXR_Mobile_SDK\\\\OpenXR\\\\Libs\\\\Android\\\\arm64-v8a\\\\RelWithDebInfo\\\\libopenxr_loader.so\\\" C:\\\\Users\\\\Sawyer\\\\.gradle\\\\caches\\\\transforms-3\\\\63a0432d4893379bc8692dca1284b91e\\\\transformed\\\\jetified-oboe-1.4.3\\\\prefab\\\\modules\\\\oboe\\\\libs\\\\android.arm64-v8a\\\\liboboe.so -lEGL -lGLESv3 -llog -latomic -lm\",\"linkerLanguage\":\"CXX\",\"name\":\"openxr_app\",\"sourceDirectory\":\"C:/Users/Sawyer/Documents/Android Projects/GlassGrapple/VRGrappleGame/app/src/main/cpp\",\"sysroot\":\"C:/Users/Sawyer/Documents/Android Projects/AndroidSDKs/ndk/25.1.8937393/toolchains/llvm/prebuilt/windows-x86_64/sysroot\",\"type\":\"SHARED_LIBRARY\"}]}]}],\"cookie\":\"\",\"inReplyTo\":\"codemodel\",\"type\":\"reply\"}\n"
+
+CMAKE SERVER: message: "]== \"CMake Server\" ==]\n"
+
+CMAKE SERVER: message: "Exiting generation of C:\\Users\\Sawyer\\Documents\\Android Projects\\GlassGrapple\\VRGrappleGame\\app\\.cxx\\RelWithDebInfo\\4w5464c5\\arm64-v8a\\compile_commands.json.bin normally"
+

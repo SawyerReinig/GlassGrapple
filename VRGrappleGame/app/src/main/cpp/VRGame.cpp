@@ -428,3 +428,10 @@ void applyGrappleSpring(Vec3 playerPos, Vec3 grapplePoint, Vec3 *playerVel, floa
 
 
 
+Vec3 ColorFrom255(float r, float g, float b){
+    return Vec3(r/255.0f, g/255.0f, b/255.0f);
+}
+
+
+
+
