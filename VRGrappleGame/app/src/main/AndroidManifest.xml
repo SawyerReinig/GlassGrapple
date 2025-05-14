@@ -25,6 +25,7 @@
 <!--    android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen"   this was the old theme-->
 
     <activity android:name="com.oxrapp.glesapp.OXRAppMainActivity"
+              android:exported="true"
               android:theme="@style/Theme.GlassGrapple.Splash"
               android:launchMode="singleTask"
               android:screenOrientation="landscape"

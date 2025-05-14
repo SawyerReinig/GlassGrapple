@@ -125,6 +125,10 @@ void copyAssetToExternal(AAssetManager* mgr, const char* assetName, const char* 
 int init_Sphere ();
 int draw_Sphere (Vec3 position, Vec3 col, float *matP, float *matV);
 Vec3 ColorFrom255(float r, float g, float b);
+float Mod(float NumberToMod, float Modder);
+float MirrorMod(float value, float max);
+
+
 
 #endif //OPENXR_GLES_APP_VRGAME_H
 

@@ -6,7 +6,7 @@
 
     <uses-sdk
         android:minSdkVersion="24"
-        android:targetSdkVersion="30" />
+        android:targetSdkVersion="33" />
 
     <!-- Tell the system this app requires OpenGL ES 3.2. -->
     <uses-feature
@@ -44,6 +44,7 @@
             android:name="com.oxrapp.glesapp.OXRAppMainActivity"
             android:configChanges="screenSize|screenLayout|orientation|keyboardHidden|keyboard|navigation|uiMode"
             android:excludeFromRecents="false"
+            android:exported="true"
             android:launchMode="singleTask"
             android:screenOrientation="landscape"
             android:theme="@style/Theme.GlassGrapple.Splash" >

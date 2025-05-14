@@ -502,7 +502,7 @@ int create_grapple (float *matP, float *matV, float *matM, Vec3 color, shader_ob
 //    glUniform3f (s_loc_color, color[0], color[1], color[2]);
 //    glUniform1f (s_loc_alpha, color[3]);
 
-    glUniform3f(glGetUniformLocation(rainbowShader.program, "viewPos"), playerPosOffset.x,playerPosOffset.y,playerPosOffset.z);        // 1 unit cells
+    glUniform3f(glGetUniformLocation(rainbowShader.program, "viewPos"), MirrorMod(playerPosOffset.x, 15.0f),playerPosOffset.y,playerPosOffset.z);        // 1 unit cells
     glUniform3f(glGetUniformLocation(rainbowShader.program, "envColor"), 0.8f,0.8f,0.8f);
 
     if (color.z < 1.0f)

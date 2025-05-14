@@ -151,3 +151,51 @@ invoke_imgui (scene_data_t *scn_data, int highscore)
 
     return 0;
 }
+
+
+static void render_Debug_gui (scene_data_t *scn_data)
+{
+    int win_w = 300;
+    int win_h = 0;
+    int win_x = 0;
+    int win_y = 0;
+
+    s_win_num = 0;
+
+    /* Show main window */
+    win_y += win_h;
+    win_h = 50;
+    ImGui::SetNextWindowPos (ImVec2(_X(win_x), _Y(win_y)), ImGuiCond_FirstUseEver);
+    ImGui::SetNextWindowSize(ImVec2(_X(win_w), _Y(win_h)), ImGuiCond_FirstUseEver);
+
+    win_y += win_h;
+    win_h = 60;
+    ImGui::SetNextWindowPos (ImVec2(_X(win_x), _Y(win_y)), ImGuiCond_FirstUseEver);
+    ImGui::SetNextWindowSize(ImVec2(_X(win_w), _Y(win_h)), ImGuiCond_FirstUseEver);
+    ImGui::Begin("View Info");
+    {
+//        ImGui::Text("Elapsed  : %d [ms]",    scn_data->elapsed_us / 1000);
+        ImGui::Text("FPS : %6.3f", 1000/scn_data->interval_ms);
+        const char* versionStr = (const char*)glGetString(GL_SHADING_LANGUAGE_VERSION);
+        ImGui::Text("GLSL Version: %s\n", versionStr);
+
+
+//        s_win_pos [s_win_num] = ImGui::GetWindowPos  ();
+//        s_win_size[s_win_num] = ImGui::GetWindowSize ();
+        s_win_num ++;
+    }
+    ImGui::End();
+}
+
+int invoke_Debug_imgui (scene_data_t *scn_data)
+{
+    ImGui_ImplOpenGL3_NewFrame();
+    ImGui::NewFrame();
+
+    render_Debug_gui (scn_data);
+
+    ImGui::Render();
+    ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
+
+    return 0;
+}

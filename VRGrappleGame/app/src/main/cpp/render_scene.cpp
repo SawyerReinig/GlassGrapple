@@ -64,10 +64,13 @@ Vec3 Brown = Vec3(0.929, 0.749, 0.522);
 
 
 //Vec3 worldPink = Vec3(0.756f, 0.1, 0.76f);
-Vec3 worldPink = Vec3(1.0f, 0.36, 0.63f);
-//Vec3 worldYellow = Vec3(0.99f, 0.91, 0.02f);
+//Vec3 worldPink = Vec3(1.0f, 0.36, 0.63f);
+//Vec3 worldYellow = VColorFrom255(255,255,20);
 //Vec3 worldYellow = ColorFrom255(229,150,51);
-Vec3 worldYellow = ColorFrom255(255,255,255);
+//Vec3 worldPink = ColorFrom255(255,90,190);
+Vec3 worldPink = ColorFrom255(255,90,190);
+
+Vec3 worldYellow = ColorFrom255(64,224,208);
 
 int lastPickedColor = 0;
 std::vector<Vec3> WallColors;
@@ -79,8 +82,12 @@ int numWalls = 150;
 
 int highscore = 0;
 
+float clippingplane = 0;
+
 //OboeSinePlayer* m_oboePlayer = new OboeSinePlayer ();
-OboeMp3Player* myPlayer;
+OboeMp3Player* pigSoundPlayer;
+OboeMp3Player* grappleSoundPlayer;
+
 OboeMp3Player* songPlayer;
 
 
@@ -136,7 +143,7 @@ void main(void)
 
 
 static char s_strFS[] = R"(
-precision mediump float;
+precision highp float;
 varying vec3 v_Position;
 varying vec4 v_color;
 
@@ -186,7 +193,7 @@ void main(void)
 
 
 static char RainbowFragmentShader[] = R"(
-precision mediump float;
+precision highp float;
 varying vec3 v_Position;
 varying vec4 v_color;
 
@@ -340,51 +347,156 @@ void main() {
 //    gl_FragColor = vec4(color, 1.0);
 //}                                                               )";
 
+//
+//static char GridVS[] = R"(
+//attribute vec4  a_Vertex;
+//attribute vec3  a_Normal;
+//uniform   mat4  u_PMVMatrix;
+//uniform   int   u_FaceID;
+//varying   vec3  v_Position;
+//uniform float time;
+//
+//
+//void main(void)
+//{
+//    vec4 pos = a_Vertex;
+//
+////    float scaleX = 1.0 + 0.02 * cos(3.0 * time);
+////    float scaleY = 1.0 + 0.02 * sin(2.0 * time);
+//
+////    // Apply scaling to x and y
+////    pos.x *= scaleX;
+////    pos.y *= scaleY;
+////    pos.z *= scaleY;
+////    pos.xy *= 1.0+0.4*cos(4.0*time);
+//
+//
+//    gl_Position = u_PMVMatrix * pos;
+//    v_Position = pos.xyz;
+//}
+//)";
+//
+//static char GridFragShader[] = R"(
+//#version 320 es
+//
+//precision highp float;
+//
+//varying vec3 v_Position;
+//
+//uniform float gridSize;      // Size of each cell
+//uniform float lineWidth;     // Thickness of lines
+//uniform vec3  lineColor;     // Color of the grid lines
+//uniform vec3  musicLineColor;     // Color of the grid lines when the music is at max
+//uniform float songBrightness;     // Loudness of the music
+//
+//
+//uniform vec3  bgColor;       // Color of background
+//uniform vec2 planeAxes;  // 0,1) for XY, (0,2) for XZ, (2,1) for ZY
+//
+//
+//float safeMod(float a, float b) {
+//    return a - b * floor(a / b);
+//}
+//vec2 safeMod(vec2 a, vec2 b) {
+//    return a - b * floor(a / b);
+//}
+////
+////void main()
+////{
+////    float coordA = v_Position[int(planeAxes.x)];
+////    float coordB = v_Position[int(planeAxes.y)];
+////
+////    vec3 color;
+////    float distA = safeMod(coordA, gridSize);
+////    float distB = safeMod(coordB, gridSize);
+////    if(distA < lineWidth || distB < lineWidth){
+////        color = mix(lineColor, musicLineColor, songBrightness);
+////    }
+////    else{
+////        discard;
+////    }
+////    gl_FragColor = vec4(color, 1.0);
+////
+////}
+//
+//void main()
+//{
+//    //try some kind of startup sequence, where you check the distance to the player, and increase that distance at the start.
+//
+//    float coordA = v_Position[int(planeAxes.x)];
+//    float coordB = v_Position[int(planeAxes.y)];
+//
+//    float distA = safeMod(coordA, gridSize);
+//    float distB = safeMod(coordB, gridSize);
+//
+//    // Anti-aliasing using screen-space derivatives
+//    //    float aa = fwidth(coordA);  // Could also use gridSize for a more constant width
+////    float aa = max(fwidth(coordA), fwidth(coordB));
+////    float test = fwidth(gl_FragCoord.x);  // Should now compile and work
+//
+//    float aa = 0.002;
+//
+//    float lineAA_A = smoothstep(lineWidth + aa, lineWidth - aa, distA);
+//    float lineAA_B = smoothstep(lineWidth + aa, lineWidth - aa, distB);
+//
+//    float lineStrength = max(lineAA_A, lineAA_B);
+//
+//    // Final color mix based on line strength
+//    vec3 color = mix(bgColor, mix(lineColor, musicLineColor, songBrightness), lineStrength);
+//
+//    gl_FragColor = vec4(color, 1.0);
+//}
+//)";
+
+
+//this is a test to see if version 320 works, which I am doing to get fwidth so I can so antialiasing.
 
 static char GridVS[] = R"(
-attribute vec4  a_Vertex;
-attribute vec3  a_Normal;
-uniform   mat4  u_PMVMatrix;
-uniform   int   u_FaceID;
-varying   vec3  v_Position;
+#version 320 es
+
+// Input attributes
+in vec4 a_Vertex;
+in vec3 a_Normal;
+
+// Uniforms
+uniform mat4 u_PMVMatrix;
+uniform int u_FaceID;
 uniform float time;
 
+// Output to fragment shader
+out vec3 v_Position;
 
 void main(void)
 {
     vec4 pos = a_Vertex;
 
-//    float scaleX = 1.0 + 0.02 * cos(3.0 * time);
-//    float scaleY = 1.0 + 0.02 * sin(2.0 * time);
-
-//    // Apply scaling to x and y
-//    pos.x *= scaleX;
-//    pos.y *= scaleY;
-//    pos.z *= scaleY;
-//    pos.xy *= 1.0+0.4*cos(4.0*time);
-
+    // Optional animation:
+    // pos.xy *= 1.0 + 0.4 * cos(4.0 * time);
 
     gl_Position = u_PMVMatrix * pos;
     v_Position = pos.xyz;
 }
 )";
 
+
 static char GridFragShader[] = R"(
+#version 320 es
+
 precision highp float;
 
-varying vec3 v_Position;
+// Updated for GLSL 3.20
+in vec3 v_Position;
+out vec4 fragColor;
 
-uniform float gridSize;      // Size of each cell
-uniform float lineWidth;     // Thickness of lines
-uniform vec3  lineColor;     // Color of the grid lines
+uniform float gridSize;           // Size of each cell
+uniform float lineWidth;          // Thickness of lines
+uniform vec3  lineColor;          // Color of the grid lines
 uniform vec3  musicLineColor;     // Color of the grid lines when the music is at max
 uniform float songBrightness;     // Loudness of the music
+uniform vec3  bgColor;            // Color of background
+uniform vec2  planeAxes;          // (0,1)=XY, (0,2)=XZ, (2,1)=ZY
 
-
-uniform vec3  bgColor;       // Color of background
-uniform vec2 planeAxes;  // 0,1) for XY, (0,2) for XZ, (2,1) for ZY
-
-
+// Safe mod helper
 float safeMod(float a, float b) {
     return a - b * floor(a / b);
 }
@@ -397,17 +509,65 @@ void main()
     float coordA = v_Position[int(planeAxes.x)];
     float coordB = v_Position[int(planeAxes.y)];
 
-    vec3 color;
-    if(safeMod(coordA, gridSize) < lineWidth || safeMod(coordB, gridSize) < lineWidth){
-        color = mix(lineColor, musicLineColor, songBrightness);
-    }
-    else{
-        discard;
-    }
-    gl_FragColor = vec4(color, 1.0);
+    float distA = safeMod(coordA, gridSize);
+    float distB = safeMod(coordB, gridSize);
 
+    // Use proper AA with fwidth
+    float aa = max(fwidth(coordA), fwidth(coordB));
+
+    float lineAA_A = smoothstep(lineWidth + aa, lineWidth - aa, distA);
+    float lineAA_B = smoothstep(lineWidth + aa, lineWidth - aa, distB);
+
+    float lineStrength = max(lineAA_A, lineAA_B);
+
+    vec3 color = mix(bgColor, mix(lineColor, musicLineColor, songBrightness), lineStrength);
+
+    fragColor = vec4(color, 1.0);
 }
 )";
+
+
+//
+//static char GridFragShader[] = R"(
+//precision highp float;
+//
+//varying vec3 v_Position;
+//
+//uniform float gridSize;      // Size of each cell
+//uniform float lineWidth;     // Thickness of lines
+//uniform vec3  lineColor;     // Color of the grid lines
+//uniform vec3  musicLineColor;     // Color of the grid lines when the music is at max
+//uniform float songBrightness;     // Loudness of the music
+//
+//
+//uniform vec3  bgColor;       // Color of background
+//uniform vec2 planeAxes;  // 0,1) for XY, (0,2) for XZ, (2,1) for ZY
+//
+//
+//float safeMod(float a, float b) {
+//    return a - b * floor(a / b);
+//}
+//vec2 safeMod(vec2 a, vec2 b) {
+//    return a - b * floor(a / b);
+//}
+//
+//void main()
+//{
+//    float coordA = v_Position[int(planeAxes.x)];
+//    float coordB = v_Position[int(planeAxes.y)];
+//
+//    vec3 color;
+//    if(safeMod(coordA, gridSize) < lineWidth || safeMod(coordB, gridSize) < lineWidth){
+//        color = mix(lineColor, musicLineColor, songBrightness);
+//    }
+//    else{
+//        discard;
+//    }
+//    gl_FragColor = vec4(color, 1.0);
+//
+//}
+//)";
+
 //
 //Shout out to the shader toy example that I made the base of my skybox:
 //https://www.shadertoy.com/view/lcSGDD
@@ -471,7 +631,7 @@ void reSpawn(){
     playerPosOffset = Vec3(0.0f,1.0f,0.0f);
     playerVel = Vec3(0.0f,0.0f,0.0f);
     initializeWalls(numWalls);
-    myPlayer->play();
+    pigSoundPlayer->play();
 
 
 //    songPlayer->play();
@@ -494,11 +654,17 @@ init_gles_scene ()
     init_dbgstr (0, 0);
     init_imgui (700, UI_WIN_H);
 
-    Mp3Sound SongLoop = loadMp3File("/sdcard/Android/data/com.DRHudooken.GlassGrapple/files/SynthSong.mp3");
+//    Mp3Sound SongLoop = loadMp3File("/sdcard/Android/data/com.DRHudooken.GlassGrapple/files/SynthSong.mp3");
+//    songPlayer = new OboeMp3Player(SongLoop.samples, SongLoop.sampleRate, SongLoop.channels);
+
+    Mp3Sound SongLoop = loadMp3File("/sdcard/Android/data/com.DRHudooken.GlassGrapple/files/WatrSong.mp3");
     songPlayer = new OboeMp3Player(SongLoop.samples, SongLoop.sampleRate, SongLoop.channels);
 
     Mp3Sound LoseSound = loadMp3File("/sdcard/Android/data/com.DRHudooken.GlassGrapple/files/PigstepLose.mp3");
-    myPlayer = new OboeMp3Player(LoseSound.samples, LoseSound.sampleRate, LoseSound.channels);
+    pigSoundPlayer = new OboeMp3Player(LoseSound.samples, LoseSound.sampleRate, LoseSound.channels);
+
+    Mp3Sound grappleSound = loadMp3File("/sdcard/Android/data/com.DRHudooken.GlassGrapple/files/glassBreak.mp3");
+    grappleSoundPlayer = new OboeMp3Player(grappleSound.samples, grappleSound.sampleRate, grappleSound.channels);
 
     create_render_target (&s_rtarget, 700, UI_WIN_H, RTARGET_COLOR);
     WallColors.push_back(Blue);
@@ -587,7 +753,7 @@ void DrawSkyboxFace(const GLfloat* vtx, float axis1, float axis2, float *mtxPV, 
     glUniform3f(glGetUniformLocation(sobj->program, "lineColor"), worldPink.x, worldPink.y, worldPink.z); // pink lines
     glUniform3f(glGetUniformLocation(sobj->program, "musicLineColor"), worldYellow.x, worldYellow.y, worldYellow.z); // yellow lines
 
-    glUniform3f(glGetUniformLocation(sobj->program, "bgColor"), 0.0f, 0.1f, 0.1f);  // dark background
+    glUniform3f(glGetUniformLocation(sobj->program, "bgColor"), 0.0f, 0.0f, 0.0f);  // dark background
 
     glUniform2f(glGetUniformLocation(sobj->program, "planeAxes"), axis1, axis2);  // For XZ plane
 
@@ -996,6 +1162,7 @@ int draw_uiplane (float *matPVMbase,
         sceneData.gl_render  = glGetString (GL_RENDERER);
         sceneData.viewport   = layerView.subImage.imageRect;
         invoke_imgui (&sceneData, highscore);
+        invoke_Debug_imgui(&sceneData);
     }
 
     /* restore FBO */
@@ -1087,7 +1254,13 @@ int render_gles_scene (XrCompositionLayerProjectionView &layerView,
     XrMatrix4x4f matP, matV, matC, matM, matPV, matPVM;
 
     /* Projection Matrix */
-    XrMatrix4x4f_CreateProjectionFov (&matP, GRAPHICS_OPENGL_ES, layerView.fov, 0.05f, 100.0f); //probably clipping planes
+    if(clippingplane < 10.0f){
+        clippingplane += 0.03f;
+    }
+    else if(clippingplane < 100.0f){
+        clippingplane += 1.0f;
+    }
+    XrMatrix4x4f_CreateProjectionFov (&matP, GRAPHICS_OPENGL_ES, layerView.fov, 0.05f, clippingplane); //probably clipping planes
 
     /* View Matrix (inverse of Camera matrix) */
     XrVector3f scale = {1.0f, 1.0f, 1.0f};
@@ -1181,6 +1354,9 @@ int render_gles_scene (XrCompositionLayerProjectionView &layerView,
         if(!leftGrapplePlaced){
             grapplePointLeft = findGrapplePoint(handPosLeft, -leftHandForward);
             leftGrapplePlaced = true;
+            if(sceneData.inputState.squeezeVal[0] < 0.8f){
+                grappleSoundPlayer->play();
+            }
         }
     }
     if((sceneData.inputState.squeezeVal[0] > 0.8f)){
@@ -1201,6 +1377,9 @@ int render_gles_scene (XrCompositionLayerProjectionView &layerView,
         if(!rightGrapplePlaced){
             grapplePointRight = findGrapplePoint(handPosRight, -rightHandForward);
             rightGrapplePlaced = true;
+            if(sceneData.inputState.squeezeVal[1] < 0.8f){
+                grappleSoundPlayer->play();
+            }
         }
     }
     if((sceneData.inputState.squeezeVal[1] > 0.8f)){

@@ -1,0 +1,102 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.DRHudooken.GlassGrapple"
+4    android:versionCode="1"
+5    android:versionName="1.0" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="24"
+9        android:targetSdkVersion="33" />
+10
+11    <!-- Tell the system this app requires OpenGL ES 3.2. -->
+12    <uses-feature
+12-->C:\Users\Sawyer\Documents\Android Projects\GlassGrapple\VRGrappleGame\app\src\main\AndroidManifest.xml:7:3-75
+13        android:glEsVersion="0x00030002"
+13-->C:\Users\Sawyer\Documents\Android Projects\GlassGrapple\VRGrappleGame\app\src\main\AndroidManifest.xml:7:17-49
+14        android:required="true" />
+14-->C:\Users\Sawyer\Documents\Android Projects\GlassGrapple\VRGrappleGame\app\src\main\AndroidManifest.xml:7:50-73
+15
+16    <!-- Tell the system this app works in either 3dof or 6dof mode -->
+17    <uses-feature
+17-->C:\Users\Sawyer\Documents\Android Projects\GlassGrapple\VRGrappleGame\app\src\main\AndroidManifest.xml:10:3-91
+18        android:name="android.hardware.vr.headtracking"
+18-->C:\Users\Sawyer\Documents\Android Projects\GlassGrapple\VRGrappleGame\app\src\main\AndroidManifest.xml:10:17-64
+19        android:required="true" />
+19-->C:\Users\Sawyer\Documents\Android Projects\GlassGrapple\VRGrappleGame\app\src\main\AndroidManifest.xml:10:65-88
+20    <uses-feature
+20-->C:\Users\Sawyer\Documents\Android Projects\GlassGrapple\VRGrappleGame\app\src\main\AndroidManifest.xml:11:3-87
+21        android:name="oculus.software.handtracking"
+21-->C:\Users\Sawyer\Documents\Android Projects\GlassGrapple\VRGrappleGame\app\src\main\AndroidManifest.xml:11:17-60
+22        android:required="true" />
+22-->C:\Users\Sawyer\Documents\Android Projects\GlassGrapple\VRGrappleGame\app\src\main\AndroidManifest.xml:11:61-84
+23
+24    <uses-permission android:name="com.oculus.permission.HAND_TRACKING" />
+24-->C:\Users\Sawyer\Documents\Android Projects\GlassGrapple\VRGrappleGame\app\src\main\AndroidManifest.xml:12:3-73
+24-->C:\Users\Sawyer\Documents\Android Projects\GlassGrapple\VRGrappleGame\app\src\main\AndroidManifest.xml:12:20-70
+25
+26    <application
+26-->C:\Users\Sawyer\Documents\Android Projects\GlassGrapple\VRGrappleGame\app\src\main\AndroidManifest.xml:14:3-45:17
+27        android:allowBackup="false"
+27-->C:\Users\Sawyer\Documents\Android Projects\GlassGrapple\VRGrappleGame\app\src\main\AndroidManifest.xml:15:7-34
+28        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+28-->[androidx.core:core:1.5.0] C:\Users\Sawyer\.gradle\caches\transforms-3\ae6a57a0b830d594206bcc8ee025c75d\transformed\core-1.5.0\AndroidManifest.xml:24:18-86
+29        android:debuggable="true"
+30        android:extractNativeLibs="false"
+31        android:hasCode="true"
+31-->C:\Users\Sawyer\Documents\Android Projects\GlassGrapple\VRGrappleGame\app\src\main\AndroidManifest.xml:18:7-29
+32        android:icon="@mipmap/ic_glassgrapple100"
+32-->C:\Users\Sawyer\Documents\Android Projects\GlassGrapple\VRGrappleGame\app\src\main\AndroidManifest.xml:16:7-48
+33        android:label="@string/app_name"
+33-->C:\Users\Sawyer\Documents\Android Projects\GlassGrapple\VRGrappleGame\app\src\main\AndroidManifest.xml:17:7-39
+34        android:testOnly="true" >
+35
+36        <!-- The activity is the built-in NativeActivity framework class. -->
+37        <!-- launchMode is set to singleTask because there should never be multiple copies of the app running. -->
+38        <!-- Theme.Black.NoTitleBar.Fullscreen gives solid black instead of a (bad stereoscopic) gradient on app transition. -->
+39        <!-- If targeting API level 24+, configChanges should additionally include 'density'. -->
+40        <!-- If targeting API level 24+, android:resizeableActivity="false" should be added. -->
+41        <!-- android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen"   this was the old theme -->
+42
+43        <activity
+43-->C:\Users\Sawyer\Documents\Android Projects\GlassGrapple\VRGrappleGame\app\src\main\AndroidManifest.xml:27:5-44:16
+44            android:name="com.oxrapp.glesapp.OXRAppMainActivity"
+44-->C:\Users\Sawyer\Documents\Android Projects\GlassGrapple\VRGrappleGame\app\src\main\AndroidManifest.xml:27:15-67
+45            android:configChanges="screenSize|screenLayout|orientation|keyboardHidden|keyboard|navigation|uiMode"
+45-->C:\Users\Sawyer\Documents\Android Projects\GlassGrapple\VRGrappleGame\app\src\main\AndroidManifest.xml:33:15-116
+46            android:excludeFromRecents="false"
+46-->C:\Users\Sawyer\Documents\Android Projects\GlassGrapple\VRGrappleGame\app\src\main\AndroidManifest.xml:32:15-49
+47            android:exported="true"
+47-->C:\Users\Sawyer\Documents\Android Projects\GlassGrapple\VRGrappleGame\app\src\main\AndroidManifest.xml:28:15-38
+48            android:launchMode="singleTask"
+48-->C:\Users\Sawyer\Documents\Android Projects\GlassGrapple\VRGrappleGame\app\src\main\AndroidManifest.xml:30:15-46
+49            android:screenOrientation="landscape"
+49-->C:\Users\Sawyer\Documents\Android Projects\GlassGrapple\VRGrappleGame\app\src\main\AndroidManifest.xml:31:15-52
+50            android:theme="@style/Theme.GlassGrapple.Splash" >
+50-->C:\Users\Sawyer\Documents\Android Projects\GlassGrapple\VRGrappleGame\app\src\main\AndroidManifest.xml:29:15-63
+51
+52            <!-- Tell NativeActivity the name of our .so -->
+53            <meta-data
+53-->C:\Users\Sawyer\Documents\Android Projects\GlassGrapple\VRGrappleGame\app\src\main\AndroidManifest.xml:35:7-36:47
+54                android:name="android.app.lib_name"
+54-->C:\Users\Sawyer\Documents\Android Projects\GlassGrapple\VRGrappleGame\app\src\main\AndroidManifest.xml:35:18-53
+55                android:value="openxr_app" />
+55-->C:\Users\Sawyer\Documents\Android Projects\GlassGrapple\VRGrappleGame\app\src\main\AndroidManifest.xml:36:18-44
+56
+57            <!-- This filter lets the apk show up as a launchable icon. -->
+58            <intent-filter>
+58-->C:\Users\Sawyer\Documents\Android Projects\GlassGrapple\VRGrappleGame\app\src\main\AndroidManifest.xml:39:7-43:23
+59                <action android:name="android.intent.action.MAIN" />
+59-->C:\Users\Sawyer\Documents\Android Projects\GlassGrapple\VRGrappleGame\app\src\main\AndroidManifest.xml:40:9-61
+59-->C:\Users\Sawyer\Documents\Android Projects\GlassGrapple\VRGrappleGame\app\src\main\AndroidManifest.xml:40:17-58
+60
+61                <category android:name="com.oculus.intent.category.VR" />
+61-->C:\Users\Sawyer\Documents\Android Projects\GlassGrapple\VRGrappleGame\app\src\main\AndroidManifest.xml:41:9-66
+61-->C:\Users\Sawyer\Documents\Android Projects\GlassGrapple\VRGrappleGame\app\src\main\AndroidManifest.xml:41:19-63
+62                <category android:name="android.intent.category.LAUNCHER" />
+62-->C:\Users\Sawyer\Documents\Android Projects\GlassGrapple\VRGrappleGame\app\src\main\AndroidManifest.xml:42:9-69
+62-->C:\Users\Sawyer\Documents\Android Projects\GlassGrapple\VRGrappleGame\app\src\main\AndroidManifest.xml:42:19-66
+63            </intent-filter>
+64        </activity>
+65    </application>
+66
+67</manifest>

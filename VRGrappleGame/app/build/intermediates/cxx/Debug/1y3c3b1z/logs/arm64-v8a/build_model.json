@@ -142,6 +142,7 @@
         "rootBuildGradleFolder": "C:\\Users\\Sawyer\\Documents\\Android Projects\\GlassGrapple\\VRGrappleGame",
         "sdkFolder": "C:\\Users\\Sawyer\\Documents\\Android Projects\\AndroidSDKs",
         "isBuildOnlyTargetAbiEnabled": true,
+        "ideBuildTargetAbi": "arm64-v8a,armeabi-v7a,armeabi",
         "isCmakeBuildCohabitationEnabled": false,
         "isPrefabEnabled": true
       },

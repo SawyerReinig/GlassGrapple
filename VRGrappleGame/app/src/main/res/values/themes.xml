@@ -15,9 +15,12 @@
 
     </style>
     <!-- Splash screen theme -->
-    <style name="Theme.GlassGrapple.Splash" parent="Theme.GlassGrapple.Splash">
-        <item name="android:windowSplashScreenBackground">@drawable/splash_screen</item>
-        <item name="android:splashScreenTheme">@style/Theme.OpenXR_GLES_app</item>
+    <style name="Theme.GlassGrapple.Splash" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">@android:color/white</item>
+        <!--        <item name="windowSplashScreenBackground">@drawable/splash_screen</item>-->
+        <item name="windowSplashScreenAnimatedIcon">@drawable/splash_screen</item>
+        <item name="windowSplashScreenAnimationDuration">0</item> <!-- Disable weird pulsing dots animation -->
+        <item name="postSplashScreenTheme">@style/Theme.OpenXR_GLES_app</item>
     </style>
 
 </resources>

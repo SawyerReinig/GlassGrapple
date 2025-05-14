@@ -432,6 +432,18 @@ Vec3 ColorFrom255(float r, float g, float b){
     return Vec3(r/255.0f, g/255.0f, b/255.0f);
 }
 
+float Mod(float NumberToMod, float Modder){
+    return std::fmod(NumberToMod, Modder);
+}
+
+
+float MirrorMod(float value, float max) {
+    float mod = fmod(value, max * 2.0f);
+    if (mod < max)
+        return mod;
+    else
+        return max * 2.0f - mod;
+}
 
 
 
