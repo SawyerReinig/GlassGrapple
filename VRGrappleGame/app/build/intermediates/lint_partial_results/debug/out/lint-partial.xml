@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<incidents format="6" by="lint 8.2.1" type="partial_results">
+    <map id="UnsafeIntentLaunch">
+            <map id="unprotected">
+                <entry
+                    name="com.oxrapp.glesapp.OXRAppMainActivity"
+                    boolean="true"/>
+            </map>
+    </map>
+    <map id="UnusedResources">
+        <location id="R.mipmap.ic_launcher"
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/mipmap-anydpi-v26/ic_launcher.xml"
+            line="2"
+            column="1"
+            startOffset="40"
+            endLine="5"
+            endColumn="17"
+            endOffset="268"/>
+        <location id="R.drawable.ic_launcher_foreground"
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/drawable-v24/ic_launcher_foreground.xml"
+            line="1"
+            column="1"
+            startOffset="0"
+            endLine="30"
+            endColumn="10"
+            endOffset="1731"/>
+        <entry
+            name="model"
+            string="attr[colorPrimaryVariant(R)],color[purple_200(U),black(U),teal_200(U),white(U),teal_700(U),purple_700(U),purple_500(U)],drawable[ic_launcher_foreground(D),splash_screen(U),ic_launcher_background(D),ic_launcher_foreground_1(E)],mipmap[ic_launcher_round(D),ic_glassgrapple100(U),ic_launcher(D),ic_glassgrapple(D)],string[app_name(U)],style[Theme_SplashScreen(R),Theme_GlassGrapple_Splash(U),Theme_OpenXR_GLES_app(U),Theme_MaterialComponents_DayNight_DarkActionBar(R)];8^b,9^d,c^a^d,e^a^d,12^11^9^13,13^14^7^6^4^3^5^2^0^1;;;"/>
+        <location id="R.mipmap.ic_glassgrapple"
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/mipmap-hdpi/ic_glassgrapple.webp"/>
+        <location id="R.drawable.ic_launcher_background"
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/drawable/ic_launcher_background.xml"
+            line="2"
+            column="1"
+            startOffset="40"
+            endLine="74"
+            endColumn="10"
+            endOffset="4939"/>
+        <location id="R.mipmap.ic_launcher_round"
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/mipmap-anydpi-v26/ic_launcher_round.xml"
+            line="2"
+            column="1"
+            startOffset="40"
+            endLine="5"
+            endColumn="17"
+            endOffset="268"/>
+    </map>
+
+</incidents>

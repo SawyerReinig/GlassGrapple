@@ -59,6 +59,7 @@ void android_main(struct android_app* app)
     app->onAppCmd = ProcessAndroidCmd;
 
     AppEngine engine (app);
+    __android_log_print(ANDROID_LOG_INFO, "GlassGrapple", "Calling InitOpenXR_GLES()");
     engine.InitOpenXR_GLES();
 
     while (app->destroyRequested == 0)

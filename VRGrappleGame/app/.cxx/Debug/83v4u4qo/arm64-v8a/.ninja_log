@@ -1,0 +1,26 @@
+# ninja log v5
+89	373	7690393853900086	CMakeFiles/openxr_app.dir/C_/Users/Sawyer/Documents/Android_Projects/GlassGrapple/common/winsys/winsys_null.c.o	c223209e4213906f
+77	429	7690393854368847	CMakeFiles/openxr_app.dir/C_/Users/Sawyer/Documents/Android_Projects/GlassGrapple/common/assertegl.c.o	ef52b9a9a021623b
+96	438	7690393854525033	CMakeFiles/openxr_app.dir/C_/Users/Sawyer/Documents/Android_Projects/GlassGrapple/common/assertgl.c.o	b910805cff7605cc
+64	468	7690393854837600	CMakeFiles/openxr_app.dir/C_/Users/Sawyer/Documents/Android_Projects/GlassGrapple/common/util_render_target.c.o	ee8ede13ac8f8a4d
+84	476	7690393854837600	CMakeFiles/openxr_app.dir/C_/Users/Sawyer/Documents/Android_Projects/GlassGrapple/common/util_debugstr.c.o	100c39637d37c11d
+59	488	7690393854837600	CMakeFiles/openxr_app.dir/C_/Users/Sawyer/Documents/Android_Projects/GlassGrapple/common/util_shader.c.o	650caf5a213f1ddc
+24	488	7690393854837600	CMakeFiles/openxr_app.dir/render_texplate.cpp.o	15a95bf314add400
+121	497	7690393855150015	CMakeFiles/openxr_app.dir/C_/Users/Sawyer/Documents/Android_Projects/GlassGrapple/third_party/imgui/examples/imgui_impl_opengl3.cpp.o	29c740fb1aecd712
+70	504	7690393855150015	CMakeFiles/openxr_app.dir/C_/Users/Sawyer/Documents/Android_Projects/GlassGrapple/common/util_matrix.c.o	82e2d321e2b11253
+48	505	7690393855150015	CMakeFiles/openxr_app.dir/teapot.cpp.o	b226b2dc74d55352
+29	539	7690393855618848	CMakeFiles/openxr_app.dir/shapes.cpp.o	d6e305dd7c9ab2b4
+35	647	7690393856556342	CMakeFiles/openxr_app.dir/C_/Users/Sawyer/Documents/Android_Projects/GlassGrapple/common/util_egl.c.o	8c6044269476a4eb
+53	759	7690393857650125	CMakeFiles/native_app_glue.dir/2008ff5e29cb19239e951b190aca3c0b/ndk/25.1.8937393/sources/android/native_app_glue/android_native_app_glue.c.o	ddb531cfeb8a638f
+759	866	7690393858587602	libnative_app_glue.a	8a154237ced75e6
+115	1079	7690393860931343	CMakeFiles/openxr_app.dir/C_/Users/Sawyer/Documents/Android_Projects/GlassGrapple/third_party/imgui/imgui_draw.cpp.o	2892a2e268d332b6
+8	1094	7690393861087596	CMakeFiles/openxr_app.dir/android_main.cpp.o	5a11f4e7ee194f76
+41	1245	7690393862650060	CMakeFiles/openxr_app.dir/C_/Users/Sawyer/Documents/Android_Projects/GlassGrapple/common/util_oxr.cpp.o	896e8fede37eef8e
+102	1286	7690393862962562	CMakeFiles/openxr_app.dir/C_/Users/Sawyer/Documents/Android_Projects/GlassGrapple/third_party/imgui/imgui.cpp.o	f09dc1f652a5f65e
+108	1332	7690393863431369	CMakeFiles/openxr_app.dir/C_/Users/Sawyer/Documents/Android_Projects/GlassGrapple/third_party/imgui/imgui_widgets.cpp.o	3d8f0ed4fa2634fa
+15	1451	7690393864681322	CMakeFiles/openxr_app.dir/render_imgui.cpp.o	7689cfcbc3bfac1e
+1	1501	7690393865150065	CMakeFiles/openxr_app.dir/VRGame.cpp.o	2da150f5f73c1e3d
+20	1584	7690393865931308	CMakeFiles/openxr_app.dir/render_stage.cpp.o	a991b2becada3d6b
+5	1601	7690393866243800	CMakeFiles/openxr_app.dir/app_engine.cpp.o	812afc01e3df5c57
+12	2032	7690393870517055	CMakeFiles/openxr_app.dir/render_scene.cpp.o	e025cf15c6568622
+2032	2163	7690393871783941	C:/Users/Sawyer/Documents/Android Projects/GlassGrapple/VRGrappleGame/app/build/intermediates/cxx/Debug/83v4u4qo/obj/arm64-v8a/libopenxr_app.so	16b557512344de1c

@@ -91,15 +91,21 @@ oxr_create_instance (void *appVM, void *appCtx)
     std::vector<const char*> extensions;
     extensions.push_back ("XR_KHR_android_create_instance");
     extensions.push_back ("XR_KHR_opengl_es_enable");
-#if defined (USE_OXR_HANDTRACK)
-    extensions.push_back (XR_EXT_HAND_TRACKING_EXTENSION_NAME);
-    extensions.push_back (XR_FB_HAND_TRACKING_MESH_EXTENSION_NAME);
-    extensions.push_back (XR_FB_HAND_TRACKING_AIM_EXTENSION_NAME);
-    extensions.push_back (XR_FB_HAND_TRACKING_CAPSULES_EXTENSION_NAME);
-#endif
-#if defined (USE_OXR_PASSTHROUGH)
-    extensions.push_back (XR_FB_PASSTHROUGH_EXTENSION_NAME);
-#endif
+    extensions.push_back ("XR_FB_display_refresh_rate");
+
+//#if defined (USE_OXR_HANDTRACK)
+//    extensions.push_back (XR_EXT_HAND_TRACKING_EXTENSION_NAME);
+//    extensions.push_back (XR_FB_HAND_TRACKING_MESH_EXTENSION_NAME);
+//    extensions.push_back (XR_FB_HAND_TRACKING_AIM_EXTENSION_NAME);
+//    extensions.push_back (XR_FB_HAND_TRACKING_CAPSULES_EXTENSION_NAME);
+//#endif
+//#if defined (USE_OXR_PASSTHROUGH)
+//    extensions.push_back (XR_FB_PASSTHROUGH_EXTENSION_NAME);
+//#endif
+
+    for (const auto& ext : extensions) {
+        __android_log_print(ANDROID_LOG_INFO, "GlassGrapple", "🧩 Requested extension: %s", ext);
+    }
 
     XrInstanceCreateInfoAndroidKHR ciAndroid = {XR_TYPE_INSTANCE_CREATE_INFO_ANDROID_KHR};
     ciAndroid.applicationVM       = appVM;
@@ -831,180 +837,180 @@ oxr_poll_events (XrInstance instance, XrSession session, bool *exit_loop, bool *
 /* ---------------------------------------------------------------------------- *
  *  Hand Trackers
  * ---------------------------------------------------------------------------- */
-#if defined (USE_OXR_HANDTRACK)
-int
-oxr_create_handtrackers (XrInstance instance, XrSession session,
-                         std::array<XrHandTrackerEXT, 2> &handTracker)
-{
-    PFN_xrCreateHandTrackerEXT xrCreateHandTrackerEXT;
-    xrGetInstanceProcAddr (instance, "xrCreateHandTrackerEXT",
-                           (PFN_xrVoidFunction *)&xrCreateHandTrackerEXT);
-
-    XrHandTrackerCreateInfoEXT ci = {XR_TYPE_HAND_TRACKER_CREATE_INFO_EXT};
-    ci.handJointSet = XR_HAND_JOINT_SET_DEFAULT_EXT;
-
-    ci.hand = XR_HAND_LEFT_EXT;
-    OXR_CHECK (xrCreateHandTrackerEXT (session, &ci, &handTracker[0]));
-
-    ci.hand = XR_HAND_RIGHT_EXT;
-    OXR_CHECK (xrCreateHandTrackerEXT (session, &ci, &handTracker[1]));
-
-    return 0;
-}
-
-
-XrHandJointLocationsEXT *
-oxr_create_handjoint_loc ()
-{
-    XrHandTrackingScaleFB         *scale    = new XrHandTrackingScaleFB {};
-    XrHandTrackingCapsulesStateFB *capsule  = new XrHandTrackingCapsulesStateFB {};
-    XrHandTrackingAimStateFB      *aim      = new XrHandTrackingAimStateFB {};
-    XrHandJointVelocitiesEXT      *vel      = new XrHandJointVelocitiesEXT {};
-    XrHandJointVelocityEXT        *vel_data = new XrHandJointVelocityEXT[XR_HAND_JOINT_COUNT_EXT] {};
-    XrHandJointLocationsEXT       *loc      = new XrHandJointLocationsEXT {};
-    XrHandJointLocationEXT        *loc_data = new XrHandJointLocationEXT[XR_HAND_JOINT_COUNT_EXT] {};
-
-    scale->type               = XR_TYPE_HAND_TRACKING_SCALE_FB;
-    scale->next               = nullptr;
-    scale->sensorOutput       = 1.0f;
-    scale->currentOutput      = 1.0f;
-    scale->overrideValueInput = 1.0f;
-    scale->overrideHandScale  = XR_FALSE;
-
-    capsule->type             = XR_TYPE_HAND_TRACKING_CAPSULES_STATE_FB;
-    capsule->next             = scale;
-
-    aim->type                 = XR_TYPE_HAND_TRACKING_AIM_STATE_FB;
-    aim->next                 = capsule;
-
-    vel->type                 = XR_TYPE_HAND_JOINT_VELOCITIES_EXT;
-    vel->next                 = aim;
-    vel->jointCount           = XR_HAND_JOINT_COUNT_EXT;
-    vel->jointVelocities      = vel_data;
-
-    loc->type                 = XR_TYPE_HAND_JOINT_LOCATIONS_EXT;
-    loc->next                 = vel;
-    loc->jointCount           = XR_HAND_JOINT_COUNT_EXT;
-    loc->jointLocations       = loc_data;
-
-    return loc;
-}
-
-
-int
-oxr_locate_handjoints (XrInstance instance, XrHandTrackerEXT handTracker,
-                       XrSpace bspace, XrTime time,
-                       XrHandJointLocationsEXT *loc)
-{
-    PFN_xrLocateHandJointsEXT xrLocateHandJointsEXT;
-    xrGetInstanceProcAddr (instance, "xrLocateHandJointsEXT",
-                           (PFN_xrVoidFunction *)&xrLocateHandJointsEXT);
-
-    XrHandJointsLocateInfoEXT info = {XR_TYPE_HAND_JOINTS_LOCATE_INFO_EXT};
-    info.baseSpace = bspace;
-    info.time      = time;
-
-    OXR_CHECK (xrLocateHandJointsEXT (handTracker, &info, loc));
-
-    if (loc->isActive)
-    {
-        LOGI ("Active\n");
-        XrHandJointLocationEXT *loc_array = loc->jointLocations;
-        XrSpaceLocationFlags isValid =
-                XR_SPACE_LOCATION_ORIENTATION_VALID_BIT | XR_SPACE_LOCATION_POSITION_VALID_BIT;
-
-        for (int i = 0; i < XR_HAND_JOINT_COUNT_EXT; i++)
-        {
-            if ((loc_array[i].locationFlags & isValid))
-            {
-                const XrPosef pose = loc_array[i].pose;
-                const float   rad  = loc_array[i].radius;
-                LOGI ("Joint[%d/%d]: POS(%f, %f, %f), RAD(%f)\n",
-                    i, XR_HAND_JOINT_COUNT_EXT,
-                    pose.position.x, pose.position.y, pose.position.z,
-                    rad);
-            }
-        }
-    }
-    else
-    {
-        LOGI ("inActive\n");
-    }
-    return 0;
-}
-
-#endif
+//#if defined (USE_OXR_HANDTRACK)
+//int
+//oxr_create_handtrackers (XrInstance instance, XrSession session,
+//                         std::array<XrHandTrackerEXT, 2> &handTracker)
+//{
+//    PFN_xrCreateHandTrackerEXT xrCreateHandTrackerEXT;
+//    xrGetInstanceProcAddr (instance, "xrCreateHandTrackerEXT",
+//                           (PFN_xrVoidFunction *)&xrCreateHandTrackerEXT);
+//
+//    XrHandTrackerCreateInfoEXT ci = {XR_TYPE_HAND_TRACKER_CREATE_INFO_EXT};
+//    ci.handJointSet = XR_HAND_JOINT_SET_DEFAULT_EXT;
+//
+//    ci.hand = XR_HAND_LEFT_EXT;
+//    OXR_CHECK (xrCreateHandTrackerEXT (session, &ci, &handTracker[0]));
+//
+//    ci.hand = XR_HAND_RIGHT_EXT;
+//    OXR_CHECK (xrCreateHandTrackerEXT (session, &ci, &handTracker[1]));
+//
+//    return 0;
+//}
+//
+//
+//XrHandJointLocationsEXT *
+//oxr_create_handjoint_loc ()
+//{
+//    XrHandTrackingScaleFB         *scale    = new XrHandTrackingScaleFB {};
+//    XrHandTrackingCapsulesStateFB *capsule  = new XrHandTrackingCapsulesStateFB {};
+//    XrHandTrackingAimStateFB      *aim      = new XrHandTrackingAimStateFB {};
+//    XrHandJointVelocitiesEXT      *vel      = new XrHandJointVelocitiesEXT {};
+//    XrHandJointVelocityEXT        *vel_data = new XrHandJointVelocityEXT[XR_HAND_JOINT_COUNT_EXT] {};
+//    XrHandJointLocationsEXT       *loc      = new XrHandJointLocationsEXT {};
+//    XrHandJointLocationEXT        *loc_data = new XrHandJointLocationEXT[XR_HAND_JOINT_COUNT_EXT] {};
+//
+//    scale->type               = XR_TYPE_HAND_TRACKING_SCALE_FB;
+//    scale->next               = nullptr;
+//    scale->sensorOutput       = 1.0f;
+//    scale->currentOutput      = 1.0f;
+//    scale->overrideValueInput = 1.0f;
+//    scale->overrideHandScale  = XR_FALSE;
+//
+//    capsule->type             = XR_TYPE_HAND_TRACKING_CAPSULES_STATE_FB;
+//    capsule->next             = scale;
+//
+//    aim->type                 = XR_TYPE_HAND_TRACKING_AIM_STATE_FB;
+//    aim->next                 = capsule;
+//
+//    vel->type                 = XR_TYPE_HAND_JOINT_VELOCITIES_EXT;
+//    vel->next                 = aim;
+//    vel->jointCount           = XR_HAND_JOINT_COUNT_EXT;
+//    vel->jointVelocities      = vel_data;
+//
+//    loc->type                 = XR_TYPE_HAND_JOINT_LOCATIONS_EXT;
+//    loc->next                 = vel;
+//    loc->jointCount           = XR_HAND_JOINT_COUNT_EXT;
+//    loc->jointLocations       = loc_data;
+//
+//    return loc;
+//}
+//
+//
+//int
+//oxr_locate_handjoints (XrInstance instance, XrHandTrackerEXT handTracker,
+//                       XrSpace bspace, XrTime time,
+//                       XrHandJointLocationsEXT *loc)
+//{
+//    PFN_xrLocateHandJointsEXT xrLocateHandJointsEXT;
+//    xrGetInstanceProcAddr (instance, "xrLocateHandJointsEXT",
+//                           (PFN_xrVoidFunction *)&xrLocateHandJointsEXT);
+//
+//    XrHandJointsLocateInfoEXT info = {XR_TYPE_HAND_JOINTS_LOCATE_INFO_EXT};
+//    info.baseSpace = bspace;
+//    info.time      = time;
+//
+//    OXR_CHECK (xrLocateHandJointsEXT (handTracker, &info, loc));
+//
+//    if (loc->isActive)
+//    {
+//        LOGI ("Active\n");
+//        XrHandJointLocationEXT *loc_array = loc->jointLocations;
+//        XrSpaceLocationFlags isValid =
+//                XR_SPACE_LOCATION_ORIENTATION_VALID_BIT | XR_SPACE_LOCATION_POSITION_VALID_BIT;
+//
+//        for (int i = 0; i < XR_HAND_JOINT_COUNT_EXT; i++)
+//        {
+//            if ((loc_array[i].locationFlags & isValid))
+//            {
+//                const XrPosef pose = loc_array[i].pose;
+//                const float   rad  = loc_array[i].radius;
+//                LOGI ("Joint[%d/%d]: POS(%f, %f, %f), RAD(%f)\n",
+//                    i, XR_HAND_JOINT_COUNT_EXT,
+//                    pose.position.x, pose.position.y, pose.position.z,
+//                    rad);
+//            }
+//        }
+//    }
+//    else
+//    {
+//        LOGI ("inActive\n");
+//    }
+//    return 0;
+//}
+//
+//#endif
 
 
 
 /* ---------------------------------------------------------------------------- *
  *  PassThrough
  * ---------------------------------------------------------------------------- */
-#if defined (USE_OXR_PASSTHROUGH)
-int
-oxr_create_passthrough_layer (XrInstance instance, XrSession session,
-                              XrPassthroughFB &passthrough,
-                              XrPassthroughLayerFB &ptLayer)
-{
-    PFN_xrCreatePassthroughFB xrCreatePassthroughFB;
-    xrGetInstanceProcAddr (instance, "xrCreatePassthroughFB",
-                           (PFN_xrVoidFunction *)&xrCreatePassthroughFB);
-
-    PFN_xrCreatePassthroughLayerFB xrCreatePassthroughLayerFB;
-    xrGetInstanceProcAddr (instance, "xrCreatePassthroughLayerFB",
-                           (PFN_xrVoidFunction *)&xrCreatePassthroughLayerFB);
-
-    {
-        XrPassthroughCreateInfoFB ci = {XR_TYPE_PASSTHROUGH_CREATE_INFO_FB};
-        OXR_CHECK (xrCreatePassthroughFB (session, &ci, &passthrough));
-    }
-
-    {
-        XrPassthroughLayerCreateInfoFB ci = {XR_TYPE_PASSTHROUGH_LAYER_CREATE_INFO_FB};
-        ci.passthrough = passthrough;
-        ci.purpose     = XR_PASSTHROUGH_LAYER_PURPOSE_RECONSTRUCTION_FB;
-        OXR_CHECK (xrCreatePassthroughLayerFB (session, &ci, &ptLayer));
-    }
-
-    return 0;
-}
-
-
-int
-oxr_start_passthrough (XrInstance instance, XrPassthroughFB passthrough)
-{
-    PFN_xrPassthroughStartFB xrPassthroughStartFB;
-    xrGetInstanceProcAddr (instance, "xrPassthroughStartFB",
-                           (PFN_xrVoidFunction *)&xrPassthroughStartFB);
-
-    OXR_CHECK (xrPassthroughStartFB (passthrough));
-
-    return 0;
-}
-
-
-int
-oxr_resume_passthrough_layer (XrInstance instance,
-                              XrPassthroughLayerFB ptLayer)
-{
-    PFN_xrPassthroughLayerResumeFB xrPassthroughLayerResumeFB;
-    xrGetInstanceProcAddr (instance, "xrPassthroughLayerResumeFB",
-                           (PFN_xrVoidFunction *)&xrPassthroughLayerResumeFB);
-
-    PFN_xrPassthroughLayerSetStyleFB xrPassthroughLayerSetStyleFB;
-    xrGetInstanceProcAddr (instance, "xrPassthroughLayerSetStyleFB",
-                           (PFN_xrVoidFunction *)&xrPassthroughLayerSetStyleFB);
-
-    OXR_CHECK (xrPassthroughLayerResumeFB (ptLayer));
-
-    XrPassthroughStyleFB style = {XR_TYPE_PASSTHROUGH_STYLE_FB};
-    style.textureOpacityFactor = 0.5f;
-    style.edgeColor            = {0.0f, 0.0f, 0.0f, 0.0f};
-    OXR_CHECK (xrPassthroughLayerSetStyleFB (ptLayer, &style));
-
-    return 0;
-}
-#endif
+//#if defined (USE_OXR_PASSTHROUGH)
+//int
+//oxr_create_passthrough_layer (XrInstance instance, XrSession session,
+//                              XrPassthroughFB &passthrough,
+//                              XrPassthroughLayerFB &ptLayer)
+//{
+//    PFN_xrCreatePassthroughFB xrCreatePassthroughFB;
+//    xrGetInstanceProcAddr (instance, "xrCreatePassthroughFB",
+//                           (PFN_xrVoidFunction *)&xrCreatePassthroughFB);
+//
+//    PFN_xrCreatePassthroughLayerFB xrCreatePassthroughLayerFB;
+//    xrGetInstanceProcAddr (instance, "xrCreatePassthroughLayerFB",
+//                           (PFN_xrVoidFunction *)&xrCreatePassthroughLayerFB);
+//
+//    {
+//        XrPassthroughCreateInfoFB ci = {XR_TYPE_PASSTHROUGH_CREATE_INFO_FB};
+//        OXR_CHECK (xrCreatePassthroughFB (session, &ci, &passthrough));
+//    }
+//
+//    {
+//        XrPassthroughLayerCreateInfoFB ci = {XR_TYPE_PASSTHROUGH_LAYER_CREATE_INFO_FB};
+//        ci.passthrough = passthrough;
+//        ci.purpose     = XR_PASSTHROUGH_LAYER_PURPOSE_RECONSTRUCTION_FB;
+//        OXR_CHECK (xrCreatePassthroughLayerFB (session, &ci, &ptLayer));
+//    }
+//
+//    return 0;
+//}
+//
+//
+//int
+//oxr_start_passthrough (XrInstance instance, XrPassthroughFB passthrough)
+//{
+//    PFN_xrPassthroughStartFB xrPassthroughStartFB;
+//    xrGetInstanceProcAddr (instance, "xrPassthroughStartFB",
+//                           (PFN_xrVoidFunction *)&xrPassthroughStartFB);
+//
+//    OXR_CHECK (xrPassthroughStartFB (passthrough));
+//
+//    return 0;
+//}
+//
+//
+//int
+//oxr_resume_passthrough_layer (XrInstance instance,
+//                              XrPassthroughLayerFB ptLayer)
+//{
+//    PFN_xrPassthroughLayerResumeFB xrPassthroughLayerResumeFB;
+//    xrGetInstanceProcAddr (instance, "xrPassthroughLayerResumeFB",
+//                           (PFN_xrVoidFunction *)&xrPassthroughLayerResumeFB);
+//
+//    PFN_xrPassthroughLayerSetStyleFB xrPassthroughLayerSetStyleFB;
+//    xrGetInstanceProcAddr (instance, "xrPassthroughLayerSetStyleFB",
+//                           (PFN_xrVoidFunction *)&xrPassthroughLayerSetStyleFB);
+//
+//    OXR_CHECK (xrPassthroughLayerResumeFB (ptLayer));
+//
+//    XrPassthroughStyleFB style = {XR_TYPE_PASSTHROUGH_STYLE_FB};
+//    style.textureOpacityFactor = 0.5f;
+//    style.edgeColor            = {0.0f, 0.0f, 0.0f, 0.0f};
+//    OXR_CHECK (xrPassthroughLayerSetStyleFB (ptLayer, &style));
+//
+//    return 0;
+//}
+//#endif
 
 
 /* ---------------------------------------------------------------------------- *

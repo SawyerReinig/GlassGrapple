@@ -176,6 +176,7 @@ static void render_Debug_gui (scene_data_t *scn_data)
     {
 //        ImGui::Text("Elapsed  : %d [ms]",    scn_data->elapsed_us / 1000);
         ImGui::Text("FPS : %6.3f", 1000/scn_data->interval_ms);
+
         const char* versionStr = (const char*)glGetString(GL_SHADING_LANGUAGE_VERSION);
         ImGui::Text("GLSL Version: %s\n", versionStr);
 

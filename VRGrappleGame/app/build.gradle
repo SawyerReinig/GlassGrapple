@@ -7,7 +7,7 @@ android {
     defaultConfig {
         namespace "com.DRHudooken.SawyerVRTeapot"  // <-- Replace with your package name
         applicationId "com.DRHudooken.GlassGrapple"
-        minSdk 24
+        minSdk 25    //I think this needs to be 24 to allow building to the quest 1.
         targetSdk 33
         versionCode 1
         versionName "1.0"
@@ -27,6 +27,8 @@ android {
     buildTypes {
         release {
             minifyEnabled false
+//            signingConfig signingConfigs.release
+            debuggable false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'),
                     'proguard-rules.pro'
         }

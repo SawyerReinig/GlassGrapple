@@ -3,6 +3,15 @@
 #include "app_engine.h"
 #include "render_scene.h"
 #include "VRGame.h"
+#include "Oculus_OpenXR_Mobile_SDK/SampleCommon/Src/Misc/Log.h"
+
+
+#include <android/log.h>
+
+#ifndef APP_TAG
+#define APP_TAG "GlassGrapple"  // Your custom tag for filtering
+#endif
+
 
 AppEngine::AppEngine (android_app* app)
     : m_app(app)
@@ -27,13 +36,17 @@ AppEngine::AndroidApp (void) const
 /* ---------------------------------------------------------------------------- *
  *  Initialize OpenXR with OpenGLES renderer
  * ---------------------------------------------------------------------------- */
-void 
-AppEngine::InitOpenXR_GLES ()
+void AppEngine::InitOpenXR_GLES ()
 {
+    __android_log_print(ANDROID_LOG_INFO, "GlassGrapple", "Step 1 in INIT");
+
     void *vm    = m_app->activity->vm;
     void *clazz = m_app->activity->clazz;
 
     oxr_initialize_loader (vm, clazz);
+
+
+    __android_log_print(ANDROID_LOG_INFO, "GlassGrapple", "Step 2 in INIT");
 
     m_instance = oxr_create_instance (vm, clazz);
     m_systemId = oxr_get_system (m_instance);
@@ -42,24 +55,70 @@ AppEngine::InitOpenXR_GLES ()
     oxr_confirm_gfx_requirements (m_instance, m_systemId);
 
     init_gles_scene ();
+    __android_log_print(ANDROID_LOG_INFO, "GlassGrapple", "Step 3 in INIT");
 
     m_session    = oxr_create_session (m_instance, m_systemId);
+
+
+
+    // Load the XR_FB_display_refresh_rate function pointers
+    PFN_xrEnumerateDisplayRefreshRatesFB xrEnumerateDisplayRefreshRatesFB = nullptr;
+    PFN_xrRequestDisplayRefreshRateFB xrRequestDisplayRefreshRateFB = nullptr;
+
+    xrGetInstanceProcAddr(m_instance, "xrEnumerateDisplayRefreshRatesFB",
+                          (PFN_xrVoidFunction*)&xrEnumerateDisplayRefreshRatesFB);
+    xrGetInstanceProcAddr(m_instance, "xrRequestDisplayRefreshRateFB",
+                          (PFN_xrVoidFunction*)&xrRequestDisplayRefreshRateFB);
+    __android_log_print(ANDROID_LOG_INFO, "GlassGrapple", "Step 4 in INIT");
+
+    if (xrEnumerateDisplayRefreshRatesFB && xrRequestDisplayRefreshRateFB) {
+        uint32_t rateCount = 0;
+        xrEnumerateDisplayRefreshRatesFB(m_session, 0, &rateCount, nullptr);
+        __android_log_print(ANDROID_LOG_INFO, "GlassGrapple", "📊 Available refresh rate count: %u", rateCount);
+
+        if (rateCount > 0) {
+            std::vector<float> rates(rateCount);
+            xrEnumerateDisplayRefreshRatesFB(m_session, rateCount, &rateCount, rates.data());
+
+            for (float rate : rates) {
+                __android_log_print(ANDROID_LOG_INFO, "GlassGrapple", "📈 Available refresh rate: %.1f Hz", rate);
+
+                if (fabs(rate - 120.0f) < 0.1f) {
+                    XrResult result = xrRequestDisplayRefreshRateFB(m_session, 120.0f);
+                    if (result == XR_SUCCESS) {
+                        __android_log_print(ANDROID_LOG_INFO, "GlassGrapple", "✅ Successfully requested 120 Hz refresh rate");
+                    } else {
+                        __android_log_print(ANDROID_LOG_INFO, "GlassGrapple", "⚠️ Failed to request 120 Hz: %d", result);
+                    }
+                }
+            }
+        }
+    } else {
+        __android_log_print(ANDROID_LOG_INFO, "GlassGrapple", "❌ Refresh rate extension functions not found.");
+    }
+        __android_log_print(ANDROID_LOG_INFO, "GlassGrapple", "🎯 Requested 120Hz refresh rate");
+
+
+
+
     m_appSpace   = oxr_create_ref_space (m_session, XR_REFERENCE_SPACE_TYPE_LOCAL);
     m_stageSpace = oxr_create_ref_space (m_session, XR_REFERENCE_SPACE_TYPE_STAGE);
     m_viewSpace  = oxr_create_ref_space (m_session, XR_REFERENCE_SPACE_TYPE_VIEW);
 
     m_viewSurface = oxr_create_viewsurface (m_instance, m_systemId, m_session);
+    __android_log_print(ANDROID_LOG_INFO, "GlassGrapple", "Step 5 in INIT");
 
     InitializeActions ();
 
-    oxr_create_handtrackers (m_instance, m_session, m_handTracker);
-    m_handJointLoc[0] = oxr_create_handjoint_loc ();
-    m_handJointLoc[1] = oxr_create_handjoint_loc ();
+//    oxr_create_handtrackers (m_instance, m_session, m_handTracker);
+//    m_handJointLoc[0] = oxr_create_handjoint_loc ();
+//    m_handJointLoc[1] = oxr_create_handjoint_loc ();
 
     m_runtime_name = oxr_get_runtime_name (m_instance);
     m_system_name  = oxr_get_system_name (m_instance, m_systemId);
 
     AAssetManager* mgr = m_app->activity->assetManager;
+    __android_log_print(ANDROID_LOG_INFO, "GlassGrapple", "Step 6 in INIT");
 
 //    copyAllMp3Assets(mgr, "com.DRHudooken.GlassGrapple");  // <-- Set the package name to find the assets: SET THIS
     copyAllAssets(mgr, "com.DRHudooken.GlassGrapple");
@@ -272,6 +331,9 @@ AppEngine::UpdateFrame()
 
     PollActions();
 
+
+
+
     RenderFrame();
 }
 
@@ -279,13 +341,135 @@ AppEngine::UpdateFrame()
 /* ------------------------------------------------------------------------------------ *
  *  RenderFrame (Frame/Layer/View)
  * ------------------------------------------------------------------------------------ */
-void
-AppEngine::RenderFrame()
+void AppEngine::RenderFrame()
 {
     std::vector<XrCompositionLayerBaseHeader*> all_layers;
 
     XrTime dpy_time, elapsed_us;
-    oxr_begin_frame (m_session, &dpy_time);
+    oxr_begin_frame(m_session, &dpy_time);
+
+    //testing other code to log errors better:
+    static int frameCount = 0;
+    static bool refreshRequested = false;
+
+    frameCount++;
+
+    if (!refreshRequested && frameCount >= 100) {
+        PFN_xrEnumerateDisplayRefreshRatesFB xrEnumerateDisplayRefreshRatesFB = nullptr;
+        PFN_xrRequestDisplayRefreshRateFB xrRequestDisplayRefreshRateFB = nullptr;
+        PFN_xrResultToString xrResultToString = nullptr;
+
+        xrGetInstanceProcAddr(m_instance, "xrEnumerateDisplayRefreshRatesFB", (PFN_xrVoidFunction*)&xrEnumerateDisplayRefreshRatesFB);
+        xrGetInstanceProcAddr(m_instance, "xrRequestDisplayRefreshRateFB", (PFN_xrVoidFunction*)&xrRequestDisplayRefreshRateFB);
+        xrGetInstanceProcAddr(m_instance, "xrResultToString", (PFN_xrVoidFunction*)&xrResultToString);
+
+        char resultStr[XR_MAX_RESULT_STRING_SIZE] = {0};
+
+        if (xrEnumerateDisplayRefreshRatesFB && xrRequestDisplayRefreshRateFB && xrResultToString) {
+            uint32_t count = 0;
+            XrResult countResult = xrEnumerateDisplayRefreshRatesFB(m_session, 0, &count, nullptr);
+            xrResultToString(m_instance, countResult, resultStr);
+            __android_log_print(ANDROID_LOG_INFO, "GlassGrapple", "📊 Rate count result: %s (%d), count = %u", resultStr, countResult, count);
+
+            if (count > 0) {
+                std::vector<float> rates(count);
+                XrResult listResult = xrEnumerateDisplayRefreshRatesFB(m_session, count, &count, rates.data());
+                xrResultToString(m_instance, listResult, resultStr);
+                __android_log_print(ANDROID_LOG_INFO, "GlassGrapple", "📊 Rate list result: %s (%d)", resultStr, listResult);
+
+                for (float rate : rates) {
+                    __android_log_print(ANDROID_LOG_INFO, "GlassGrapple", "📈 Available refresh rate: %.1f Hz", rate);
+                }
+            }
+
+            // ✅ Always try 120Hz request even if not enumerated
+            XrResult reqResult = xrRequestDisplayRefreshRateFB(m_session, 120.0f);
+            xrResultToString(m_instance, reqResult, resultStr);
+            __android_log_print(ANDROID_LOG_INFO, "GlassGrapple", "🎯 120Hz request result: %s (%d)", resultStr, reqResult);
+        } else {
+            __android_log_print(ANDROID_LOG_INFO, "GlassGrapple", "❌ Could not get function pointers for FB_refresh_rate or resultToString");
+        }
+
+        refreshRequested = true;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    //my code for seeing if 120hz is available after 5 frames
+//    static int frameCount = 0;
+//    static bool refreshRequested = false;
+//
+//    frameCount++;
+//
+//    if (!refreshRequested && frameCount >= 5) {
+//        PFN_xrEnumerateDisplayRefreshRatesFB xrEnumerateDisplayRefreshRatesFB = nullptr;
+//        PFN_xrRequestDisplayRefreshRateFB xrRequestDisplayRefreshRateFB = nullptr;
+//
+//        xrGetInstanceProcAddr(m_instance, "xrEnumerateDisplayRefreshRatesFB",
+//                              (PFN_xrVoidFunction*)&xrEnumerateDisplayRefreshRatesFB);
+//        xrGetInstanceProcAddr(m_instance, "xrRequestDisplayRefreshRateFB",
+//                              (PFN_xrVoidFunction*)&xrRequestDisplayRefreshRateFB);
+//
+//
+//        XrResult result = xrRequestDisplayRefreshRateFB(m_session, 120.0f);
+//
+//        char resultStr[XR_MAX_RESULT_STRING_SIZE] = {0};
+//        xrResultToString(m_instance, result, resultStr);
+//
+//        __android_log_print(ANDROID_LOG_INFO, "GlassGrapple",
+//                            "🎯 120Hz request result: %s (%d)", resultStr, result);
+//
+//
+//        if (xrEnumerateDisplayRefreshRatesFB && xrRequestDisplayRefreshRateFB) {
+//            uint32_t count = 0;
+//            XrResult countResult = xrEnumerateDisplayRefreshRatesFB(m_session, 0, &count, nullptr);
+//            xrResultToString(m_instance, countResult, resultStr);
+//            __android_log_print(ANDROID_LOG_INFO, "GlassGrapple",
+//                                "📊 Step 1: Get rate count → %s (%d), count=%u", resultStr, countResult, count);
+//
+//            std::vector<float> rates(count);
+//            xrEnumerateDisplayRefreshRatesFB(m_session, count, &count, rates.data());
+//
+//            for (float rate : rates) {
+//                __android_log_print(ANDROID_LOG_INFO, "GlassGrapple", "📈 Delayed Available refresh rate: %.1f Hz", rate);
+//                if (fabs(rate - 120.0f) < 0.1f) {
+//                    xrRequestDisplayRefreshRateFB(m_session, 120.0f);
+//                    if (result == XR_SUCCESS) {
+//                        __android_log_print(ANDROID_LOG_INFO, "GlassGrapple", "✅ Delayed 120 Hz set (delayed)");
+//                    } else {
+//                        __android_log_print(ANDROID_LOG_INFO, "GlassGrapple", "❌ Delayed Failed to request 120 Hz: %d", result);
+//                    }
+//                    break;
+//                }
+//            }
+//        }
+//        __android_log_print(ANDROID_LOG_INFO, "GlassGrapple", "🎯 Delayed Requested 120Hz refresh rate");
+//
+//        refreshRequested = true;
+//    }
+//    else{
+//        __android_log_print(ANDROID_LOG_INFO, "GlassGrapple", "📈 Waiting for frames before refresh: %d", frameCount);
+//
+//    }
+
+
+
+
+
+
+
 
     static XrTime init_time = -1;
     if (init_time < 0)
@@ -335,8 +519,8 @@ AppEngine::RenderLayer(XrTime dpy_time,
         xrLocateSpace (m_input.aimSpace[i],  m_stageSpace, dpy_time, &aimLoc[i]);
     }
 
-    oxr_locate_handjoints (m_instance, m_handTracker[0], m_stageSpace, dpy_time, m_handJointLoc[0]);
-    oxr_locate_handjoints (m_instance, m_handTracker[1], m_stageSpace, dpy_time, m_handJointLoc[1]);
+//    oxr_locate_handjoints (m_instance, m_handTracker[0], m_stageSpace, dpy_time, m_handJointLoc[0]);
+//    oxr_locate_handjoints (m_instance, m_handTracker[1], m_stageSpace, dpy_time, m_handJointLoc[1]);
 
     /* Render each view */
     for (uint32_t i = 0; i < viewCount; i++) {
@@ -359,7 +543,7 @@ AppEngine::RenderLayer(XrTime dpy_time,
         sceneData.handLoc       = handLoc;
         sceneData.aimLoc        = aimLoc;
         sceneData.inputState    = m_input;
-        sceneData.handJointLoc  = m_handJointLoc;
+//        sceneData.handJointLoc  = m_handJointLoc;
         render_gles_scene (layerViews[i], rtarget, viewLoc.pose, stageLoc.pose, sceneData);
 
         oxr_release_viewsurface (m_viewSurface[i]);

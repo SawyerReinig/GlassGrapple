@@ -78,8 +78,8 @@ private:
     std::string         m_runtime_name;
     std::string         m_system_name;
 
-    std::array<XrHandTrackerEXT,          2> m_handTracker;
-    std::array<XrHandJointLocationsEXT *, 2> m_handJointLoc;
+//    std::array<XrHandTrackerEXT,          2> m_handTracker;
+//    std::array<XrHandJointLocationsEXT *, 2> m_handJointLoc;
 
     void InitializeActions();
     void PollActions();

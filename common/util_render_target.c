@@ -135,7 +135,7 @@ get_render_target (render_target_t *rtarget)
     rtarget->width  = viewport[2];
     rtarget->height = viewport[3];
 
-    GLASSERT();
+//    GLASSERT();
 
     return 0;
 }

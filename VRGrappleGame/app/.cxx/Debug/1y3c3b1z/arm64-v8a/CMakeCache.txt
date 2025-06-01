@@ -129,7 +129,7 @@ CMAKE_LIBRARY_OUTPUT_DIRECTORY:UNINITIALIZED=C:\Users\Sawyer\Documents\Android P
 CMAKE_LINKER:FILEPATH=CMAKE_LINKER-NOTFOUND
 
 //make program
-CMAKE_MAKE_PROGRAM:FILEPATH=C:/Users/Sawyer/Documents/Android Projects/AndroidSDKs/cmake/3.10.2.4988404/bin/ninja.exe
+CMAKE_MAKE_PROGRAM:FILEPATH=C:/Users/Sawyer/DOCUME~1/ANDROI~1/ANDROI~2/cmake/3102~1.498/bin/ninja.exe
 
 //Flags used by the linker during the creation of modules.
 CMAKE_MODULE_LINKER_FLAGS:STRING=
@@ -210,8 +210,8 @@ CMAKE_SYSTEM_NAME:UNINITIALIZED=Android
 //No help, variable specified on the command line.
 CMAKE_SYSTEM_VERSION:UNINITIALIZED=24
 
-//The CMake toolchain file
-CMAKE_TOOLCHAIN_FILE:FILEPATH=C:/Users/Sawyer/Documents/Android Projects/AndroidSDKs/ndk/25.1.8937393/build/cmake/android.toolchain.cmake
+//No help, variable specified on the command line.
+CMAKE_TOOLCHAIN_FILE:UNINITIALIZED=C:\Users\Sawyer\Documents\Android Projects\AndroidSDKs\ndk\25.1.8937393\build\cmake\android.toolchain.cmake
 
 //If this value is on, makefiles will be generated without the
 // .SILENT directive, and all commands will be echoed to the console

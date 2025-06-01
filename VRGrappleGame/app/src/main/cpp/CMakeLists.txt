@@ -45,7 +45,8 @@ set(CMAKE_SHARED_LINKER_FLAGS
 add_library(openxr_loader SHARED IMPORTED)
 set_property(TARGET openxr_loader
      PROPERTY IMPORTED_LOCATION
-     ${OXR_LOADER_DIR}/OpenXR/Libs/Android/${ANDROID_ABI}/${CMAKE_BUILD_TYPE}/libopenxr_loader.so)
+#     ${OXR_LOADER_DIR}/OpenXR/Libs/Android/${ANDROID_ABI}/${CMAKE_BUILD_TYPE}/libopenxr_loader.so)
+        ${OXR_LOADER_DIR}/OpenXR/Libs/Android/${ANDROID_ABI}/Release/libopenxr_loader.so)
 
 # ------------------------------------------------------------------------
 #    oboe

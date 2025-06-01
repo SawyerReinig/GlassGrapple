@@ -30,7 +30,7 @@
       "artifactName": "openxr_app",
       "output": "C:\\Users\\Sawyer\\Documents\\Android Projects\\GlassGrapple\\VRGrappleGame\\app\\build\\intermediates\\cxx\\Debug\\1y3c3b1z\\obj\\arm64-v8a\\libopenxr_app.so",
       "runtimeFiles": [
-        "C:\\Users\\Sawyer\\Documents\\Android Projects\\GlassGrapple\\third_party\\Oculus_OpenXR_Mobile_SDK\\OpenXR\\Libs\\Android\\arm64-v8a\\Debug\\libopenxr_loader.so",
+        "C:\\Users\\Sawyer\\Documents\\Android Projects\\GlassGrapple\\third_party\\Oculus_OpenXR_Mobile_SDK\\OpenXR\\Libs\\Android\\arm64-v8a\\Release\\libopenxr_loader.so",
         "C:\\Users\\Sawyer\\.gradle\\caches\\transforms-3\\63a0432d4893379bc8692dca1284b91e\\transformed\\jetified-oboe-1.4.3\\prefab\\modules\\oboe\\libs\\android.arm64-v8a\\liboboe.so"
       ]
     },

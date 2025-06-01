@@ -9,7 +9,7 @@
 #include "teapot.h"
 
 #include "VRGame.h"
-//#include "VRGame.cpp"
+//#include "VRGame.cpp" 🧩
 
 
 #include "render_scene.h"
@@ -68,7 +68,9 @@ Vec3 Brown = Vec3(0.929, 0.749, 0.522);
 //Vec3 worldYellow = VColorFrom255(255,255,20);
 //Vec3 worldYellow = ColorFrom255(229,150,51);
 //Vec3 worldPink = ColorFrom255(255,90,190);
-Vec3 worldPink = ColorFrom255(255,90,190);
+//Vec3 worldPink = ColorFrom255(255,255,20);
+Vec3 worldPink = ColorFrom255(255,0,0);
+
 
 Vec3 worldYellow = ColorFrom255(64,224,208);
 
@@ -225,232 +227,7 @@ void main() {
 )";
 
 
-
-
-//I THINK I NEED TO TRY SUBTRACTING THE PLAYER POSITION FROM THE VERTEX SHADER, SO THE WALLS DON'T SLIDE WHEN MOVING!!!
-//static char SkyboxPlaneVertexShader[] = R"(
-//attribute vec4  a_Vertex;
-//attribute vec3  a_Normal;
-//uniform   mat4  u_PMVMatrix;
-//uniform   int   u_FaceID;
-//varying   vec3  v_Position;
-//
-//void main(void)
-//{
-////    a_Vertex.xyz = a_Vertex.xyz;
-//    gl_Position = u_PMVMatrix * a_Vertex;
-//
-//    //Because of the way the frag shader works. We esentailly need to trick the frag shader into thinking that it is actually along the Z plane.
-//    vec3 rotated = a_Vertex.xyz;
-//    if (u_FaceID == 0) { // Ceiling (+Y)
-//        rotated = vec3(a_Vertex.y, a_Vertex.z, a_Vertex.x);
-//    }
-//    else if (u_FaceID == 1) { // Floor (-Y)
-//        rotated = vec3(-a_Vertex.y, a_Vertex.z, a_Vertex.x);
-//    }
-//    else if (u_FaceID == 4) { // Right (+X)
-//        rotated = vec3(-a_Vertex.z, a_Vertex.y, a_Vertex.x);
-//    }
-//    else if (u_FaceID == 5) { // Left (-X)
-//        rotated = vec3(a_Vertex.z, a_Vertex.y, -a_Vertex.x);
-//    }
-//    v_Position = rotated;
-//}
-//)";
-
-
-
-//static char SkyboxPlaneFSCubes[] = R"(
-//precision highp float;
-//varying vec3 v_Position;
-//uniform float iTime;
-//uniform vec3 PlayerPos;
-//vec3 tempVertPos;
-//
-//float safeMod(float a, float b) {
-//    return a - b * floor(a / b);
-//}
-//vec2 safeMod(vec2 a, vec2 b) {
-//    return a - b * floor(a / b);
-//}
-//
-//float segment(vec2 p, vec2 a, vec2 b) {
-//    p -= a;
-//    b -= a;
-//    float d = dot(b, b);
-//    if (d < 0.0001) return length(p);
-//    return length(p - b * clamp(dot(p, b) / d, 0.0, 1.0));
-//}
-//
-//mat2 rot(float a) {
-//    float c = cos(a);
-//    float s = sin(a);
-//    return mat2(c, -s, s, c);
-//}
-//
-//float t;
-//vec2 T(vec3 p) {
-//    p.xy *= rot(-t);
-//    p.xz *= rot(0.785);
-//    p.yz *= rot(-0.625);
-//    return p.xy;
-//}
-//
-//float fastTanh(float x) {
-//    float e = exp(-2.0 * abs(x));
-//    float t = (1.0 - e) / (1.0 + e);
-//    return x < 0.0 ? -t : t;
-//}
-//
-//void main() {
-////    tempVertPos = v_Position;
-//    tempVertPos = v_Position - PlayerPos;
-//    vec2 U = tempVertPos.yz * 2.0;
-//    vec2 M = vec2(2.0, 2.3);
-//    vec2 I = floor(U / M) * M;
-//    vec3 color = vec3(0.0);
-//
-//    float angles[4];
-//    angles[0] = 0.0;
-//    angles[1] = 1.57;
-//    angles[2] = 3.14;
-//    angles[3] = 4.71;
-//
-//    for (int dx = -1; dx <= 1; dx++) {
-//        for (int dy = -1; dy <= 1; dy++) {
-//            vec2 offset = vec2(float(dx), float(dy)) * M;
-//            vec2 J = I + offset;
-//            vec2 X = J;
-//
-//            float check = safeMod(J.x / M.x, 2.0) + safeMod(J.y / M.y, 2.0);
-//            if (fract(check / 2.0) > 0.5) {
-//                X.y += 1.15;
-//            }
-//
-//            t = sin(-0.2 * (J.y) + safeMod(2.0 * iTime, 30.0)) * 0.785;
-//
-//            for (int i = 0; i < 4; i++) {
-//                float a = angles[i];
-//                vec3 A = vec3(cos(a), sin(a), 0.7);
-//                vec3 B = vec3(-A.y, A.x, 0.7);
-//                color += smoothstep(0.1, 0.0, segment(U - X, T(A), T(B)));
-//
-//                vec3 B2 = vec3(A.xy, -A.z);
-//                color += smoothstep(0.1, 0.0, segment(U - X, T(A), T(B2)));
-//
-//                A.z = -A.z; B.z = -B.z;
-//                color += smoothstep(0.1, 0.0, segment(U - X, T(A), T(B)));
-//            }
-//        }
-//    }
-//
-//    gl_FragColor = vec4(color, 1.0);
-//}                                                               )";
-
-//
-//static char GridVS[] = R"(
-//attribute vec4  a_Vertex;
-//attribute vec3  a_Normal;
-//uniform   mat4  u_PMVMatrix;
-//uniform   int   u_FaceID;
-//varying   vec3  v_Position;
-//uniform float time;
-//
-//
-//void main(void)
-//{
-//    vec4 pos = a_Vertex;
-//
-////    float scaleX = 1.0 + 0.02 * cos(3.0 * time);
-////    float scaleY = 1.0 + 0.02 * sin(2.0 * time);
-//
-////    // Apply scaling to x and y
-////    pos.x *= scaleX;
-////    pos.y *= scaleY;
-////    pos.z *= scaleY;
-////    pos.xy *= 1.0+0.4*cos(4.0*time);
-//
-//
-//    gl_Position = u_PMVMatrix * pos;
-//    v_Position = pos.xyz;
-//}
-//)";
-//
-//static char GridFragShader[] = R"(
-//#version 320 es
-//
-//precision highp float;
-//
-//varying vec3 v_Position;
-//
-//uniform float gridSize;      // Size of each cell
-//uniform float lineWidth;     // Thickness of lines
-//uniform vec3  lineColor;     // Color of the grid lines
-//uniform vec3  musicLineColor;     // Color of the grid lines when the music is at max
-//uniform float songBrightness;     // Loudness of the music
-//
-//
-//uniform vec3  bgColor;       // Color of background
-//uniform vec2 planeAxes;  // 0,1) for XY, (0,2) for XZ, (2,1) for ZY
-//
-//
-//float safeMod(float a, float b) {
-//    return a - b * floor(a / b);
-//}
-//vec2 safeMod(vec2 a, vec2 b) {
-//    return a - b * floor(a / b);
-//}
-////
-////void main()
-////{
-////    float coordA = v_Position[int(planeAxes.x)];
-////    float coordB = v_Position[int(planeAxes.y)];
-////
-////    vec3 color;
-////    float distA = safeMod(coordA, gridSize);
-////    float distB = safeMod(coordB, gridSize);
-////    if(distA < lineWidth || distB < lineWidth){
-////        color = mix(lineColor, musicLineColor, songBrightness);
-////    }
-////    else{
-////        discard;
-////    }
-////    gl_FragColor = vec4(color, 1.0);
-////
-////}
-//
-//void main()
-//{
-//    //try some kind of startup sequence, where you check the distance to the player, and increase that distance at the start.
-//
-//    float coordA = v_Position[int(planeAxes.x)];
-//    float coordB = v_Position[int(planeAxes.y)];
-//
-//    float distA = safeMod(coordA, gridSize);
-//    float distB = safeMod(coordB, gridSize);
-//
-//    // Anti-aliasing using screen-space derivatives
-//    //    float aa = fwidth(coordA);  // Could also use gridSize for a more constant width
-////    float aa = max(fwidth(coordA), fwidth(coordB));
-////    float test = fwidth(gl_FragCoord.x);  // Should now compile and work
-//
-//    float aa = 0.002;
-//
-//    float lineAA_A = smoothstep(lineWidth + aa, lineWidth - aa, distA);
-//    float lineAA_B = smoothstep(lineWidth + aa, lineWidth - aa, distB);
-//
-//    float lineStrength = max(lineAA_A, lineAA_B);
-//
-//    // Final color mix based on line strength
-//    vec3 color = mix(bgColor, mix(lineColor, musicLineColor, songBrightness), lineStrength);
-//
-//    gl_FragColor = vec4(color, 1.0);
-//}
-//)";
-
-
-//this is a test to see if version 320 works, which I am doing to get fwidth so I can so antialiasing.
-
+//Using version 320 to get fwidth so I can so antialiasing.
 static char GridVS[] = R"(
 #version 320 es
 
@@ -506,72 +283,37 @@ vec2 safeMod(vec2 a, vec2 b) {
 
 void main()
 {
-    float coordA = v_Position[int(planeAxes.x)];
-    float coordB = v_Position[int(planeAxes.y)];
 
-    float distA = safeMod(coordA, gridSize);
-    float distB = safeMod(coordB, gridSize);
+float coordA = v_Position[int(planeAxes.x)];
+float coordB = v_Position[int(planeAxes.y)];
 
-    // Use proper AA with fwidth
-    float aa = max(fwidth(coordA), fwidth(coordB));
+float dA = min(safeMod(coordA, gridSize), gridSize - safeMod(coordA, gridSize));
+float dB = min(safeMod(coordB, gridSize), gridSize - safeMod(coordB, gridSize));
 
-    float lineAA_A = smoothstep(lineWidth + aa, lineWidth - aa, distA);
-    float lineAA_B = smoothstep(lineWidth + aa, lineWidth - aa, distB);
+float glowSize = gridSize * 0.05;
+float aa = max(fwidth(coordA), fwidth(coordB));
 
-    float lineStrength = max(lineAA_A, lineAA_B);
+float glowA = exp(-pow(dA / glowSize, 1.04));
+float glowB = exp(-pow(dB / glowSize, 1.04));
 
-    vec3 color = mix(bgColor, mix(lineColor, musicLineColor, songBrightness), lineStrength);
+float coreA = smoothstep(lineWidth + aa, lineWidth - aa, dA);
+float coreB = smoothstep(lineWidth + aa, lineWidth - aa, dB);
 
-    fragColor = vec4(color, 1.0);
+float combinedA = max(coreA, glowA);
+float combinedB = max(coreB, glowB);
+
+float glowStrength = combinedA + combinedB;
+glowStrength = clamp(glowStrength, 0.0, 1.0);
+
+
+
+vec3 glowColor = mix(lineColor, musicLineColor, songBrightness);
+vec3 color = mix(bgColor, glowColor, glowStrength);
+
+fragColor = vec4(color, 1.0);
+
 }
 )";
-
-
-//
-//static char GridFragShader[] = R"(
-//precision highp float;
-//
-//varying vec3 v_Position;
-//
-//uniform float gridSize;      // Size of each cell
-//uniform float lineWidth;     // Thickness of lines
-//uniform vec3  lineColor;     // Color of the grid lines
-//uniform vec3  musicLineColor;     // Color of the grid lines when the music is at max
-//uniform float songBrightness;     // Loudness of the music
-//
-//
-//uniform vec3  bgColor;       // Color of background
-//uniform vec2 planeAxes;  // 0,1) for XY, (0,2) for XZ, (2,1) for ZY
-//
-//
-//float safeMod(float a, float b) {
-//    return a - b * floor(a / b);
-//}
-//vec2 safeMod(vec2 a, vec2 b) {
-//    return a - b * floor(a / b);
-//}
-//
-//void main()
-//{
-//    float coordA = v_Position[int(planeAxes.x)];
-//    float coordB = v_Position[int(planeAxes.y)];
-//
-//    vec3 color;
-//    if(safeMod(coordA, gridSize) < lineWidth || safeMod(coordB, gridSize) < lineWidth){
-//        color = mix(lineColor, musicLineColor, songBrightness);
-//    }
-//    else{
-//        discard;
-//    }
-//    gl_FragColor = vec4(color, 1.0);
-//
-//}
-//)";
-
-//
-//Shout out to the shader toy example that I made the base of my skybox:
-//https://www.shadertoy.com/view/lcSGDD
-
 
 float RandomFloat(float min, float max)
 {
@@ -663,7 +405,7 @@ init_gles_scene ()
     Mp3Sound LoseSound = loadMp3File("/sdcard/Android/data/com.DRHudooken.GlassGrapple/files/PigstepLose.mp3");
     pigSoundPlayer = new OboeMp3Player(LoseSound.samples, LoseSound.sampleRate, LoseSound.channels);
 
-    Mp3Sound grappleSound = loadMp3File("/sdcard/Android/data/com.DRHudooken.GlassGrapple/files/glassBreak.mp3");
+    Mp3Sound grappleSound = loadMp3File("/sdcard/Android/data/com.DRHudooken.GlassGrapple/files/synthcowbell.mp3");
     grappleSoundPlayer = new OboeMp3Player(grappleSound.samples, grappleSound.sampleRate, grappleSound.channels);
 
     create_render_target (&s_rtarget, 700, UI_WIN_H, RTARGET_COLOR);
@@ -680,35 +422,6 @@ init_gles_scene ()
 
     return 0;
 }
-
-
-
-
-//int draw_line (float *mtxPV, float *p0, float *p1, float *color)
-//{
-//    GLfloat floor_vtx[6];
-//    for (int i = 0; i < 3; i ++)
-//    {
-//        floor_vtx[0 + i] = p0[i];
-//        floor_vtx[3 + i] = p1[i];
-//    }
-//
-//    shader_obj_t *sobj = &s_sobj;
-//    glUseProgram (sobj->program);
-//
-//    glEnableVertexAttribArray (sobj->loc_vtx);
-//    glVertexAttribPointer (sobj->loc_vtx, 3, GL_FLOAT, GL_FALSE, 0, floor_vtx);
-//
-//    glDisableVertexAttribArray (sobj->loc_clr);
-//    glVertexAttrib4fv (sobj->loc_clr, color);
-//
-//    glUniformMatrix4fv (sobj->loc_mtx,  1, GL_FALSE, mtxPV);
-//
-//    glEnable (GL_DEPTH_TEST);
-//    glDrawArrays (GL_LINES, 0, 2);
-//
-//    return 0;
-//}
 
 int draw_line (float *mtxPV, const Vec3& p0, const Vec3& p1)
 {
@@ -749,7 +462,7 @@ void DrawSkyboxFace(const GLfloat* vtx, float axis1, float axis2, float *mtxPV, 
 
     //fragment shader uniforms
     glUniform1f(glGetUniformLocation(sobj->program, "gridSize"), 1.0f);        // 1 unit cells
-    glUniform1f(glGetUniformLocation(sobj->program, "lineWidth"), 0.05f);      // thin lines
+    glUniform1f(glGetUniformLocation(sobj->program, "lineWidth"), 0.04f);      // thin lines
     glUniform3f(glGetUniformLocation(sobj->program, "lineColor"), worldPink.x, worldPink.y, worldPink.z); // pink lines
     glUniform3f(glGetUniformLocation(sobj->program, "musicLineColor"), worldYellow.x, worldYellow.y, worldYellow.z); // yellow lines
 
@@ -1548,33 +1261,33 @@ int render_gles_scene (XrCompositionLayerProjectionView &layerView,
         GLASSERT();
     }
 
-#if 0
-    /* Axis of hand aim */
-    for (XrSpaceLocation loc : sceneData.aimLoc)
-    {
-        XrVector3f    scale = {0.1f, 0.1f, 0.1f};
-        XrVector3f    &pos  = loc.pose.position;
-        XrQuaternionf &qtn  = loc.pose.orientation;
-        XrMatrix4x4f_CreateTranslationRotationScale (&matM, &pos, &qtn, &scale);
-        draw_axis ((float *)&matP, (float *)&matV, (float *)&matM);
-        GLASSERT();
-    }
-#endif
+//#if 0
+//    /* Axis of hand aim */
+//    for (XrSpaceLocation loc : sceneData.aimLoc)
+//    {
+//        XrVector3f    scale = {0.1f, 0.1f, 0.1f};
+//        XrVector3f    &pos  = loc.pose.position;
+//        XrQuaternionf &qtn  = loc.pose.orientation;
+//        XrMatrix4x4f_CreateTranslationRotationScale (&matM, &pos, &qtn, &scale);
+//        draw_axis ((float *)&matP, (float *)&matV, (float *)&matM);
+//        GLASSERT();
+//    }
+//#endif
 
-    for (XrHandJointLocationsEXT *loc : sceneData.handJointLoc)
-    {
-        for (uint32_t i = 0; i < loc->jointCount; i ++)
-        {
-            XrVector3f    &pos  = loc->jointLocations[i].pose.position;
-            XrQuaternionf &qtn  = loc->jointLocations[i].pose.orientation;
-            float         rad   = loc->jointLocations[i].radius;
-            XrVector3f    scale = {rad, rad, rad};
-            XrMatrix4x4f_CreateTranslationRotationScale (&matM, &pos, &qtn, &scale);
-//            draw_axis ((float *)&matP, (float *)&matV, (float *)&matM);
-
-            GLASSERT();
-        }
-    }
+//    for (XrHandJointLocationsEXT *loc : sceneData.handJointLoc)
+//    {
+//        for (uint32_t i = 0; i < loc->jointCount; i ++)
+//        {
+//            XrVector3f    &pos  = loc->jointLocations[i].pose.position;
+//            XrQuaternionf &qtn  = loc->jointLocations[i].pose.orientation;
+//            float         rad   = loc->jointLocations[i].radius;
+//            XrVector3f    scale = {rad, rad, rad};
+//            XrMatrix4x4f_CreateTranslationRotationScale (&matM, &pos, &qtn, &scale);
+////            draw_axis ((float *)&matP, (float *)&matV, (float *)&matM);
+//
+//            GLASSERT();
+//        }
+//    }
 
 
     /* UI plane always view front */

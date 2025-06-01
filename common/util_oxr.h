@@ -105,23 +105,23 @@ bool        oxr_is_session_running ();
 int         oxr_poll_events (XrInstance instance, XrSession session, bool *exit_loop, bool *req_restart);
 
 
-#if defined (USE_OXR_HANDTRACK)
-int         oxr_create_handtrackers (XrInstance instance, XrSession session,
-                                     std::array<XrHandTrackerEXT, 2> &handTracker);
-XrHandJointLocationsEXT *
-            oxr_create_handjoint_loc ();
-int         oxr_locate_handjoints (XrInstance instance, XrHandTrackerEXT handTracker,
-                                   XrSpace bspace, XrTime time, XrHandJointLocationsEXT *loc);
-#endif
-
-
-#if defined (USE_OXR_PASSTHROUGH)
-int         oxr_create_passthrough_layer (XrInstance instance, XrSession session,
-                                          XrPassthroughFB &passthrough,
-                                          XrPassthroughLayerFB &ptlayer);
-int         oxr_start_passthrough (XrInstance instance, XrPassthroughFB passthrough);
-int         oxr_resume_passthrough_layer (XrInstance instance, XrPassthroughLayerFB ptLayer);
-#endif
+//#if defined (USE_OXR_HANDTRACK)
+//int         oxr_create_handtrackers (XrInstance instance, XrSession session,
+//                                     std::array<XrHandTrackerEXT, 2> &handTracker);
+//XrHandJointLocationsEXT *
+//            oxr_create_handjoint_loc ();
+//int         oxr_locate_handjoints (XrInstance instance, XrHandTrackerEXT handTracker,
+//                                   XrSpace bspace, XrTime time, XrHandJointLocationsEXT *loc);
+//#endif
+//
+//
+//#if defined (USE_OXR_PASSTHROUGH)
+//int         oxr_create_passthrough_layer (XrInstance instance, XrSession session,
+//                                          XrPassthroughFB &passthrough,
+//                                          XrPassthroughLayerFB &ptlayer);
+//int         oxr_start_passthrough (XrInstance instance, XrPassthroughFB passthrough);
+//int         oxr_resume_passthrough_layer (XrInstance instance, XrPassthroughLayerFB ptLayer);
+//#endif
 
 
 /* Error handling */

@@ -1,15 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          xmlns:tools="http://schemas.android.com/tools"
           android:versionCode="1"
-          android:versionName="1.0">
+          android:versionName="1.0"
+          android:installLocation="auto">
 
   <!-- Tell the system this app requires OpenGL ES 3.2. -->
   <uses-feature android:glEsVersion="0x00030002" android:required="true"/>
 
   <!-- Tell the system this app works in either 3dof or 6dof mode -->
+
   <uses-feature android:name="android.hardware.vr.headtracking" android:required="true" />
-  <uses-feature android:name="oculus.software.handtracking" android:required="true" />
-  <uses-permission android:name="com.oculus.permission.HAND_TRACKING" />
+<!--  <uses-feature android:name="com.oculus.permission.FOCUS_AWARE" android:required="true"/>-->
+
+  <!--  <uses-feature android:name="oculus.software.handtracking" android:required="true" />-->
+<!--  <uses-permission android:name="com.oculus.permission.HAND_TRACKING" />-->
 
   <application
       android:allowBackup="false"
@@ -17,12 +22,26 @@
       android:label="@string/app_name"
       android:hasCode="true">
 
+
     <!-- The activity is the built-in NativeActivity framework class. -->
     <!-- launchMode is set to singleTask because there should never be multiple copies of the app running. -->
     <!-- Theme.Black.NoTitleBar.Fullscreen gives solid black instead of a (bad stereoscopic) gradient on app transition. -->
     <!-- If targeting API level 24+, configChanges should additionally include 'density'. -->
     <!-- If targeting API level 24+, android:resizeableActivity="false" should be added. -->
 <!--    android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen"   this was the old theme-->
+    <!--Request 120Hz and optional performance hints -->
+    <meta-data android:name="com.oculus.vr.focusaware" android:value="true"/>
+    <meta-data android:name="android.hardware.vr.high_performance" android:value="true" />
+    <meta-data android:name="com.oculus.vr.app.freq" android:value="120" />
+    <meta-data android:name="com.oculus.vr.platform.minimalMode" android:value="false" />
+    <meta-data android:name="com.oculus.vr.enable360Mono" android:value="true" />
+<!--    <meta-data android:name="com.oculus.focusaware" android:value="true"/>-->
+
+<!--    <meta-data-->
+<!--        android:name="com.oculus.focusaware"-->
+<!--        android:value="true"-->
+<!--        tools:node="merge"-->
+<!--        tools:required="true" />-->
 
     <activity android:name="com.oxrapp.glesapp.OXRAppMainActivity"
               android:exported="true"
@@ -30,10 +49,13 @@
               android:launchMode="singleTask"
               android:screenOrientation="landscape"
               android:excludeFromRecents="false"
+              android:resizeableActivity="false"
               android:configChanges="screenSize|screenLayout|orientation|keyboardHidden|keyboard|navigation|uiMode">
       <!-- Tell NativeActivity the name of our .so -->
       <meta-data android:name="android.app.lib_name"
                  android:value="openxr_app" />
+
+
 
       <!-- This filter lets the apk show up as a launchable icon. -->
       <intent-filter>

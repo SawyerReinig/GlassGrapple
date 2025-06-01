@@ -1,0 +1,4 @@
+C:/Users/Sawyer/Documents/Android Projects/GlassGrapple/VRGrappleGame/app/.cxx/RelWithDebInfo/184k12t6/arm64-v8a/CMakeFiles/native_app_glue.dir
+C:/Users/Sawyer/Documents/Android Projects/GlassGrapple/VRGrappleGame/app/.cxx/RelWithDebInfo/184k12t6/arm64-v8a/CMakeFiles/openxr_app.dir
+C:/Users/Sawyer/Documents/Android Projects/GlassGrapple/VRGrappleGame/app/.cxx/RelWithDebInfo/184k12t6/arm64-v8a/CMakeFiles/edit_cache.dir
+C:/Users/Sawyer/Documents/Android Projects/GlassGrapple/VRGrappleGame/app/.cxx/RelWithDebInfo/184k12t6/arm64-v8a/CMakeFiles/rebuild_cache.dir
