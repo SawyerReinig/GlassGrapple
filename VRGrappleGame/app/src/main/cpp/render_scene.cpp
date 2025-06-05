@@ -32,6 +32,7 @@ static render_target_t  s_rtarget;
 
 static shader_obj_t     RainbowShader;
 static shader_obj_t     SkyboxShaderObject;
+static shader_obj_t     PortalShaderObject;
 
 
 // Engine and output mix
@@ -55,13 +56,21 @@ struct Wall{
 
 
 
-Vec3 Amber = Vec3(1.0f, 0.768f, 0.24f);
-Vec3 Pink = Vec3(0.937, 0.278, 0.435);
-Vec3 Blue = Vec3(0.106, 0.604, 0.667);
-Vec3 Green = Vec3(0.024, 0.839, 0.627);
-Vec3 Gray = Vec3(0.973, 1, 0.8);
-Vec3 Brown = Vec3(0.929, 0.749, 0.522);
+//Vec3 Amber = Vec3(1.0f, 0.768f, 0.24f);
+//Vec3 Pink = Vec3(0.937, 0.278, 0.435);
+//Vec3 Blue = Vec3(0.106, 0.604, 0.667);
+//Vec3 Green = Vec3(0.024, 0.839, 0.627);
+//Vec3 Gray = Vec3(0.973, 1, 0.8);
+//Vec3 Brown = Vec3(0.929, 0.749, 0.522);
 
+
+//testing out synthwave colors.
+Vec3 WallColor1 = ColorFrom255(255,153,0); //orange
+Vec3 WallColor2 = ColorFrom255(255,97,198); // pink
+Vec3 WallColor3 = ColorFrom255(92,236,207); // light blue
+Vec3 WallColor4 = ColorFrom255(244,255,9); //yellow
+//Vec3 Gray = ColorFrom255(255,0,0);
+//Vec3 Brown = ColorFrom255(255,0,0);
 
 //Vec3 worldPink = Vec3(0.756f, 0.1, 0.76f);
 //Vec3 worldPink = Vec3(1.0f, 0.36, 0.63f);
@@ -69,10 +78,8 @@ Vec3 Brown = Vec3(0.929, 0.749, 0.522);
 //Vec3 worldYellow = ColorFrom255(229,150,51);
 //Vec3 worldPink = ColorFrom255(255,90,190);
 //Vec3 worldPink = ColorFrom255(255,255,20);
-Vec3 worldPink = ColorFrom255(255,0,0);
-
-
-Vec3 worldYellow = ColorFrom255(64,224,208);
+Vec3 worldPink = WallColor1;
+Vec3 worldYellow = WallColor3;
 
 int lastPickedColor = 0;
 std::vector<Vec3> WallColors;
@@ -172,6 +179,7 @@ void main() {
     vec3 fresnelAndRainbow = mix(rainbowColor, envColor, 0.75);
     // Blend environment color into base color based on fresnel
     vec3 color = mix(fresnelAndRainbow, v_color.rgb, 0.5);  // 0.5 = strength of reflection
+//    vec3 color = mix(v_color.rgb, v_color.rgb, 1.0);  // removing the fresnel to see if I actually like it.
 
     gl_FragColor = vec4(color, 0.75);
 }
@@ -246,10 +254,6 @@ out vec3 v_Position;
 void main(void)
 {
     vec4 pos = a_Vertex;
-
-    // Optional animation:
-    // pos.xy *= 1.0 + 0.4 * cos(4.0 * time);
-
     gl_Position = u_PMVMatrix * pos;
     v_Position = pos.xyz;
 }
@@ -307,13 +311,120 @@ glowStrength = clamp(glowStrength, 0.0, 1.0);
 
 
 
-vec3 glowColor = mix(lineColor, musicLineColor, songBrightness);
+vec3 glowColor = mix(lineColor, musicLineColor, songBrightness-0.4);
 vec3 color = mix(bgColor, glowColor, glowStrength);
 
 fragColor = vec4(color, 1.0);
 
 }
 )";
+
+
+//we will see if this needs version 320, it might make adapting shader toy shaders easier
+static char PortalVS[] = R"(
+#version 320 es
+
+// Input attributes
+in vec4 a_Vertex;
+in vec3 a_Normal;
+
+// Uniforms
+uniform mat4 u_PMVMatrix;
+uniform int u_FaceID;
+uniform float time;
+
+// Output to fragment shader
+out vec3 v_Position;
+
+void main(void)
+{
+    vec4 pos = a_Vertex;
+
+    // Optional animation:
+    // pos.xy *= 1.0 + 0.4 * cos(4.0 * time);
+
+    gl_Position = u_PMVMatrix * pos;
+    v_Position = pos.xyz;
+}
+)";
+
+
+static char PortalFS[] = R"(
+#version 320 es
+
+precision highp float;
+
+// Updated for GLSL 3.20
+in vec3 v_Position;
+out vec4 fragColor;
+
+
+//left over from the grid, need to clean some of these up.
+uniform float time;
+uniform vec2 HolePos;
+
+uniform vec3  bgColor;            // Color of background
+uniform vec2  planeAxes;          // (0,1)=XY, (0,2)=XZ, (2,1)=ZY
+
+mat2 rotate2d(float angle){
+    return mat2(cos(angle),-sin(angle),
+                sin(angle),cos(angle));
+}
+
+float variation(vec2 v1, vec2 v2, float strength, float speed) {
+	return sin(
+        dot(normalize(v1) * speed, normalize(v2)) * strength + time * speed
+    ) / 100.0;
+}
+
+vec3 paintCircle (vec2 uv, vec2 center, float rad, float width) {
+
+    vec2 diff = center-uv;
+    float len = length(diff);
+
+    len += variation(diff, vec2(0.0, 1.0), 5.0, 5.0);
+    len -= variation(diff, vec2(1.0, 0.0), 5.0, 5.0);
+
+    float circle = smoothstep(rad-width, rad, len) - smoothstep(rad, rad+width, len);
+    return vec3(circle);
+}
+
+void main()
+{
+    //I wonder if it would be best to place this plane in the last hole in the walls.
+    float coordA = v_Position[int(planeAxes.x)];
+    float coordB = v_Position[int(planeAxes.y)];
+    vec2 uv_raw = vec2(coordA, coordB);
+
+    // Normalize to [0, 1]
+    vec2 planeMin = vec2(-15.0, -15.0);  // Set based on your plane bounds
+    vec2 planeMax = vec2(15.0, 15.0);
+    vec2 uv = (uv_raw - planeMin) / (planeMax - planeMin);
+
+    vec3 color;
+    float radius = 0.04;
+
+    vec2 center;
+    center.x = HolePos.x;
+    center.y = HolePos.y;
+
+    //paint color circle
+    color = paintCircle(uv, center, radius, 0.01);
+
+//    //color with gradient
+    vec2 v = rotate2d(time*40.0) * uv;
+    color *= vec3(v.x, v.y, 0.7-v.y*v.x);
+
+    //paint white circle
+    color += paintCircle(uv, center, radius, 0.001);
+
+    fragColor = vec4(color, 1.0);
+
+
+}
+)";
+
+
 
 float RandomFloat(float min, float max)
 {
@@ -331,7 +442,7 @@ int RandomInt(int min, int max)
 Vec3 PickFromPallet(){
     int index = 0;
     while (index == lastPickedColor){
-        index = RandomInt(0,5);
+        index = RandomInt(0,WallColors.size()-1);
     }
     lastPickedColor = index;
     return WallColors.at(index);
@@ -386,6 +497,7 @@ init_gles_scene ()
     generate_shader (&s_sobj, s_strVS, s_strFS);
     generate_shader (&RainbowShader, RainbowVertexShader, RainbowFragmentShader);
     generate_shader (&SkyboxShaderObject, GridVS, GridFragShader); //synth shader
+    generate_shader (&PortalShaderObject, PortalVS, PortalFS); //synth shader
 
 
 
@@ -409,12 +521,13 @@ init_gles_scene ()
     grappleSoundPlayer = new OboeMp3Player(grappleSound.samples, grappleSound.sampleRate, grappleSound.channels);
 
     create_render_target (&s_rtarget, 700, UI_WIN_H, RTARGET_COLOR);
-    WallColors.push_back(Blue);
-    WallColors.push_back(Brown);
-    WallColors.push_back(Pink);
-    WallColors.push_back(Gray);
-    WallColors.push_back(Green);
-    WallColors.push_back(Amber);
+    WallColors.push_back(WallColor1);
+    WallColors.push_back(WallColor2);
+    WallColors.push_back(WallColor3);
+    WallColors.push_back(WallColor4);
+//    WallColors.push_back(Brown);
+//    WallColors.push_back(Gray);
+
 
     initializeWalls(numWalls);
 
@@ -453,13 +566,51 @@ int draw_line (float *mtxPV, const Vec3& p0, const Vec3& p1)
     return 0;
 }
 
-void DrawSkyboxFace(const GLfloat* vtx, float axis1, float axis2, float *mtxPV, float currentTime, shader_obj_t *sobj, Vec3 playerpos)
+
+void DrawEndPortal(float *mtxPV, float currentTime, float xdist, float planex, float planey)
+{
+    shader_obj_t *sobj = &PortalShaderObject;
+    float s = 15;
+    float axis1 = 2.0;
+    float axis2 = 1.0;
+    float halfwallwidth = 0.5;
+    GLfloat vtx[] = {
+            xdist - halfwallwidth, 0,  s,
+            xdist - halfwallwidth, 0, -s,
+            xdist - halfwallwidth,  s,  s,
+            xdist - halfwallwidth,  s,  s,
+            xdist - halfwallwidth, 0, -s,
+            xdist - halfwallwidth,  s, -s
+    };
+    glUseProgram(sobj->program);
+
+    //should probably do the math for where do draw the portal in the hole, then pass that. rather than each pixel calculating it.
+
+
+    glUniform1f(glGetUniformLocation(sobj->program, "time"), currentTime);
+    glUniform2f(glGetUniformLocation(sobj->program, "HolePos"), planex, planey);
+
+    //fragment shader uniforms
+    glUniform3f(glGetUniformLocation(sobj->program, "bgColor"), 0.0f, 0.0f, 0.0f);  // dark background
+    glUniform2f(glGetUniformLocation(sobj->program, "planeAxes"), axis1, axis2);  // For XZ plane
+
+    glUniformMatrix4fv(sobj->loc_mtx, 1, GL_FALSE, mtxPV);
+
+    glEnableVertexAttribArray(sobj->loc_vtx);
+    glVertexAttribPointer(sobj->loc_vtx, 3, GL_FLOAT, GL_FALSE, 0, vtx);
+
+    glDisableVertexAttribArray(sobj->loc_clr);  // Assuming no color per vertex
+    glEnable(GL_DEPTH_TEST);
+
+    glDrawArrays(GL_TRIANGLES, 0, 6);
+}
+
+
+void DrawSkyboxFace(const GLfloat* vtx, float axis1, float axis2, float *mtxPV, float currentTime, shader_obj_t *sobj)
 {
     glUseProgram(sobj->program);
 
     glUniform1f(glGetUniformLocation(sobj->program, "time"), currentTime);
-    glUniform3f(glGetUniformLocation(sobj->program, "PlayerPos"), playerpos.x, playerpos.y, playerpos.z);
-
     //fragment shader uniforms
     glUniform1f(glGetUniformLocation(sobj->program, "gridSize"), 1.0f);        // 1 unit cells
     glUniform1f(glGetUniformLocation(sobj->program, "lineWidth"), 0.04f);      // thin lines
@@ -485,7 +636,7 @@ void DrawSkyboxFace(const GLfloat* vtx, float axis1, float axis2, float *mtxPV, 
 
 
 //draw the pink and music pulsing grid around the world.
-int DrawWallSkybox(float *mtxPV, float *color, scene_data_t sceneData, Vec3 playerPos)
+int DrawWallSkybox(float *mtxPV, float *color, scene_data_t sceneData)
 {
     float s = 15;
     float px = 0.0f, pz = 0.0f;
@@ -523,15 +674,6 @@ int DrawWallSkybox(float *mtxPV, float *color, scene_data_t sceneData, Vec3 play
             s + px,  s,  s + pz
     };
 
-//    GLfloat faceLeft[] = {
-//            -s + px, 0,  s + pz,
-//            -s + px, 0, -s + pz,
-//            -s + px,  s,  s + pz,
-//            -s + px,  s,  s + pz,
-//            -s + px, 0, -s + pz,
-//            -s + px,  s, -s + pz
-//    };
-//
     GLfloat faceBack[] = {
             -s-LL + px, 0,  s + pz,
             s + px, 0,  s + pz,
@@ -550,12 +692,12 @@ int DrawWallSkybox(float *mtxPV, float *color, scene_data_t sceneData, Vec3 play
             -s-LL + px,  s, -s + pz
     };
 
-    DrawSkyboxFace(faceCeiling, 0,2, mtxPV, currentTime, sobj, playerPos);
-    DrawSkyboxFace(faceFloor,   0,2, mtxPV, currentTime, sobj, playerPos);
-    DrawSkyboxFace(faceRight,   2,1, mtxPV, currentTime, sobj, playerPos);
-//    DrawSkyboxFace(faceLeft,    2,1, mtxPV, currentTime, sobj, playerPos);
-    DrawSkyboxFace(faceBack,    0,1, mtxPV, currentTime, sobj, playerPos);
-    DrawSkyboxFace(faceFront,   0,1, mtxPV, currentTime, sobj, playerPos);
+    DrawSkyboxFace(faceCeiling, 0,2, mtxPV, currentTime, sobj);
+    DrawSkyboxFace(faceFloor,   0,2, mtxPV, currentTime, sobj);
+    DrawSkyboxFace(faceRight,   2,1, mtxPV, currentTime, sobj);
+
+    DrawSkyboxFace(faceBack,    0,1, mtxPV, currentTime, sobj);
+    DrawSkyboxFace(faceFront,   0,1, mtxPV, currentTime, sobj);
 
     return 0;
 }
@@ -1013,7 +1155,11 @@ int render_gles_scene (XrCompositionLayerProjectionView &layerView,
         float WallColor[4] = {Walls[i].WallColor.x,Walls[i].WallColor.y,Walls[i].WallColor.z,1};
         DrawWallWithHole(matStage, WallColor, Walls[i].holeLeftRight, Walls[i].holeWidth, Walls[i].holeHeight, Walls[i].WallX); //draw each of the walls in the list
     }
-    DrawWallSkybox(matStage, floor, sceneData, playerPosOffset);
+    DrawWallSkybox(matStage, floor, sceneData);
+
+
+//    currently drawing the end portal
+    DrawEndPortal( matStage, currentTime, Walls[1].WallX, Walls[1].holeLeftRight, 0.75);
 
 
     /* Axis of global origin */

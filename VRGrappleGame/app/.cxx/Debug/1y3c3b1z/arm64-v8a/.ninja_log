@@ -21,10 +21,15 @@
 103	1034	769041708	CMakeFiles/openxr_app.dir/render_stage.cpp.o	68e66c8913824ebc
 15	915	769041708	CMakeFiles/openxr_app.dir/VRGame.cpp.o	8a69ecdf302ab519
 74	1136	769041708	CMakeFiles/openxr_app.dir/C_/Users/Sawyer/Documents/Android_Projects/GlassGrapple/third_party/imgui/imgui_widgets.cpp.o	565b416202de80b0
-10	1214	769053564	CMakeFiles/openxr_app.dir/render_scene.cpp.o	c02c940c14c197e7
-533	640	769054718	C:/Users/Sawyer/Documents/Android Projects/GlassGrapple/VRGrappleGame/app/build/intermediates/cxx/Debug/1y3c3b1z/obj/arm64-v8a/libopenxr_app.so	c74527a23ce60752
-1	533	769054718	CMakeFiles/openxr_app.dir/app_engine.cpp.o	5f069d299ea709a2
-0	152	769119138	build.ninja	8bea18ab8bfbca7
+3	1076	770787211	CMakeFiles/openxr_app.dir/render_scene.cpp.o	c02c940c14c197e7
+1076	1187	770787211	C:/Users/Sawyer/Documents/Android Projects/GlassGrapple/VRGrappleGame/app/build/intermediates/cxx/Debug/1y3c3b1z/obj/arm64-v8a/libopenxr_app.so	c74527a23ce60752
 2	543	769119139	CMakeFiles/openxr_app.dir/app_engine.cpp.o	5f069d299ea709a2
-543	886	769119139	C:/Users/Sawyer/Documents/Android Projects/GlassGrapple/VRGrappleGame/app/build/intermediates/cxx/Debug/1y3c3b1z/obj/arm64-v8a/libopenxr_app.so	c74527a23ce60752
-0	296	770512829	build.ninja	8bea18ab8bfbca7
+1	201	770787336	build.ninja	8bea18ab8bfbca7
+3	1066	770787337	CMakeFiles/openxr_app.dir/render_scene.cpp.o	c02c940c14c197e7
+1066	1179	770787337	C:/Users/Sawyer/Documents/Android Projects/GlassGrapple/VRGrappleGame/app/build/intermediates/cxx/Debug/1y3c3b1z/obj/arm64-v8a/libopenxr_app.so	c74527a23ce60752
+1	208	770787371	build.ninja	8bea18ab8bfbca7
+3	1088	770787372	CMakeFiles/openxr_app.dir/render_scene.cpp.o	c02c940c14c197e7
+1088	1216	770787372	C:/Users/Sawyer/Documents/Android Projects/GlassGrapple/VRGrappleGame/app/build/intermediates/cxx/Debug/1y3c3b1z/obj/arm64-v8a/libopenxr_app.so	c74527a23ce60752
+1	194	770787400	build.ninja	8bea18ab8bfbca7
+2	1090	770787402	CMakeFiles/openxr_app.dir/render_scene.cpp.o	c02c940c14c197e7
+1090	1216	770787402	C:/Users/Sawyer/Documents/Android Projects/GlassGrapple/VRGrappleGame/app/build/intermediates/cxx/Debug/1y3c3b1z/obj/arm64-v8a/libopenxr_app.so	c74527a23ce60752

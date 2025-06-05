@@ -134,32 +134,6 @@ void generate_sphere_data(float radius, int latDivs, int longDivs, GLfloat **ver
     *numIndices = indexCount;
 }
 
-void draw_sphere_vbo(Vec3 col) {
-    glUseProgram(s_sobj.program);
-
-    // Bind VBO for positions
-    glEnableVertexAttribArray(s_sobj.loc_vtx);
-    glBindBuffer(GL_ARRAY_BUFFER, sphere_vbo);
-    glVertexAttribPointer(s_sobj.loc_vtx, 3, GL_FLOAT, GL_FALSE, 0, 0);
-
-    // Bind VBO for normals
-    glEnableVertexAttribArray(s_sobj.loc_nrm);
-    glBindBuffer(GL_ARRAY_BUFFER, sphere_nbo);
-    glVertexAttribPointer(s_sobj.loc_nrm, 3, GL_FLOAT, GL_FALSE, 0, 0);
-
-    // Bind index buffer
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, sphere_ibo);
-
-    // Set color
-    glUniform3f(s_loc_color, col.x, col.y, col.z);
-
-    // Draw elements
-    glDrawElements(GL_TRIANGLES, sphereIndexCount, GL_UNSIGNED_SHORT, 0);
-
-    glDisableVertexAttribArray(s_sobj.loc_vtx);
-    glDisableVertexAttribArray(s_sobj.loc_nrm);
-}
-
 int init_Sphere() {
     glEnable(GL_DEPTH_TEST);
     glEnable(GL_CULL_FACE);
@@ -194,58 +168,6 @@ int init_Sphere() {
     glBufferData(GL_ELEMENT_ARRAY_BUFFER, numIndices * sizeof(GLushort), sphereIndices, GL_STATIC_DRAW);
 
     GLASSERT();
-    return 0;
-}
-
-int draw_Sphere (Vec3 pos, Vec3 col, float *matP, float *matV)
-{
-    float matM[16], matVM[16], matPVM[16], matVMI4x4[16], matVMI3x3[9];;
-
-    glUseProgram (s_sobj.program);
-    glEnableVertexAttribArray (s_sobj.loc_vtx);
-    glEnableVertexAttribArray (s_sobj.loc_nrm);
-
-    glBindBuffer (GL_ARRAY_BUFFER, sphere_vbo);
-    glVertexAttribPointer (s_sobj.loc_vtx, 3, GL_FLOAT, GL_FALSE, 0, 0);
-
-    glBindBuffer (GL_ARRAY_BUFFER, sphere_nbo);
-    glVertexAttribPointer (s_sobj.loc_nrm, 3, GL_FLOAT, GL_FALSE, 0, 0);
-
-    glBindBuffer (GL_ELEMENT_ARRAY_BUFFER, sphere_ibo);
-
-    matrix_identity (matM);
-//    matrix_translate (matM, 0.0f, 0.0f, -3.0f);
-//    matrix_rotate (matM, count*0.1f, 0.0f, 1.0f, 0.0f);
-    matrix_translate (matM, pos.x, pos.y, pos.z);
-    matrix_scale (matM, 0.02f, 0.02f, 0.02f);
-
-
-    matrix_mult (matVM, matV, matM);
-
-    matrix_copy (matVMI4x4, matVM);
-    matrix_invert   (matVMI4x4);
-    matrix_transpose(matVMI4x4);
-    matVMI3x3[0] = matVMI4x4[0];
-    matVMI3x3[1] = matVMI4x4[1];
-    matVMI3x3[2] = matVMI4x4[2];
-    matVMI3x3[3] = matVMI4x4[4];
-    matVMI3x3[4] = matVMI4x4[5];
-    matVMI3x3[5] = matVMI4x4[6];
-    matVMI3x3[6] = matVMI4x4[8];
-    matVMI3x3[7] = matVMI4x4[9];
-    matVMI3x3[8] = matVMI4x4[10];
-
-    matrix_mult (matPVM, matP, matVM);
-    glUniformMatrix4fv (ModelViewMatrix,   1, GL_FALSE, matVM );
-    glUniformMatrix4fv (s_loc_mtx_pmv,  1, GL_FALSE, matPVM);
-    glUniformMatrix3fv (s_loc_mtx_nrm,  1, GL_FALSE, matVMI3x3);
-
-    glUniform3f (s_loc_color, col.x, col.y, col.z);
-
-    glEnable (GL_DEPTH_TEST);
-    draw_sphere_vbo (col);
-
-    GLASSERT ();
     return 0;
 }
 
