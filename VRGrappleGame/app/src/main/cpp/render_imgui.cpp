@@ -19,7 +19,7 @@ static ImVec2 s_win_size[10];
 static ImVec2 s_win_pos [10];
 static int    s_win_num = 0;
 static ImVec2 s_mouse_pos;
-
+ImFont* synthFont;
 
 
 int
@@ -29,6 +29,16 @@ init_imgui (int win_w, int win_h)
     IMGUI_CHECKVERSION();
     ImGui::CreateContext();
     ImGuiIO& io = ImGui::GetIO();
+
+
+    synthFont = io.Fonts->AddFontFromFileTTF(
+            "/sdcard/Android/data/com.DRHudooken.GlassGrapple/files/Audiowide-Regular.ttf",
+            12.0f  // Font size in pixels
+    );
+
+    if (!synthFont) {
+        __android_log_print(ANDROID_LOG_ERROR, "IMGUI", "Failed to load Audiowide-Regular.ttf");
+    }
 
     // Setup Dear ImGui style
     ImGui::StyleColorsDark();
@@ -106,6 +116,8 @@ render_gui (scene_data_t *scn_data, int highscore)  // I Should try messing with
     win_h = 120;
     ImGui::SetNextWindowPos (ImVec2(_X(win_x), _Y(win_y)), ImGuiCond_FirstUseEver);
     ImGui::SetNextWindowSize(ImVec2(0, 0), ImGuiCond_FirstUseEver);
+//    ImGui::PushFont(synthFont);  // Use custom font
+
     ImGui::Begin(".....................................");
     {
         ImGui::SetWindowFontScale(2.5f);  // Scale 1.0 is default
@@ -125,6 +137,37 @@ render_gui (scene_data_t *scn_data, int highscore)  // I Should try messing with
         float HighscoreText_width = ImGui::CalcTextSize(HighscoreText).x;
         ImGui::SetCursorPosX((win_width - HighscoreText_width) * 0.5f);  // center
         ImGui::Text("%s", HighscoreText);
+
+
+
+
+        //testing out an outline:
+        ImDrawList* draw_list = ImGui::GetWindowDrawList();
+        ImVec2 pos = ImGui::GetCursorScreenPos();
+        const char* text = "Welcome To GLASS GRAPPLE";
+
+        // Glow color
+        ImU32 glow = IM_COL32(0, 255, 255, 150);  // Cyan with transparency
+
+        // Draw multiple offset layers (glow)
+        for (int dx = -1; dx <= 1; dx++) {
+            for (int dy = -1; dy <= 1; dy++) {
+                if (dx == 0 && dy == 0) continue;
+                draw_list->AddText(synthFont, 12.0f, ImVec2(pos.x + dx, pos.y + dy), glow, text);
+            }
+        }
+
+        // Top layer (main text)
+        draw_list->AddText(synthFont, 12.0f, pos, IM_COL32_WHITE, text);
+
+        // Move cursor down so next item doesn't overlap
+        ImGui::Dummy(ImVec2(0, synthFont->FontSize));
+
+
+
+
+
+
 
 
 
@@ -177,8 +220,7 @@ static void render_Debug_gui (scene_data_t *scn_data)
 //        ImGui::Text("Elapsed  : %d [ms]",    scn_data->elapsed_us / 1000);
         ImGui::Text("FPS : %6.3f", 1000/scn_data->interval_ms);
 
-        const char* versionStr = (const char*)glGetString(GL_SHADING_LANGUAGE_VERSION);
-        ImGui::Text("GLSL Version: %s\n", versionStr);
+        ImGui::Text("Press Left Menu Button For Menu");
 
 
 //        s_win_pos [s_win_num] = ImGui::GetWindowPos  ();

@@ -16,5 +16,5 @@
   --ndk-version ^
   25 ^
   --output ^
-  "C:\\Users\\Sawyer\\AppData\\Local\\Temp\\agp-prefab-staging16999448797774168626\\staged-cli-output" ^
+  "C:\\Users\\Sawyer\\AppData\\Local\\Temp\\agp-prefab-staging14605935548670228333\\staged-cli-output" ^
   "C:\\Users\\Sawyer\\.gradle\\caches\\transforms-3\\63a0432d4893379bc8692dca1284b91e\\transformed\\jetified-oboe-1.4.3\\prefab"

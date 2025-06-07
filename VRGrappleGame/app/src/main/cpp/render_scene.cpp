@@ -84,17 +84,22 @@ Vec3 worldYellow = WallColor3;
 int lastPickedColor = 0;
 std::vector<Vec3> WallColors;
 
-int oldNearestWall = 0;
 std::vector<Wall> Walls;
 float disBetweenWalls = 12.0f;
 int numWalls = 150;
 
 int highscore = 0;
+int currentLevel = 1;
+int totalNumLevels = 2;
+
+bool fastRespawn = false;
 
 float clippingplane = 0;
 
 //OboeSinePlayer* m_oboePlayer = new OboeSinePlayer ();
 OboeMp3Player* pigSoundPlayer;
+OboeMp3Player* winSoundPlayer;
+
 OboeMp3Player* grappleSoundPlayer;
 
 OboeMp3Player* songPlayer;
@@ -450,7 +455,7 @@ Vec3 PickFromPallet(){
 
 
 
-void initializeWalls(int NW){
+void initializeEndlessWalls(int NW){
     Walls.clear();
     Wall Wall0;
     Wall0.WallX = -15.0f;
@@ -471,7 +476,132 @@ void initializeWalls(int NW){
     }
 }
 
-void reSpawn(){
+
+//void initializeWallsFromCSV(const char* filename) {
+//    Walls.clear();
+//    int lineNumber = 0;
+//    std::string fullPath = "/sdcard/Android/data/com.DRHudooken.GlassGrapple/files/";
+//    fullPath += filename;
+//
+//    std::ifstream file(fullPath);
+//    if (!file.is_open()) {
+//        __android_log_print(ANDROID_LOG_ERROR, "WALLLOAD", "Failed to open %s", fullPath.c_str());
+//        return;
+//    }
+//
+//    std::string line;
+//    while (std::getline(file, line)) {
+//        std::istringstream ss(line);
+//        std::string value;
+//        std::vector<float> values;
+//
+//        while (std::getline(ss, value, ',')) {
+//            values.push_back(std::stof(value));
+//        }
+//
+//        if (values.size() >= 4) {
+//            Wall newWall;
+//            newWall.WallX = -15.0f - (disBetweenWalls * lineNumber);
+//            newWall.holeLeftRight = values[0];
+//            newWall.holeWidth = values[1];
+//            newWall.holeHeight = values[2];
+//            newWall.WallColor = PickFromPallet();  // keep this if color isn't in the CSV
+//            lineNumber++;
+//            Walls.push_back(newWall);
+//        }
+//    }
+//
+//    file.close();
+//    __android_log_print(ANDROID_LOG_INFO, "WALLLOAD", "Loaded %zu walls from %s", Walls.size(), filename);
+//}
+
+
+void initializeWallsFromCSV(const char* filename) {
+    Walls.clear();
+    Wall Wall0;
+    Wall0.WallX = -15.0f;
+    Wall0.holeLeftRight = 0.5f;
+    Wall0.holeWidth = 6.0f;
+    Wall0.holeHeight = 6.0f;
+    Wall0.WallColor = PickFromPallet();
+    Walls.push_back(Wall0);
+    int lineNumber = 1;
+
+    std::string fullPath = "/sdcard/Android/data/com.DRHudooken.GlassGrapple/files/";
+    fullPath += filename;
+
+    std::ifstream file(fullPath);
+    if (!file.is_open()) {
+        __android_log_print(ANDROID_LOG_ERROR, "WALLLOAD", "❌ Failed to open: %s", fullPath.c_str());
+        return;
+    }
+
+    std::string line;
+    while (std::getline(file, line)) {
+        std::istringstream ss(line);
+        std::string value;
+        std::vector<float> values;
+//
+        while (std::getline(ss, value, ',')) {
+            try {
+                values.push_back(std::stof(value));
+            } catch (...) {
+                __android_log_print(ANDROID_LOG_ERROR, "WALLLOAD", "⚠️ Invalid float in line: %s", line.c_str());
+            }
+        }
+
+        if (values.size() >= 3) {
+            Wall newWall;
+            newWall.WallX = -15.0f - (disBetweenWalls * lineNumber);
+            newWall.holeLeftRight = values[0];
+            newWall.holeWidth     = values[1];
+            newWall.holeHeight    = values[2];
+            newWall.WallColor     = PickFromPallet();
+            Walls.push_back(newWall);
+            lineNumber++;
+
+        } else {
+            __android_log_print(ANDROID_LOG_ERROR, "WALLLOAD", "⚠️ Skipped malformed line: %s", line.c_str());
+        }
+    }
+
+    file.close();
+    __android_log_print(ANDROID_LOG_INFO, "WALLLOAD", "✅ Loaded %zu walls from %s", Walls.size(), filename);
+}
+
+
+
+
+void BeatLevel(int JustBeatLevel){
+    rightGrapplePlaced = false;
+    leftGrapplePlaced = false;
+    grapplePointRight = handPosRight;
+    grapplePointLeft = handPosLeft;
+    playerPosOffset = Vec3(0.0f,1.0f,0.0f);
+    playerVel = Vec3(0.0f,0.0f,0.0f);
+    if(JustBeatLevel < totalNumLevels) {
+        std::stringstream ss;
+        ss << "Level" << (JustBeatLevel + 1) << ".csv";
+        std::string nextLevel = ss.str();
+        initializeWallsFromCSV(nextLevel.c_str());
+        currentLevel = JustBeatLevel + 1;
+        winSoundPlayer->play(); //change this to a winning sound
+        fastRespawn = true;
+        clippingplane = 3.0;
+    }
+    else{
+        fastRespawn = true;
+        clippingplane = 3.0;
+        //they have beat the game, so load endless mode.
+        currentLevel = 0;
+        initializeEndlessWalls(numWalls);
+        winSoundPlayer->play(); //maybe a bigger win sound for beating the game.
+    }
+
+}
+
+
+void reSpawn(int level){
     int score = roundf(-(playerPosOffset.x + 15) / disBetweenWalls);
     score = clamp(score, 0, (int)Walls.size() - 1);
     if(score > highscore){
@@ -483,11 +613,10 @@ void reSpawn(){
     grapplePointLeft = handPosLeft;
     playerPosOffset = Vec3(0.0f,1.0f,0.0f);
     playerVel = Vec3(0.0f,0.0f,0.0f);
-    initializeWalls(numWalls);
+    if(level == 0){
+        initializeEndlessWalls(numWalls);
+    }
     pigSoundPlayer->play();
-
-
-//    songPlayer->play();
 
 }
 //This Function was included in the library code
@@ -514,11 +643,15 @@ init_gles_scene ()
     Mp3Sound SongLoop = loadMp3File("/sdcard/Android/data/com.DRHudooken.GlassGrapple/files/WatrSong.mp3");
     songPlayer = new OboeMp3Player(SongLoop.samples, SongLoop.sampleRate, SongLoop.channels);
 
-    Mp3Sound LoseSound = loadMp3File("/sdcard/Android/data/com.DRHudooken.GlassGrapple/files/PigstepLose.mp3");
+    Mp3Sound LoseSound = loadMp3File("/sdcard/Android/data/com.DRHudooken.GlassGrapple/files/SimpleLose.mp3");
     pigSoundPlayer = new OboeMp3Player(LoseSound.samples, LoseSound.sampleRate, LoseSound.channels);
 
     Mp3Sound grappleSound = loadMp3File("/sdcard/Android/data/com.DRHudooken.GlassGrapple/files/synthcowbell.mp3");
     grappleSoundPlayer = new OboeMp3Player(grappleSound.samples, grappleSound.sampleRate, grappleSound.channels);
+
+    Mp3Sound WinSound = loadMp3File("/sdcard/Android/data/com.DRHudooken.GlassGrapple/files/SimpleWin.mp3");
+    winSoundPlayer = new OboeMp3Player(WinSound.samples, WinSound.sampleRate, WinSound.channels);
+
 
     create_render_target (&s_rtarget, 700, UI_WIN_H, RTARGET_COLOR);
     WallColors.push_back(WallColor1);
@@ -529,7 +662,8 @@ init_gles_scene ()
 //    WallColors.push_back(Gray);
 
 
-    initializeWalls(numWalls);
+//    initializeEndlessWalls(numWalls);
+    initializeWallsFromCSV("Level1.csv");
 
     songPlayer->loop();
 
@@ -583,9 +717,6 @@ void DrawEndPortal(float *mtxPV, float currentTime, float xdist, float planex, f
             xdist - halfwallwidth,  s, -s
     };
     glUseProgram(sobj->program);
-
-    //should probably do the math for where do draw the portal in the hole, then pass that. rather than each pixel calculating it.
-
 
     glUniform1f(glGetUniformLocation(sobj->program, "time"), currentTime);
     glUniform2f(glGetUniformLocation(sobj->program, "HolePos"), planex, planey);
@@ -947,28 +1078,12 @@ int DrawWallWithHole(float *mtxPV, float *color, float holePosNorm, float holeWi
         glUseProgram(sobj_Rainbow->program);
         //DRAWING THE INDICATING LINES FOR THE NEXT WALLS HOLE
         GLfloat indicatorHoleEdgeLines[] = {
-                // Front face
-//                wallX + disBetweenWalls, holeBottom, holeLeft, wallX + disBetweenWalls, holeBottom, holeRight,  // Bottom
-//                wallX+ disBetweenWalls, holeTopEdge, holeLeft, wallX+ disBetweenWalls, holeTopEdge, holeRight, // Top
-//                wallX+ disBetweenWalls, holeBottom, holeLeft, wallX+ disBetweenWalls, holeTopEdge, holeLeft,  // Left
-//                wallX+ disBetweenWalls, holeBottom, holeRight, wallX+ disBetweenWalls, holeTopEdge, holeRight, // Right
-
 
                 wallX , holeBottom, holeLeft, wallX , holeBottom, holeRight,  // Bottom
                 wallX, holeTopEdge, holeLeft, wallX, holeTopEdge, holeRight, // Top
                 wallX, holeBottom, holeLeft, wallX, holeTopEdge, holeLeft,  // Left
                 wallX, holeBottom, holeRight, wallX, holeTopEdge, holeRight, // Right
 
-                // Back face
-//                backWallX+ disBetweenWalls, holeBottom, holeLeft, backWallX+ disBetweenWalls, holeBottom, holeRight,
-//                backWallX+ disBetweenWalls, holeTopEdge, holeLeft, backWallX+ disBetweenWalls, holeTopEdge, holeRight,
-//                backWallX+ disBetweenWalls, holeBottom, holeLeft, backWallX+ disBetweenWalls, holeTopEdge, holeLeft,
-//                backWallX+ disBetweenWalls, holeBottom, holeRight, backWallX+ disBetweenWalls, holeTopEdge, holeRight,
-                // Connecting the hole squared
-//                wallX+ disBetweenWalls, holeBottom, holeLeft, backWallX+ disBetweenWalls, holeBottom, holeLeft,
-//                wallX+ disBetweenWalls, holeTopEdge, holeLeft, backWallX+ disBetweenWalls, holeTopEdge, holeLeft,
-//                wallX+ disBetweenWalls, holeTopEdge, holeRight, backWallX+ disBetweenWalls, holeTopEdge, holeRight,
-//                wallX+ disBetweenWalls, holeBottom, holeRight, backWallX+ disBetweenWalls, holeBottom, holeRight
         };
 
         //use the rainbow shader
@@ -1017,7 +1132,7 @@ int draw_uiplane (float *matPVMbase,
         sceneData.gl_render  = glGetString (GL_RENDERER);
         sceneData.viewport   = layerView.subImage.imageRect;
         invoke_imgui (&sceneData, highscore);
-        invoke_Debug_imgui(&sceneData);
+//        invoke_Debug_imgui(&sceneData);
     }
 
     /* restore FBO */
@@ -1046,13 +1161,6 @@ int draw_uiplane (float *matPVMbase,
     return 0;
 }
 
-//Vec3 getForwardVectorFromQuaternion(XrQuaternionf q) {
-//    Vec3 forward;
-//    forward.x = 2.0f * (q.x * q.z + q.w * q.y);
-//    forward.y = 2.0f * (q.y * q.z - q.w * q.x);
-//    forward.z = 1.0f - 2.0f * (q.x * q.x + q.y * q.y);
-//    return forward;
-//}
 
 Vec3 getDirectionFromQuaternion(XrQuaternionf q, Vec3 baseDirection)
 {
@@ -1109,11 +1217,17 @@ int render_gles_scene (XrCompositionLayerProjectionView &layerView,
     XrMatrix4x4f matP, matV, matC, matM, matPV, matPVM;
 
     /* Projection Matrix */
-    if(clippingplane < 10.0f){
+    if(clippingplane < 100.0f && fastRespawn){
+        clippingplane += 0.5f;
+    }
+    else if(clippingplane < 10.0f){
         clippingplane += 0.03f;
     }
     else if(clippingplane < 100.0f){
         clippingplane += 1.0f;
+    }
+    else{
+        fastRespawn = false;
     }
     XrMatrix4x4f_CreateProjectionFov (&matP, GRAPHICS_OPENGL_ES, layerView.fov, 0.05f, clippingplane); //probably clipping planes
 
@@ -1144,22 +1258,19 @@ int render_gles_scene (XrCompositionLayerProjectionView &layerView,
      * ------------------------------------------- */
     float *matStage = reinterpret_cast<float*>(&matPVM);
 
-//    draw_stage (matStage);
     float currentTime = sceneData.elapsed_us * 1e-7; // Convert microseconds to seconds
     float t = currentTime - floor(currentTime);       // 0 → 1
     float pingPong = fabs(1.0f - 2.0f * t);            // 0 → 1 → 0
     float floor[4] = {0.6,pingPong,pingPong,0.5};
 
-
+    //this need to be changed to make the level system.
     for(int i = 0; i < Walls.size(); i++){
         float WallColor[4] = {Walls[i].WallColor.x,Walls[i].WallColor.y,Walls[i].WallColor.z,1};
         DrawWallWithHole(matStage, WallColor, Walls[i].holeLeftRight, Walls[i].holeWidth, Walls[i].holeHeight, Walls[i].WallX); //draw each of the walls in the list
     }
     DrawWallSkybox(matStage, floor, sceneData);
-
-
-//    currently drawing the end portal
-    DrawEndPortal( matStage, currentTime, Walls[1].WallX, Walls[1].holeLeftRight, 0.75);
+    int lastWall = Walls.size() - 1;
+    DrawEndPortal( matStage, currentTime, Walls[lastWall].WallX, Walls[lastWall].holeLeftRight, 0.75);
 
 
     /* Axis of global origin */
@@ -1183,30 +1294,8 @@ int render_gles_scene (XrCompositionLayerProjectionView &layerView,
     /* teapot */
     Vec3 col = {0.2f, 0.8f, 0.7f};
 
-//    draw_teapot (sceneData.elapsed_us / 1000, col, (float *)&matP, (float *)&matV);
     draw_uiplane ((float *)&matPVM, layerView, sceneData);
-//    Vec3 zero = Vec3(0.0f, 0.0f, 0.0f);
-//    Vec3 one = Vec3(5.0f, 5.0f, 5.0f);
 
-//    draw_line((float *)&matPVM, one, zero);
-
-    //this is the left hand
-//    if(sceneData.inputState.triggerVal[0] > 0.8f){
-//        leftHandForward = getDirectionFromQuaternion(sceneData.handLoc[0].pose.orientation, {0.0f, 1.0f, 0.0f});
-//        playerVel -= leftHandForward;
-//        grapplePointLeft = findGrapplePoint(handPosLeft, -leftHandForward); //calculate the grapple hit pos
-//
-//        if(!leftGrapplePlaced){
-//            leftGrapplePlaced = true;
-//            applyGrappleSpring(handPosLeft, grapplePointLeft, &playerVel, deltaTime);
-//
-//        }
-//    }
-//    else{
-//        leftGrapplePlaced = false;
-//        grapplePointLeft = handPosLeft;
-//
-//    }
     if(sceneData.inputState.triggerVal[0] > 0.8f){
         leftHandForward = getDirectionFromQuaternion(sceneData.handLoc[0].pose.orientation, {0.0f, 1.0f, 0.0f});
 
@@ -1231,7 +1320,6 @@ int render_gles_scene (XrCompositionLayerProjectionView &layerView,
     //right hand shooting
     if(sceneData.inputState.triggerVal[1] > 0.8f){
         rightHandForward = getDirectionFromQuaternion(sceneData.handLoc[1].pose.orientation, {0.0f, 1.0f, 0.0f});
-    //    playerVel -= rightHandForward;
 
         if(!rightGrapplePlaced){
             grapplePointRight = findGrapplePoint(handPosRight, -rightHandForward);
@@ -1290,6 +1378,10 @@ int render_gles_scene (XrCompositionLayerProjectionView &layerView,
         playerVel.x = 0;
         playerPosOffset.x = 15.0f;
     }
+    if(playerPosOffset.x < Walls[Walls.size()-1].WallX) {
+        //win the level
+        BeatLevel(currentLevel);
+    }
 
     //use the player position to index into the walls array.
     Wall nearestWall;
@@ -1328,7 +1420,7 @@ int render_gles_scene (XrCompositionLayerProjectionView &layerView,
 
     // Final check
     if (inWallX && inWallY && inWallZ && !(inHoleY && inHoleZ)) {   //I still need to fix that this is not the camera pos. Need to add player offset and scene data position
-        reSpawn();
+        reSpawn(currentLevel);
     }
 
 
@@ -1347,28 +1439,6 @@ int render_gles_scene (XrCompositionLayerProjectionView &layerView,
     handPosRight.y = sceneData.handLoc[1].pose.position.y + playerPosOffset.y;
     handPosRight.z = sceneData.handLoc[1].pose.position.z + playerPosOffset.z;
 
-    /* Axis of hand grip */
-//    for (XrSpaceLocation loc : sceneData.handLoc)
-//    {
-//        XrVector3f    scale = {0.2f, 0.2f, 0.2f};
-//        XrVector3f    &pos  = loc.pose.position;
-//
-//        pos.x += playerPosOffset.x;
-//        pos.y += playerPosOffset.y;
-//        pos.z += playerPosOffset.z;
-//        XrQuaternionf &qtn  = loc.pose.orientation;
-//        XrMatrix4x4f_CreateTranslationRotationScale (&matM, &pos, &qtn, &scale);
-////        draw_axis ((float *)&matP, (float *)&matV, (float *)&matM);
-//        if(grapplePointRight)
-//        draw_Grapple ((float *)&matP, (float *)&matV, (float *)&matM);
-//        draw_line((float *)&matPVM, handPosLeft, grapplePointLeft);
-//        draw_line((float *)&matPVM, handPosRight, grapplePointRight);
-//
-//
-////        float handPos[] = {loc.pose.position.x, loc.pose.position.y, loc.pose.position.z};
-////        draw_Sphere(handPos, col, (float *)&matP, (float *)&matV);
-//        GLASSERT();
-//    }
 
     for (int i = 0; i < sceneData.handLoc.size(); i++)
     {
@@ -1401,39 +1471,9 @@ int render_gles_scene (XrCompositionLayerProjectionView &layerView,
             }
         }
 
-
-//        float handPos[] = {loc.pose.position.x, loc.pose.position.y, loc.pose.position.z};
-//        draw_Sphere(handPos, col, (float *)&matP, (float *)&matV);
         GLASSERT();
     }
 
-//#if 0
-//    /* Axis of hand aim */
-//    for (XrSpaceLocation loc : sceneData.aimLoc)
-//    {
-//        XrVector3f    scale = {0.1f, 0.1f, 0.1f};
-//        XrVector3f    &pos  = loc.pose.position;
-//        XrQuaternionf &qtn  = loc.pose.orientation;
-//        XrMatrix4x4f_CreateTranslationRotationScale (&matM, &pos, &qtn, &scale);
-//        draw_axis ((float *)&matP, (float *)&matV, (float *)&matM);
-//        GLASSERT();
-//    }
-//#endif
-
-//    for (XrHandJointLocationsEXT *loc : sceneData.handJointLoc)
-//    {
-//        for (uint32_t i = 0; i < loc->jointCount; i ++)
-//        {
-//            XrVector3f    &pos  = loc->jointLocations[i].pose.position;
-//            XrQuaternionf &qtn  = loc->jointLocations[i].pose.orientation;
-//            float         rad   = loc->jointLocations[i].radius;
-//            XrVector3f    scale = {rad, rad, rad};
-//            XrMatrix4x4f_CreateTranslationRotationScale (&matM, &pos, &qtn, &scale);
-////            draw_axis ((float *)&matP, (float *)&matV, (float *)&matM);
-//
-//            GLASSERT();
-//        }
-//    }
 
 
     /* UI plane always view front */

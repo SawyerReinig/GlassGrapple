@@ -7,3 +7,12 @@ generate_cxx_metadata
   remove-unexpected-so-files 14ms
 generate_cxx_metadata completed in 544ms
 
+# C/C++ build system timings
+generate_cxx_metadata
+  generate-prefab-packages
+    exec-prefab 300ms
+  generate-prefab-packages completed in 308ms
+  execute-generate-process 228ms
+  remove-unexpected-so-files 15ms
+generate_cxx_metadata completed in 577ms
+

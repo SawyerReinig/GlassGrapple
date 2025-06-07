@@ -130,6 +130,10 @@ float MirrorMod(float value, float max);
 
 
 
+//drawing functions that used to be in the main program.
+
+
+
 #endif //OPENXR_GLES_APP_VRGAME_H
 
 
