@@ -84,4 +84,11 @@ void android_main(struct android_app* app)
 
         engine.UpdateFrame();
     }
+    exit(0);
 }
+
+
+
+
+
+//this is the main function where audio stops when the app is killed

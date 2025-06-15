@@ -31,6 +31,8 @@ static shader_obj_t     s_sobj;
 static render_target_t  s_rtarget;
 
 static shader_obj_t     RainbowShader;
+static shader_obj_t     GrappleShader;
+
 static shader_obj_t     SkyboxShaderObject;
 static shader_obj_t     PortalShaderObject;
 
@@ -107,7 +109,6 @@ OboeMp3Player* songPlayer;
 
 const float deltaTime = 0.0138;
 
-
 Vec3 playerPosOffset;
 Vec3 playerVel;
 
@@ -155,8 +156,183 @@ void main(void)
 }
 )";
 
-
+//trying to do raysasting of the grid here.
 static char s_strFS[] = R"(
+precision highp float;
+varying vec3 v_Position;
+varying vec4 v_color;
+
+uniform vec3 viewPos; // camera world position
+uniform vec3 envColor; // Basic Environment color
+
+
+
+uniform float gridSize;           // Size of each cell
+uniform float lineWidth;          // Thickness of lines
+uniform vec3  lineColor;          // Color of the grid lines
+uniform vec3  musicLineColor;     // Color of the grid lines when the music is at max
+uniform float songBrightness;     // Loudness of the music
+uniform vec3  bgColor;            // Color of background
+
+//return a color based on a position and grid parameters. Used for reflections.
+vec3 getGridColorAtPoint(
+    vec3 pos,
+    float gridSize,
+    float lineWidth,
+    vec3 lineColor,
+    vec3 musicLineColor,
+    float songBrightness,
+    vec3 bgColor,
+    vec2 planeAxes  // (0,1)=XY, (0,2)=XZ, (2,1)=ZY
+
+) {
+    // Project the 3D point into the 2D plane of the grid
+    float coordA = (planeAxes.x < 0.5) ? pos.x : ((planeAxes.x < 1.5) ? pos.y : pos.z);
+    float coordB = (planeAxes.y < 0.5) ? pos.x : ((planeAxes.y < 1.5) ? pos.y : pos.z);
+
+    // Compute distances to the nearest grid line
+    float dA = min(mod(coordA, gridSize), gridSize - mod(coordA, gridSize));
+    float dB = min(mod(coordB, gridSize), gridSize - mod(coordB, gridSize));
+
+    float glowSize = gridSize * 0.05;
+
+    float glowA = exp(-pow(dA / glowSize, 1.04));
+    float glowB = exp(-pow(dB / glowSize, 1.04));
+
+    float coreA = smoothstep(lineWidth + 0.005, lineWidth - 0.005, dA);
+    float coreB = smoothstep(lineWidth + 0.005, lineWidth - 0.005, dB);
+
+    float glowStrength = clamp(coreA + coreB + glowA + glowB, 0.0, 1.0);
+
+    vec3 glowColor = mix(lineColor, musicLineColor, clamp(songBrightness - 0.4, 0.0, 1.0));
+    return mix(bgColor, glowColor, glowStrength);
+}
+
+bool intersectPlane(
+    vec3 rayOrigin, vec3 rayDir,
+    int axis, float planeCoord,
+    out float t, out vec3 hitPos
+) {
+    float dir = rayDir[axis];
+    if (abs(dir) < 0.0001)
+        return false;
+
+    t = (planeCoord - rayOrigin[axis]) / dir;
+    if (t < 0.0)
+        return false;
+
+    hitPos = rayOrigin + rayDir * t;
+    return true;
+}
+
+
+void main() {
+    vec3 normal = normalize(vec3(-1.0, 0.0, 0.0));  // X-facing wall
+    vec3 viewDir = normalize(viewPos - v_Position);
+
+    if (dot(normal, viewDir) < 0.0) {
+        normal = -normal;
+    }
+
+    // Fake reflection amount based on angle
+    float fresnel = pow(dot(normal, viewDir), 3.0);
+
+    // Fake rainbow based on fresnel
+    vec3 rainbowColor = vec3(
+        0.5 + 0.5 * sin(6.2831 * (fresnel + 0.0)),
+        0.5 + 0.5 * sin(6.2831 * (fresnel + 0.333)),
+        0.5 + 0.5 * sin(6.2831 * (fresnel + 0.666))
+    );
+    vec3 fresnelAndRainbow = mix(rainbowColor, envColor, 0.5); //this is usually 0.75
+
+    vec3 reflectedDir = reflect(-viewDir, normal);
+    vec3 bestHit = vec3(0.0);
+    vec2 planeAxisID;
+    float bestT = 1e9;
+    bool found = false;
+
+    vec3 tempHit;
+    float t;
+
+    // Floor (y = 0)
+    if (intersectPlane(v_Position, reflectedDir, 1, 0.0, t, tempHit)) {
+        if (tempHit.y >= 0.0 && tempHit.y <= 15.0 && abs(tempHit.z) <= 15.0 && t < bestT) {
+            bestT = t;
+            bestHit = tempHit;
+            found = true;
+            planeAxisID = vec2(0.0,2.0);
+        }
+    }
+
+    // Ceiling (y = 15)
+    if (intersectPlane(v_Position, reflectedDir, 1, 15.0, t, tempHit)) {
+        if (tempHit.y >= 0.0 && tempHit.y <= 15.0 && abs(tempHit.z) <= 15.0 && t < bestT) {
+            bestT = t;
+            bestHit = tempHit;
+            found = true;
+            planeAxisID = vec2(0.0,2.0);
+        }
+    }
+
+    // Back wall (x = 15)
+    if (intersectPlane(v_Position, reflectedDir, 0, 15.0, t, tempHit)) {
+        if (tempHit.y >= 0.0 && tempHit.y <= 15.0 && abs(tempHit.z) <= 15.0 && t < bestT) {
+            bestT = t;
+            bestHit = tempHit;
+            found = true;
+            planeAxisID = vec2(2.0,1.0);
+
+        }
+    }
+
+    // Front/Back grid (z = ±15)
+    float zTarget = reflectedDir.z > 0.0 ? 15.0 : -15.0;
+    if (intersectPlane(v_Position, reflectedDir, 2, zTarget, t, tempHit)) {
+        if (tempHit.y >= 0.0 && tempHit.y <= 15.0 && t < bestT) {
+            bestT = t;
+            bestHit = tempHit;
+            found = true;
+            planeAxisID = vec2(0.0,1.0);
+
+        }
+    }
+
+//    bool validHit = found && length(bestHit - v_Position) < 40.0;
+    bool validHit = found;
+
+    vec3 reflectedColor = validHit
+    ? getGridColorAtPoint(bestHit, gridSize, lineWidth, lineColor, musicLineColor, songBrightness, bgColor, planeAxisID)
+    : envColor;
+
+
+    // Blend environment color into base color based on fresnel
+    vec3 color = mix(fresnelAndRainbow, v_color.rgb, 0.5);  // 0.5 = strength of reflection
+//    vec3 color = mix(v_color.rgb, v_color.rgb, 1.0);  // removing the fresnel to see if I actually like it.
+
+    vec3 colorWithReflections = mix(color,reflectedColor , 0.2);
+
+    gl_FragColor = vec4(colorWithReflections, 0.75);
+}
+)";
+
+
+static char RainbowVertexShader[] = R"(
+attribute vec4  a_Vertex;
+attribute vec4  a_Color;
+varying   vec4  v_color;
+varying   vec3  v_Position;
+uniform   mat4  u_PMVMatrix;
+
+void main(void)
+{
+    gl_Position = u_PMVMatrix * a_Vertex;
+    v_color     = a_Color;
+    v_Position  = a_Vertex.xyz; //not sure if we are doing the right matrix things here, think its fine
+}
+)";
+
+
+static char RainbowFragmentShader[] = R"(
 precision highp float;
 varying vec3 v_Position;
 varying vec4 v_color;
@@ -181,17 +357,15 @@ void main() {
         0.5 + 0.5 * sin(6.2831 * (fresnel + 0.333)),
         0.5 + 0.5 * sin(6.2831 * (fresnel + 0.666))
     );
-    vec3 fresnelAndRainbow = mix(rainbowColor, envColor, 0.75);
     // Blend environment color into base color based on fresnel
-    vec3 color = mix(fresnelAndRainbow, v_color.rgb, 0.5);  // 0.5 = strength of reflection
-//    vec3 color = mix(v_color.rgb, v_color.rgb, 1.0);  // removing the fresnel to see if I actually like it.
+    vec3 color = mix(rainbowColor, v_color.rgb, 0.5);  // 0.5 = strength of reflection
 
-    gl_FragColor = vec4(color, 0.75);
+    gl_FragColor = vec4(rainbowColor, 1.0);
 }
 )";
 
 
-static char RainbowVertexShader[] = R"(
+static char GrappleVS[] = R"(
 attribute vec4  a_Vertex;
 attribute vec4  a_Color;
 varying   vec4  v_color;
@@ -202,12 +376,12 @@ void main(void)
 {
     gl_Position = u_PMVMatrix * a_Vertex;
     v_color     = a_Color;
-    v_Position  = a_Vertex.xyz; //not sure if we are doing the right matrix things here, think its fine
+    v_Position  = a_Vertex.xyz;
 }
 )";
 
 
-static char RainbowFragmentShader[] = R"(
+static char GrappleFS[] = R"(
 precision highp float;
 varying vec3 v_Position;
 varying vec4 v_color;
@@ -477,44 +651,6 @@ void initializeEndlessWalls(int NW){
 }
 
 
-//void initializeWallsFromCSV(const char* filename) {
-//    Walls.clear();
-//    int lineNumber = 0;
-//    std::string fullPath = "/sdcard/Android/data/com.DRHudooken.GlassGrapple/files/";
-//    fullPath += filename;
-//
-//    std::ifstream file(fullPath);
-//    if (!file.is_open()) {
-//        __android_log_print(ANDROID_LOG_ERROR, "WALLLOAD", "Failed to open %s", fullPath.c_str());
-//        return;
-//    }
-//
-//    std::string line;
-//    while (std::getline(file, line)) {
-//        std::istringstream ss(line);
-//        std::string value;
-//        std::vector<float> values;
-//
-//        while (std::getline(ss, value, ',')) {
-//            values.push_back(std::stof(value));
-//        }
-//
-//        if (values.size() >= 4) {
-//            Wall newWall;
-//            newWall.WallX = -15.0f - (disBetweenWalls * lineNumber);
-//            newWall.holeLeftRight = values[0];
-//            newWall.holeWidth = values[1];
-//            newWall.holeHeight = values[2];
-//            newWall.WallColor = PickFromPallet();  // keep this if color isn't in the CSV
-//            lineNumber++;
-//            Walls.push_back(newWall);
-//        }
-//    }
-//
-//    file.close();
-//    __android_log_print(ANDROID_LOG_INFO, "WALLLOAD", "Loaded %zu walls from %s", Walls.size(), filename);
-//}
-
 
 void initializeWallsFromCSV(const char* filename) {
     Walls.clear();
@@ -625,6 +761,8 @@ init_gles_scene ()
 {
     generate_shader (&s_sobj, s_strVS, s_strFS);
     generate_shader (&RainbowShader, RainbowVertexShader, RainbowFragmentShader);
+    generate_shader (&GrappleShader, GrappleVS, GrappleFS); //grapple shader with normals
+
     generate_shader (&SkyboxShaderObject, GridVS, GridFragShader); //synth shader
     generate_shader (&PortalShaderObject, PortalVS, PortalFS); //synth shader
 
@@ -646,7 +784,10 @@ init_gles_scene ()
     Mp3Sound LoseSound = loadMp3File("/sdcard/Android/data/com.DRHudooken.GlassGrapple/files/SimpleLose.mp3");
     pigSoundPlayer = new OboeMp3Player(LoseSound.samples, LoseSound.sampleRate, LoseSound.channels);
 
-    Mp3Sound grappleSound = loadMp3File("/sdcard/Android/data/com.DRHudooken.GlassGrapple/files/synthcowbell.mp3");
+//    Mp3Sound grappleSound = loadMp3File("/sdcard/Android/data/com.DRHudooken.GlassGrapple/files/synthcowbell.mp3");
+//    grappleSoundPlayer = new OboeMp3Player(grappleSound.samples, grappleSound.sampleRate, grappleSound.channels);
+
+    Mp3Sound grappleSound = loadMp3File("/sdcard/Android/data/com.DRHudooken.GlassGrapple/files/Clink2.mp3");
     grappleSoundPlayer = new OboeMp3Player(grappleSound.samples, grappleSound.sampleRate, grappleSound.channels);
 
     Mp3Sound WinSound = loadMp3File("/sdcard/Android/data/com.DRHudooken.GlassGrapple/files/SimpleWin.mp3");
@@ -677,7 +818,7 @@ int draw_line (float *mtxPV, const Vec3& p0, const Vec3& p1)
             p1.x, p1.y, p1.z
     };
 
-    shader_obj_t *sobj = &s_sobj;
+    shader_obj_t *sobj = &RainbowShader;
     glUseProgram (sobj->program);
 
     glEnableVertexAttribArray (sobj->loc_vtx);
@@ -835,7 +976,7 @@ int DrawWallSkybox(float *mtxPV, float *color, scene_data_t sceneData)
 
 
 
-int DrawWallWithHole(float *mtxPV, float *color, float holePosNorm, float holeWidth, float holeHeight, float wallDist)
+int DrawWallWithHole(float *mtxPV, float *color, float holePosNorm, float holeWidth, float holeHeight, float wallDist, XrCompositionLayerProjectionView view)
 {
 
     float wallX = wallDist;
@@ -1025,8 +1166,16 @@ int DrawWallWithHole(float *mtxPV, float *color, float holePosNorm, float holeWi
     glUniformMatrix4fv(sobj->loc_mtx, 1, GL_FALSE, mtxPV);
     // do a mix between pink and yellow to create the environemnt color. Same at the shader. x×(1−a)+y×a
     Vec3 envColor = worldPink * (1-(songPlayer->MusicBrightness*2)) + worldYellow * songPlayer->MusicBrightness*2;
-    glUniform3f(glGetUniformLocation(sobj->program, "viewPos"), playerPosOffset.x,playerPosOffset.y,playerPosOffset.z);        // 1 unit cells
+    glUniform3f(glGetUniformLocation(sobj->program, "viewPos"), view.pose.position.x,view.pose.position.y,view.pose.position.z);        // 1 unit cells
     glUniform3f(glGetUniformLocation(sobj->program, "envColor"), envColor.x, envColor.y, envColor.z);        // 1 unit cells
+
+    //passing all the grid info for reflections.
+    glUniform1f(glGetUniformLocation(sobj->program, "gridSize"), 1.0f);        // 1 unit cells
+    glUniform1f(glGetUniformLocation(sobj->program, "lineWidth"), 0.04f);      // thin lines
+    glUniform3f(glGetUniformLocation(sobj->program, "lineColor"), worldPink.x, worldPink.y, worldPink.z); // pink lines
+    glUniform3f(glGetUniformLocation(sobj->program, "musicLineColor"), worldYellow.x, worldYellow.y, worldYellow.z); // yellow lines
+    glUniform3f(glGetUniformLocation(sobj->program, "bgColor"), 0.0f, 0.0f, 0.0f);  // dark background
+    glUniform1f(glGetUniformLocation(sobj->program, "songBrightness"), songPlayer->MusicBrightness * 4);        // 1 unit cells
 
 
     glEnable(GL_DEPTH_TEST);
@@ -1094,8 +1243,8 @@ int DrawWallWithHole(float *mtxPV, float *color, float holePosNorm, float holeWi
         glLineWidth(1.0f);
         glUniformMatrix4fv(sobj->loc_mtx, 1, GL_FALSE, mtxPV);
 
-        glUniform3f(glGetUniformLocation(sobj->program, "viewPos"), playerPosOffset.x,playerPosOffset.y,playerPosOffset.z);        // 1 unit cells
-        glUniform3f(glGetUniformLocation(sobj->program, "envColor"), envColor.x, envColor.y, envColor.z);        // 1 unit cells
+//        glUniform3f(glGetUniformLocation(sobj->program, "viewPos"), playerPosOffset.x,playerPosOffset.y,playerPosOffset.z);        // 1 unit cells
+//        glUniform3f(glGetUniformLocation(sobj->program, "envColor"), envColor.x, envColor.y, envColor.z);        // 1 unit cells
 
         glDrawArrays(GL_LINES, 0, 8); // 8 lines = 16 vertices
 
@@ -1132,7 +1281,7 @@ int draw_uiplane (float *matPVMbase,
         sceneData.gl_render  = glGetString (GL_RENDERER);
         sceneData.viewport   = layerView.subImage.imageRect;
         invoke_imgui (&sceneData, highscore);
-//        invoke_Debug_imgui(&sceneData);
+        invoke_Debug_imgui(&sceneData, layerView);
     }
 
     /* restore FBO */
@@ -1263,10 +1412,10 @@ int render_gles_scene (XrCompositionLayerProjectionView &layerView,
     float pingPong = fabs(1.0f - 2.0f * t);            // 0 → 1 → 0
     float floor[4] = {0.6,pingPong,pingPong,0.5};
 
-    //this need to be changed to make the level system.
+    //this need to be changed to make the level system, sike no it didn't lol.
     for(int i = 0; i < Walls.size(); i++){
         float WallColor[4] = {Walls[i].WallColor.x,Walls[i].WallColor.y,Walls[i].WallColor.z,1};
-        DrawWallWithHole(matStage, WallColor, Walls[i].holeLeftRight, Walls[i].holeWidth, Walls[i].holeHeight, Walls[i].WallX); //draw each of the walls in the list
+        DrawWallWithHole(matStage, WallColor, Walls[i].holeLeftRight, Walls[i].holeWidth, Walls[i].holeHeight, Walls[i].WallX, layerView); //draw each of the walls in the list
     }
     DrawWallSkybox(matStage, floor, sceneData);
     int lastWall = Walls.size() - 1;
@@ -1274,27 +1423,27 @@ int render_gles_scene (XrCompositionLayerProjectionView &layerView,
 
 
     /* Axis of global origin */
-    {
-        XrVector3f    scale = {0.2f, 0.2f, 0.2f};
-        XrVector3f    pos   = {0.0f, 0.0f, 0.0f};
-        XrQuaternionf qtn   = {0.0f, 0.0f, 0.0f, 1.0f};
-        XrMatrix4x4f_CreateTranslationRotationScale (&matM, &pos, &qtn, &scale);
+//    {
+//        XrVector3f    scale = {0.2f, 0.2f, 0.2f};
+//        XrVector3f    pos   = {0.0f, 0.0f, 0.0f};
+//        XrQuaternionf qtn   = {0.0f, 0.0f, 0.0f, 1.0f};
+//        XrMatrix4x4f_CreateTranslationRotationScale (&matM, &pos, &qtn, &scale);
 //        draw_axis ((float *)&matP, (float *)&matV, (float *)&matM);
-    }
+//    }
 
     /* Axis of stage origin */
-    {
-        XrVector3f    scale = {0.2f, 0.2f, 0.2f};
-        XrVector3f    &pos  = stagePose.position;
-        XrQuaternionf &qtn  = stagePose.orientation;
-        XrMatrix4x4f_CreateTranslationRotationScale (&matM, &pos, &qtn, &scale);
+//    {
+//        XrVector3f    scale = {0.2f, 0.2f, 0.2f};
+//        XrVector3f    &pos  = stagePose.position;
+//        XrQuaternionf &qtn  = stagePose.orientation;
+//        XrMatrix4x4f_CreateTranslationRotationScale (&matM, &pos, &qtn, &scale);
 //        draw_axis ((float *)&matP, (float *)&matV, (float *)&matM);
-    }
+//    }
 
-    /* teapot */
     Vec3 col = {0.2f, 0.8f, 0.7f};
 
     draw_uiplane ((float *)&matPVM, layerView, sceneData);
+
 
     if(sceneData.inputState.triggerVal[0] > 0.8f){
         leftHandForward = getDirectionFromQuaternion(sceneData.handLoc[0].pose.orientation, {0.0f, 1.0f, 0.0f});
@@ -1362,9 +1511,9 @@ int render_gles_scene (XrCompositionLayerProjectionView &layerView,
         playerVel.x *= 0.99f;
         playerVel.z *= 0.99f;
     }
-    if(playerPosOffset.z < -13.0f) {
+    if(playerPosOffset.z < -14.0f) {
         playerVel.z = 0;
-        playerPosOffset.z = -13.0f;
+        playerPosOffset.z = -14.0f;
     }
     if(playerPosOffset.z > 14.0f) {
         playerVel.z = 0;
@@ -1411,15 +1560,15 @@ int render_gles_scene (XrCompositionLayerProjectionView &layerView,
     float holeTopY = holeBottomY + nearestWall.holeHeight;
 
     // Check bounds
-    bool inWallX = playerPosOffset.x < wallFrontX + 1 && playerPosOffset.x > wallBackX;
-    bool inWallY = playerPosOffset.y < wallTopY && playerPosOffset.y > wallBottomY;
-    bool inWallZ = playerPosOffset.z < wallRightZ && playerPosOffset.z > wallLeftZ;
+    bool inWallX = layerView.pose.position.x < wallFrontX && layerView.pose.position.x > wallBackX;
+//    bool inWallY = layerView.pose.position.y < wallTopY && layerView.pose.position.y > wallBottomY;
+    bool inWallZ = layerView.pose.position.z < wallRightZ && layerView.pose.position.z > wallLeftZ;
 
-    bool inHoleY = playerPosOffset.y < holeTopY-1.5 && playerPosOffset.y > holeBottomY-1.5;
-    bool inHoleZ = playerPosOffset.z < holeRightZ && playerPosOffset.z > holeLeftZ;
+    bool inHoleY = layerView.pose.position.y < holeTopY && layerView.pose.position.y > holeBottomY;
+    bool inHoleZ = layerView.pose.position.z < holeRightZ && layerView.pose.position.z > holeLeftZ;
 
     // Final check
-    if (inWallX && inWallY && inWallZ && !(inHoleY && inHoleZ)) {   //I still need to fix that this is not the camera pos. Need to add player offset and scene data position
+    if (inWallX && inWallZ && !(inHoleY && inHoleZ)) {   //I still need to fix that this is not the camera pos. Need to add player offset and scene data position
         reSpawn(currentLevel);
     }
 
@@ -1453,21 +1602,21 @@ int render_gles_scene (XrCompositionLayerProjectionView &layerView,
         if(i == 0){ //left hand
             if(leftGrapplePlaced){
                 draw_line((float *)&matPVM, handPosLeft, grapplePointLeft);
-                draw_Hand ((float *)&matP, (float *)&matV, (float *)&matM,RainbowShader, playerPosOffset);
+                draw_Hand ((float *)&matP, (float *)&matV, (float *)&matM,GrappleShader, playerPosOffset);
 
             }
             else{
-                draw_Grapple ((float *)&matP, (float *)&matV, (float *)&matM,RainbowShader, playerPosOffset);
+                draw_Grapple ((float *)&matP, (float *)&matV, (float *)&matM,GrappleShader, playerPosOffset);
             }
         }
         if(i == 1){ //left hand
             if(rightGrapplePlaced){
                 draw_line((float *)&matPVM, handPosRight, grapplePointRight);
-                draw_Hand ((float *)&matP, (float *)&matV, (float *)&matM,RainbowShader, playerPosOffset);
+                draw_Hand ((float *)&matP, (float *)&matV, (float *)&matM,GrappleShader, playerPosOffset);
 
             }
             else{
-                draw_Grapple ((float *)&matP, (float *)&matV, (float *)&matM,RainbowShader, playerPosOffset);
+                draw_Grapple ((float *)&matP, (float *)&matV, (float *)&matM,GrappleShader, playerPosOffset);
             }
         }
 

@@ -488,19 +488,15 @@ int create_grapple (float *matP, float *matV, float *matM, Vec3 color, shader_ob
 //    glUseProgram (s_sobj.program);
     glUseProgram (rainbowShader.program);
 
-    glEnableVertexAttribArray (s_sobj.loc_vtx);
-    glEnableVertexAttribArray (s_sobj.loc_nrm);
+    glEnableVertexAttribArray (rainbowShader.loc_vtx);
+    glEnableVertexAttribArray (rainbowShader.loc_nrm);
 
     matrix_mult (matVM, matV, matB);
     compute_invmat3x3 (matVMI3x3, matVM);
     matrix_mult (matPVM, matP, matVM);
 
-//    glUniformMatrix4fv (s_loc_mtx_mv,   1, GL_FALSE, matVM );
-        glUniformMatrix4fv (glGetUniformLocation(s_sobj.program, "u_PMVMatrix" ),  1, GL_FALSE, matPVM);
-//    glUniformMatrix3fv (s_loc_mtx_nrm,  1, GL_FALSE, matVMI3x3);
-//    glUniform3f (s_loc_lightpos, 1.0f, 1.0f, 1.0f);
-//    glUniform3f (s_loc_color, color[0], color[1], color[2]);
-//    glUniform1f (s_loc_alpha, color[3]);
+    glUniformMatrix4fv (glGetUniformLocation(rainbowShader.program, "u_PMVMatrix" ),  1, GL_FALSE, matPVM);
+
 
     glUniform3f(glGetUniformLocation(rainbowShader.program, "viewPos"), MirrorMod(playerPosOffset.x, 15.0f),playerPosOffset.y,playerPosOffset.z);        // 1 unit cells
     glUniform3f(glGetUniformLocation(rainbowShader.program, "envColor"), 0.8f,0.8f,0.8f);
@@ -509,10 +505,10 @@ int create_grapple (float *matP, float *matV, float *matM, Vec3 color, shader_ob
         glEnable (GL_BLEND);
 
     glBindBuffer (GL_ARRAY_BUFFER, s_Grapple.vbo_vtx);
-    glVertexAttribPointer (s_sobj.loc_vtx, 3, GL_FLOAT, GL_FALSE, 0, 0);
+    glVertexAttribPointer (rainbowShader.loc_vtx, 3, GL_FLOAT, GL_FALSE, 0, 0);
 
     glBindBuffer (GL_ARRAY_BUFFER, s_Grapple.vbo_nrm);
-    glVertexAttribPointer (s_sobj.loc_nrm, 3, GL_FLOAT, GL_FALSE, 0, 0);
+    glVertexAttribPointer (rainbowShader.loc_nrm, 3, GL_FLOAT, GL_FALSE, 0, 0);
 
     glBindBuffer (GL_ELEMENT_ARRAY_BUFFER, s_Grapple.vbo_idx);
     glDrawElements (GL_TRIANGLES, s_Grapple.num_faces * 3, GL_UNSIGNED_SHORT, 0);

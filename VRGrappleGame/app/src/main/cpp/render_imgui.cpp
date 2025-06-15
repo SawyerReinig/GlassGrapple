@@ -142,26 +142,26 @@ render_gui (scene_data_t *scn_data, int highscore)  // I Should try messing with
 
 
         //testing out an outline:
-        ImDrawList* draw_list = ImGui::GetWindowDrawList();
-        ImVec2 pos = ImGui::GetCursorScreenPos();
-        const char* text = "Welcome To GLASS GRAPPLE";
-
-        // Glow color
-        ImU32 glow = IM_COL32(0, 255, 255, 150);  // Cyan with transparency
-
-        // Draw multiple offset layers (glow)
-        for (int dx = -1; dx <= 1; dx++) {
-            for (int dy = -1; dy <= 1; dy++) {
-                if (dx == 0 && dy == 0) continue;
-                draw_list->AddText(synthFont, 12.0f, ImVec2(pos.x + dx, pos.y + dy), glow, text);
-            }
-        }
-
-        // Top layer (main text)
-        draw_list->AddText(synthFont, 12.0f, pos, IM_COL32_WHITE, text);
-
-        // Move cursor down so next item doesn't overlap
-        ImGui::Dummy(ImVec2(0, synthFont->FontSize));
+//        ImDrawList* draw_list = ImGui::GetWindowDrawList();
+//        ImVec2 pos = ImGui::GetCursorScreenPos();
+//        const char* text = "Welcome To GLASS GRAPPLE";
+//
+//        // Glow color
+//        ImU32 glow = IM_COL32(0, 255, 255, 150);  // Cyan with transparency
+//
+//        // Draw multiple offset layers (glow)
+//        for (int dx = -1; dx <= 1; dx++) {
+//            for (int dy = -1; dy <= 1; dy++) {
+//                if (dx == 0 && dy == 0) continue;
+//                draw_list->AddText(synthFont, 12.0f, ImVec2(pos.x + dx, pos.y + dy), glow, text);
+//            }
+//        }
+//
+//        // Top layer (main text)
+//        draw_list->AddText(synthFont, 12.0f, pos, IM_COL32_WHITE, text);
+//
+//        // Move cursor down so next item doesn't overlap
+//        ImGui::Dummy(ImVec2(0, synthFont->FontSize));
 
 
 
@@ -196,7 +196,7 @@ invoke_imgui (scene_data_t *scn_data, int highscore)
 }
 
 
-static void render_Debug_gui (scene_data_t *scn_data)
+static void render_Debug_gui (scene_data_t *scn_data, XrCompositionLayerProjectionView View)
 {
     int win_w = 300;
     int win_h = 0;
@@ -207,20 +207,26 @@ static void render_Debug_gui (scene_data_t *scn_data)
 
     /* Show main window */
     win_y += win_h;
-    win_h = 50;
+    win_h = 200;
     ImGui::SetNextWindowPos (ImVec2(_X(win_x), _Y(win_y)), ImGuiCond_FirstUseEver);
     ImGui::SetNextWindowSize(ImVec2(_X(win_w), _Y(win_h)), ImGuiCond_FirstUseEver);
 
     win_y += win_h;
-    win_h = 60;
+    win_h = 200;
     ImGui::SetNextWindowPos (ImVec2(_X(win_x), _Y(win_y)), ImGuiCond_FirstUseEver);
     ImGui::SetNextWindowSize(ImVec2(_X(win_w), _Y(win_h)), ImGuiCond_FirstUseEver);
     ImGui::Begin("View Info");
     {
 //        ImGui::Text("Elapsed  : %d [ms]",    scn_data->elapsed_us / 1000);
         ImGui::Text("FPS : %6.3f", 1000/scn_data->interval_ms);
+        ImGui::Text("HeadPosX : %6.3f", View.pose.position.x);
+        ImGui::Text("HeadPosY : %6.3f", View.pose.position.y);
+        ImGui::Text("HeadPosZ : %6.3f", View.pose.position.z);
 
-        ImGui::Text("Press Left Menu Button For Menu");
+
+
+
+//        ImGui::Text("Press Left Menu Button For Menu");
 
 
 //        s_win_pos [s_win_num] = ImGui::GetWindowPos  ();
@@ -230,12 +236,12 @@ static void render_Debug_gui (scene_data_t *scn_data)
     ImGui::End();
 }
 
-int invoke_Debug_imgui (scene_data_t *scn_data)
+int invoke_Debug_imgui (scene_data_t *scn_data, XrCompositionLayerProjectionView View)
 {
     ImGui_ImplOpenGL3_NewFrame();
     ImGui::NewFrame();
 
-    render_Debug_gui (scn_data);
+    render_Debug_gui (scn_data, View);
 
     ImGui::Render();
     ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());

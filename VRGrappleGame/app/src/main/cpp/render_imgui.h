@@ -22,7 +22,7 @@ void imgui_mousemove (int x, int y);
 
 int invoke_imgui (scene_data_t *scn_data, int highscore);
 
-int invoke_Debug_imgui(scene_data_t *scn_data);
+int invoke_Debug_imgui(scene_data_t *scn_data, XrCompositionLayerProjectionView View);
 
 #endif /* UTIL_IMGUI_H_ */
  
